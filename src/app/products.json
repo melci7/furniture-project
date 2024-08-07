@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Beige Sofa",
+    "price": "$1570",
+    "image": "/public/product.png"
+  },
+  {
+    "name": "Beige Sofa",
+    "price": "$1570",
+    "image": "/public/product_2.png"
+  },
+  {
+    "name": "Beige Sofa",
+    "price": "$1570",
+    "image": "/public/product_3.png"
+  },
+  {
+    "name": "Beige Sofa",
+    "price": "$1570",
+    "image": "/public/product_4.png"
+  },
+  {
+    "name": "Beige Sofa",
+    "price": "$1570",
+    "image": "/public/product_5.png"
+  },
+  {
+    "name": "Beige Sofa",
+    "price": "$1570",
+    "image": "/public/product_6.png"
+  }
+]
