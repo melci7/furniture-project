@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useShoppingCart } from "./useShoppingCart"
 
 export default function LatestArrivals({ products }) {
-    const addToCart = useShoppingCart()
+    const { addToCart } = useShoppingCart()
     return (
         <section className="w-full px-8 mt-32">
             <div className="flex flex-col gap-6">

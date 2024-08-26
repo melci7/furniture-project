@@ -37,5 +37,15 @@ export function useShoppingCart() {
             }
         });
     }
-    return addToCart
+
+    const decreaseFromCart = (product) => {
+        setCartItems(prevItems => {
+            return prevItems.map(item =>
+                item.id === product.id
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            ).filter(item => item.quantity > 0);
+        });
+    }
+    return { cartItems, addToCart, decreaseFromCart }
 }

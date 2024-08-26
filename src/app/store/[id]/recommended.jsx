@@ -1,3 +1,4 @@
+"use client"
 import ItemBox from "@/components/item-box"
 import Image from "next/image"
 import {

@@ -4,26 +4,23 @@ import Image from "next/image";
 import { useState } from "react";
 import { Trash2, Minus, Plus } from "lucide-react";
 
-export default function Item({ product, onUpdate }) {
+export default function Item({ product, addToCart, decreaseFromCart }) {
     const [count, setCount] = useState(product.quantity);
 
     function formatPrice(price) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const addToCart = () => {
+    const increase = (product) => {
         setCount(prevCount => prevCount + 1);
-        onUpdate(product.id, 1);
+        addToCart(product)
     };
 
-    const decreaseFromCart = () => {
-        if (count > 1) {
-            setCount(prevCount => prevCount - 1);
-            onUpdate(product.id, -1);
-        } else {
-            onUpdate(product.id, -1, true);
-        }
-    };
+    const decrease = (product) => {
+        setCount(prevCount => prevCount - 1)
+        decreaseFromCart(product)
+    }
+
 
     return (
         <div className="flex w-full gap-6">
@@ -42,21 +39,21 @@ export default function Item({ product, onUpdate }) {
                     <span className="text-[#636363]">{product.name}</span>
                     <div className='mt-auto w-24 flex gap-1 py-1 justify-center items-center bg-[#f5f5f5] rounded-[8px]'>
                         <button
-                            onClick={decreaseFromCart}
+                            onClick={() => decrease(product)}
                             className='w-6 h-6 font-bold duration-300 ease-out flex items-center justify-center hover:scale-110 transition-all'
                         >
                             {count === 1 ? <Trash2 size={18} /> : <Minus size={16} />}
                         </button>
                         <span className='font-semibold text-center text-sm w-6'>{count}</span>
                         <button
-                            onClick={addToCart}
+                            onClick={() => increase(product)}
                             className='w-6 h-6 font-bold duration-300 ease-out flex items-center justify-center hover:scale-110 transition-all'
                         >
                             <Plus size={16} />
                         </button>
                     </div>
                 </div>
-                <span className="" >${formatPrice(product.discount ? product.price - (product.price * product.discount / 100) : product.price)}</span>
+                <span className="" >${product.discount ? product.price - (product.price * product.discount / 100) : product.price}</span>
             </div>
         </div>
     );

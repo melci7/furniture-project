@@ -19,6 +19,13 @@ export default function Navbar() {
                 </ul>
             </nav>
             <ul className="flex gap-2">
+                <Link href="/login" className="rounded-full border border-gray-400 py-2 px-3 flex gap-2 items-center text-sm">
+                    <UserRound strokeWidth={1.5} size={22} />
+                    <span className="font-medium">Log in</span>
+                </Link>
+                {/* <Link href="#" className="rounded-full border border-gray-400 p-2">
+                    <UserRound strokeWidth={1.5} size={22} />
+                </Link> */}
                 <Link href="#" className="rounded-full border border-gray-400 p-2">
                     <Heart strokeWidth={1.5} size={22} />
                 </Link>
@@ -27,9 +34,6 @@ export default function Navbar() {
                         {quantity}
                     </div>}
                     <ShoppingCart strokeWidth={1.5} size={22} />
-                </Link>
-                <Link href="#" className="rounded-full border border-gray-400 p-2">
-                    <UserRound strokeWidth={1.5} size={22} />
                 </Link>
             </ul>
         </header>

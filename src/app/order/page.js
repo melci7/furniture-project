@@ -1,9 +1,9 @@
-import CustomerInfo from "./customer-info"
+import OrderWrapper from "./order-wrapper"
 
 export default function Page() {
   return (
-    <section className="mt-20">
-      <CustomerInfo />
+    <section className="mt-20 px-14">
+      <OrderWrapper />
     </section>
   )
 }

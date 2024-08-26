@@ -7,7 +7,7 @@ import { useShoppingCart } from "@/components/useShoppingCart"
 export default function StoreWrapper({ data }) {
     const [selectedCategory, setSelectedCategory] = useState(null)
 
-    const addToCart = useShoppingCart()
+    const { addToCart } = useShoppingCart()
 
     function handleClick(category) {
         setSelectedCategory(prev => prev === category ? null : category)

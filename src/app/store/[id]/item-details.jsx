@@ -19,7 +19,7 @@ const sections = [
 
 export default function ItemDetails({ product }) {
     const [activeSection, setActiveSection] = useState('Details');
-    const addToCart = useShoppingCart()
+    const { addToCart } = useShoppingCart()
 
     function formatPrice(price) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -4,37 +4,12 @@ import { useState, useEffect } from "react";
 import SummaryBox from "./summary-box";
 import Link from "next/link";
 import { X, Check } from 'lucide-react';
+import { useShoppingCart } from "@/components/useShoppingCart";
 
 export default function ItemList() {
     const [isClicked, setIsClicked] = useState(false)
-    const [cartItems, setCartItems] = useState(() => {
-        try {
-            return JSON.parse(localStorage.getItem('cartItems')) || [];
-        } catch (error) {
-            console.error('Error reading from localStorage:', error);
-            return [];
-        }
-    });
-
-    useEffect(() => {
-        try {
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            window.dispatchEvent(new Event('cart-updated'));
-        } catch (error) {
-            console.error('Error writing to localStorage:', error);
-        }
-    }, [cartItems]);
-
-    const updateCart = (productId, change, remove = false) => {
-        setCartItems(prevItems => {
-            const updatedItems = prevItems.map(item =>
-                item.id === productId
-                    ? { ...item, quantity: item.quantity + change }
-                    : item
-            ).filter(item => item.quantity > 0 || !remove);
-            return updatedItems;
-        });
-    };
+    const { cartItems, addToCart, decreaseFromCart } = useShoppingCart()
+    const [loading, setLoading] = useState(true);
 
     function handleClick() {
         setIsClicked(prevValue => !prevValue)
@@ -53,6 +28,18 @@ export default function ItemList() {
         };
     }, [isClicked]);
 
+    const [hydrated, setHydrated] = useState(false);
+
+    useEffect(() => {
+        // Set hydrated to true after the component mounts, ensuring that the server HTML matches the client HTML.
+        setHydrated(true);
+    }, []);
+
+    if (!hydrated) {
+        // Return a loading state or placeholder while waiting for hydration to complete
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="w-full flex gap-20 items-baseline">
             {isClicked && (
@@ -69,15 +56,15 @@ export default function ItemList() {
                     <>
                         <span className="text-2xl font-semibold">Cart</span>
                         {cartItems.map(item =>
-                            <Item key={item.id} product={item} onUpdate={updateCart} />
+                            <Item key={item.id} product={item} addToCart={addToCart} decreaseFromCart={decreaseFromCart} />
                         )}
                     </>
                 ) : (
-                    <div className="">
+                    <div className="flex flex-col">
                         <span className="text-3xl font-semibold mb-4">Your cart is empty</span>
                         <Link
                             href="/store"
-                            className="inline-block text-xl pb-0.5 font-semibold text-black relative group"
+                            className="self-start inline-block text-xl pb-0.5 font-semibold text-black relative group"
                         >
                             <span className="relative z-10">Go to Store</span>
                             <div className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></div>
@@ -113,10 +100,10 @@ export default function ItemList() {
                             </span>
                         </div>
 
-                        <button className="bg-black py-3 mt-3 text-white text-lg rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out">Join or log in</button>
+                        <Link href={"#"} className="bg-black py-3 mt-3 text-white text-lg rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center">Join or log in</Link>
                         <div className="my-3 text-[#636363] text-sm text-center border-b border-[#dfdfdf]">OR</div>
-                        <button className="bg-[#455EA0] py-3 text-white text-lg rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out"
-                        >Continue as guest</button>
+                        <Link href={"/order"} className="bg-[#455EA0] py-3 text-white text-lg rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out text-center"
+                        >Continue as guest</Link>
                         <p className="text-[#636363] text-xs text-center">By continuing as a guest, you might miss out member discounts.</p>
                     </div>
 
