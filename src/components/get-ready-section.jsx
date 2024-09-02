@@ -12,7 +12,7 @@ export default function GetReadySection() {
             />
             <div className="flex flex-col w-full gap-12">
                 <h2 className="text-5xl font-semibold max-w-[380px] font-sans">Get ready for winter</h2>
-                <p className="text-xl text-[#636363] font-sans">Curl up loved ones on our plush <span className="font-bold text-black">sofas</span> and sink into the soft embrace of <span className="font-bold text-black">winter-ready</span> fabrics. <span className="font-bold text-black">Enjoy</span> the season&apos;s festivities surrounded by our <span className="font-bold text-black">stylish</span> and inviting living room <span className="font-bold text-black">furniture.</span></p>
+                <p className="text-xl text-[#636363] font-sans">Curl up loved ones on our plush <span className="font-bold text-black">sofas</span> and sink into the soft embrace of <span className="font-bold text-black">winter-ready</span> fabrics. <span className="font-bold text-black">Enjoy </span><span>{"the season's festivities surrounded by our"}</span> <span className="font-bold text-black">stylish</span> and inviting living room <span className="font-bold text-black">furniture.</span></p>
                 <Link href="/store" className="bg-[#FFD873] rounded-3xl py-3.5 px-6 text-sm self-start inline-block">
                     Open Store
                 </Link>

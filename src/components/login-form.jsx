@@ -95,7 +95,7 @@ export default function LoginForm() {
                             </button>
                         </form>
                         <div className="text-center text-sm mt-6">
-                            Don&apos;t have an account?{" "}
+                            <span>{"Don't have an account?"} {" "}</span>
                             <Link href="/signup" className="underline">
                                 Sign up
                             </Link>
