@@ -28,7 +28,7 @@ export default function StoreWrapper({ data }) {
 
     return (
         <div className="w-full mt-8 mb-20">
-            <section className="w-full m-auto flex mt-14 justify-center items-center gap-7 flex-wrap">
+            <section className="w-full m-auto flex mt-10 justify-center items-center gap-7 flex-wrap">
                 {categories.map(cat => (
                     <StoreItemBox
                         key={cat.name}

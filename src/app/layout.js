@@ -1,6 +1,7 @@
 import localFont from "next/font/local"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import Providers from "@/components/session-provider"
 
 const myFont = localFont({
   src: "./fonts/Switzer-Regular.otf",
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${myFont.variable} ${inter.className} w-9/12 m-auto min-h-screen `}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

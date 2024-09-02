@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel-demo"
 export default function BannerCarousel() {
     return (
-        <section className="mt-4 w-full relative">
+        <section className="mt-10 w-full relative">
             <div className="bg-[#5c75b8] rounded-[24px] py-16 ">
                 <div className="flex flex-col gap-6 items-center max-w-[1090px] m-auto">
                     <h1 className="text-[80px] text-white font-semibold font-sans">Modern Minimalist Furniture</h1>
