@@ -39,7 +39,7 @@ export default function StoreWrapper({ data }) {
                     />
                 ))}
             </section>
-            <div className="flex flex-wrap gap-7 justify-center items-center mt-8 w-fit">
+            <div className="flex flex-wrap gap-7 justify-center items-center mt-8">
                 {filteredData.map((item) => (
                     <ItemBox key={item.id} product={item} addToCart={addToCart} />
                 ))}

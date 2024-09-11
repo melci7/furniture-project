@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function OfferSection({ product }) {
     return (
-        <section className="w-full px-8 mt-24 flex gap-40">
+        <section className="w-full mt-24 flex gap-40">
             <div className="max-w-[360px] flex flex-col gap-8">
                 <h2 className="text-5xl font-semibold font-sans">Daily offer</h2>
                 <p className="text-[#636363] font-sans">Check out our daily offers that can combine big discounts on some products. Offers may change every day, do not miss your chance.</p>

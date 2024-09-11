@@ -7,7 +7,7 @@ export default function OrderSummaryBox({ product }) {
     const subtotal = product.reduce((total, item) => total + (item.price * item.quantity), 0)
     const delivery = 169
     return (
-        <div className="">
+        <div className="w-full">
             <h2 className="text-2xl font-semibold mb-4">Summary</h2>
             <div className="w-full p-6 rounded-[24px] shadow-md flex flex-col gap-3">
                 <div className="flex justify-between">

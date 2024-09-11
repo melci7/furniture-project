@@ -2,11 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 export default function GetReadySection() {
     return (
-        <section className="w-full flex px-8 gap-28 mt-24 items-center">
+        <section className="w-full flex gap-28 mt-36 items-center">
             <Image
                 src={"/image_3.jpg"}
                 className="object-none object-left rounded-[24px] h-[460px]"
-                width={550}
+                width={630}
                 height={550}
                 alt="Blue sofa"
             />

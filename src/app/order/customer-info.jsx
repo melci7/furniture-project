@@ -76,27 +76,27 @@ export default function CustomerInfo({ register, errors, handleSubmit }) {
                             {...register("country", { required: "Country is required" })}
                         >
                             <option value="" disabled>Choose a country</option>
-                            <option value="australia">Australia</option>
-                            <option value="brazil">Brazil</option>
-                            <option value="canada">Canada</option>
-                            <option value="china">China</option>
-                            <option value="france">France</option>
-                            <option value="germany">Germany</option>
-                            <option value="india">India</option>
-                            <option value="italy">Italy</option>
-                            <option value="japan">Japan</option>
-                            <option value="mexico">Mexico</option>
-                            <option value="netherlands">Netherlands</option>
-                            <option value="norway">Norway</option>
-                            <option value="russia">Russia</option>
-                            <option value="singapore">Singapore</option>
-                            <option value="south-korea">South Korea</option>
-                            <option value="spain">Spain</option>
-                            <option value="sweden">Sweden</option>
-                            <option value="switzerland">Switzerland</option>
-                            <option value="turkey">Turkey</option>
-                            <option value="uk">United Kingdom</option>
-                            <option value="usa">United States</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Canada">Canada</option>
+                            <option value="China">China</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="India">India</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Netherlands">Netherlands</option>
+                            <option value="Norway">Norway</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="South-korea">South Korea</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Sweden">Sweden</option>
+                            <option value="Switzerland">Switzerland</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="USA">United States</option>
                         </select>
                         {errors.country && <p className="text-red-500 text-sm">{errors.country.message}</p>}
                     </div>

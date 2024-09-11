@@ -31,6 +31,8 @@ export default function ItemList() {
         }
     }
 
+    console.log(cartItems)
+
     useEffect(() => {
         if (isClicked) {
             document.body.classList.add('overflow-hidden');
