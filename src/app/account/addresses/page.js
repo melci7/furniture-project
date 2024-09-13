@@ -78,13 +78,11 @@ export default function Addresses() {
   }
 
   const updateAddresses = async () => {
-    if (status === "authenticated" && session?.user) {
-      try {
-        const fetchedAddresses = await fetchAddresses(session.user.id)
-        setAddresses(Array.isArray(fetchedAddresses) ? fetchedAddresses : [])
-      } catch (error) {
-        console.error("Failed to load addresses.")
-      }
+    try {
+      const fetchedAddresses = await fetchAddresses(session.user.id)
+      setAddresses(Array.isArray(fetchedAddresses) ? fetchedAddresses : [])
+    } catch (error) {
+      console.error("Failed to load addresses.")
     }
   }
 
@@ -101,7 +99,7 @@ export default function Addresses() {
           .catch(() => console.error("Failed to submit address."))
       }
     }
-  }, [formState, session?.user?.id, status])
+  }, [formState, session?.user?.id, status, updateAddresses])
 
   return (
     <div className="max-w-2xl w-full border border-[#dfdfdf] rounded-2xl p-8">

@@ -1,25 +1,30 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 
 export function useShoppingCart() {
     const [cartItems, setCartItems] = useState(() => {
-        try {
-            return JSON.parse(localStorage.getItem('cartItems')) || [];
-        } catch (error) {
-            console.error('Error reading from localStorage:', error);
-            return [];
+        if (typeof window !== 'undefined') { // Ensure we're in the browser
+            try {
+                return JSON.parse(localStorage.getItem('cartItems')) || [];
+            } catch (error) {
+                console.error('Error reading from localStorage:', error);
+                return [];
+            }
+        } else {
+            return []; // Return empty array during SSR
         }
     });
 
     useEffect(() => {
-        try {
-            localStorage.setItem('cartItems', JSON.stringify(cartItems))
-            window.dispatchEvent(new Event('cart-updated'))
-
-        } catch (error) {
-            console.error('Error writing to localStorage:', error)
+        if (typeof window !== 'undefined') { // Ensure this runs only on the client
+            try {
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                window.dispatchEvent(new Event('cart-updated'));
+            } catch (error) {
+                console.error('Error writing to localStorage:', error);
+            }
         }
-    }, [cartItems])
+    }, [cartItems]);
 
     const addToCart = (product) => {
         setCartItems(prevItems => {
@@ -36,7 +41,7 @@ export function useShoppingCart() {
                 return [...prevItems, { ...product, quantity: 1 }];
             }
         });
-    }
+    };
 
     const decreaseFromCart = (product) => {
         setCartItems(prevItems => {
@@ -46,6 +51,7 @@ export function useShoppingCart() {
                     : item
             ).filter(item => item.quantity > 0);
         });
-    }
-    return { cartItems, addToCart, decreaseFromCart }
+    };
+
+    return { cartItems, addToCart, decreaseFromCart };
 }

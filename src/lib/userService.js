@@ -37,17 +37,44 @@ export async function getUserByEmail(email) {
     throw error
   }
 }
-
 export async function createOrder(orderData) {
-  const { cartItems, customerInfo } = orderData
+  const { cartItems, customerInfo, selectedAddressId } = orderData
   try {
     // Start a transaction
     await query("BEGIN")
 
+    let userId, customerName, shippingAddress
+
+    if (selectedAddressId) {
+      // Fetch address details if selectedAddressId is provided
+      const addressResult = await query(
+        "SELECT user_id, shipping_address FROM addresses WHERE id = $1",
+        [selectedAddressId]
+      )
+
+      if (addressResult.rows.length === 0) {
+        throw new Error("Selected address not found")
+      }
+
+      userId = addressResult.rows[0].user_id
+      shippingAddress = addressResult.rows[0].shipping_address
+
+      // Fetch customer name
+      const userResult = await query("SELECT name FROM users WHERE id = $1", [
+        userId,
+      ])
+      customerName = userResult.rows[0].name
+    } else {
+      // Use customerInfo if no selectedAddressId
+      userId = customerInfo.userId
+      customerName = customerInfo.name
+      shippingAddress = customerInfo.shippingAddress
+    }
+
     // Create order
     const orderResult = await query(
       "INSERT INTO orders (user_id, order_date, customer_name, shipping_address) VALUES ($1, NOW(), $2, $3) RETURNING id",
-      [customerInfo.userId, customerInfo.name, customerInfo.shippingAddress]
+      [userId, customerName, shippingAddress]
     )
     const orderId = orderResult.rows[0].id
 

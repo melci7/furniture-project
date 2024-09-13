@@ -1,5 +1,6 @@
-import { Heart, ShoppingCart } from 'lucide-react'
+import { Heart, ShoppingCart, CircleCheckBig } from 'lucide-react'
 import Link from "next/link"
+import { toast } from 'sonner'
 
 export default function ItemBox({ product, addToCart }) {
 
@@ -7,8 +8,17 @@ export default function ItemBox({ product, addToCart }) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        addToCart(product);
+        toast.success(`${product.name} added to cart`, {
+            position: 'top-right',
+            closeButton: "true"
+        });
+    }
+
     return (
-        <Link href={`/store/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${product.category === "Sofa" ? "w-[670px]" : "w-[335px]"} h-full`}>
+        <Link href={`/store/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${product.category === "Sofa" ? "w-[680px]" : "w-[335px]"} h-full`}>
             <Heart className='absolute left-6 top-6' strokeWidth={1.25} size={32} />
             {product.discount &&
                 <div className='bg-[#ffd873] rounded-full py-1 px-2 absolute right-6 top-6 text-sm font-medium'>
@@ -34,10 +44,7 @@ export default function ItemBox({ product, addToCart }) {
                 </div>
             </div>
             <button
-                onClick={(e) => {
-                    e.preventDefault();
-                    addToCart(product);
-                }}
+                onClick={handleAddToCart}
                 className='bg-[#455EA0] absolute right-6 bottom-6 rounded-full p-3 
                 transition-all duration-300 
                 hover:bg-[#3A4F85] hover:scale-110 

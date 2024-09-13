@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function BottomOfferSection() {
     return (
-        <section className="w-full mt-16 mb-20">
+        <section className="w-full mt-24 mb-20">
             <div className="bg-[#ffd873] rounded-[24px] flex items-center py-6 px-16 pb-0 pr-4 justify-between">
                 <div className="flex flex-col items-start gap-7 pb-6">
                     <h2 className="text-5xl font-semibold font-sans">Winter offer</h2>

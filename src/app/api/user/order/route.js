@@ -3,8 +3,15 @@ import { NextResponse } from "next/server"
 
 export async function POST(req) {
   try {
-    const { cartItems, customerInfo } = await req.json()
-    const orderData = { cartItems, customerInfo }
+    const { cartItems, customerInfo, selectedAddressId } = await req.json()
+
+    let orderData = { cartItems, customerInfo }
+
+    // If selectedAddressId is present, include it in the orderData
+    if (selectedAddressId) {
+      orderData.selectedAddressId = selectedAddressId
+    }
+
     const order = await createOrder(orderData)
     return NextResponse.json(order)
   } catch (error) {

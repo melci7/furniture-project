@@ -50,7 +50,7 @@ export default async function Orders() {
                       </span>
                     </div>
                   </div>
-                  <div className="bg-gray-50 p-3 rounded-md mb-4">
+                  <div className="bg-slate-50 p-3 rounded-md mb-4">
                     <h3 className="text-sm font-semibold mb-1 flex items-center text-gray-700">
                       <MapPin size={14} className="mr-2" /> Shipping Address
                     </h3>

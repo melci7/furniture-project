@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Newsletter() {
     return (
-        <section className="w-full px-8 mt-20 flex flex-col items-center gap-10">
+        <section className="w-full px-8 mt-24 flex flex-col items-center gap-6">
             <p className="font-medium text-4xl max-w-[600px] text-center leading-snug font-sans">Subscribe to our newsletter and grab <span className="font-bold">30% OFF!</span></p>
             <div className="flex items-center gap-3 w-[750px]">
                 <Image
