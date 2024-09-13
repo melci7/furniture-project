@@ -84,7 +84,7 @@ export default function OrderWrapper() {
                 orderData.selectedAddressId = selectedAddress;
             }
 
-            await fetch("http://localhost:3000/api/user/order", {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/user/order`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

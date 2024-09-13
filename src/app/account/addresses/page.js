@@ -5,14 +5,15 @@ import { useForm } from "react-hook-form"
 import { Home, Plus, Edit2, Trash2 } from "lucide-react"
 import { useSession } from "next-auth/react"
 
-const API_URL = "http://localhost:3000/api/user/addresses"
-
 export const fetchAddresses = async (userId) => {
   try {
-    const response = await fetch(`${API_URL}?userId=${userId}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}api/user/addresses?userId=${userId}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
     return await response.json()
   } catch (error) {
@@ -22,10 +23,13 @@ export const fetchAddresses = async (userId) => {
 
 const deleteAddress = async (addressId, updateAddresses) => {
   try {
-    const response = await fetch(`${API_URL}?addressId=${addressId}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}api/user/addresses?addressId=${addressId}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
     updateAddresses()
   } catch (error) {
@@ -36,11 +40,14 @@ const deleteAddress = async (addressId, updateAddresses) => {
 const createAddress = async (addressInfo) => {
   try {
     console.log("Creating address with:", addressInfo) // Debugging log
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ addressInfo }), // Ensure correct structure
-    })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}api/user/addresses`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ addressInfo }), // Ensure correct structure
+      }
+    )
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
