@@ -1,7 +1,7 @@
 import ItemDetails from "./item-details"
 import Recommended from "./recommended"
 import ServiceSection from "./product-process"
-import { getAllProducts, getProductById } from "@/lib/data"
+import { getAllProducts, getProductById } from "@/lib/userService"
 
 export default async function ProductPage({ params }) {
   const { id } = params

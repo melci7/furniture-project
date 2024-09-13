@@ -16,18 +16,8 @@ export async function POST(request) {
       )
     }
 
-    // Check if user already exists
-    const existingUser = await getUserByEmail(email)
-    if (existingUser) {
-      console.log("User already exists:", email)
-      return NextResponse.json(
-        { message: "User with this email already exists" },
-        { status: 400 }
-      )
-    }
-
-    // Create new user
-    console.log("Creating new user:", email)
+    // Create new user (getUserByEmail check is now handled within createUser)
+    console.log("Attempting to create new user:", email)
     const user = await createUser({ name, email, password })
 
     console.log("User created successfully:", user)
@@ -37,6 +27,14 @@ export async function POST(request) {
     )
   } catch (error) {
     console.error("Server error during registration:", error)
+
+    if (error.message === "User with this email already exists") {
+      return NextResponse.json(
+        { message: "User with this email already exists" },
+        { status: 409 }
+      )
+    }
+
     return NextResponse.json(
       { message: "Error creating user", error: error.message },
       { status: 500 }
