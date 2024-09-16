@@ -23,7 +23,7 @@ export default function Recommended({ product }) {
                 <CarouselContent>
                     {product.map((item) => (
                         <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                            <div className="py-4">
+                            <div className="py-4 flex">
                                 <ItemBox product={item} />
                             </div>
                         </CarouselItem>
