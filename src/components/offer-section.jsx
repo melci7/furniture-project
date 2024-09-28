@@ -1,29 +1,29 @@
 import Image from "next/image"
 import Link from 'next/link'
 
-export default function OfferSection({ product }) {
+export default function OfferSection() {
     return (
-        <section className="w-full mt-24 flex gap-40">
-            <div className="max-w-[360px] flex flex-col gap-8">
-                <h2 className="text-5xl font-semibold font-sans">Daily offer</h2>
-                <p className="text-[#636363] font-sans">Check out our daily offers that can combine big discounts on some products. Offers may change every day, do not miss your chance.</p>
-                <Link href="/store" className="bg-[#FFD873] rounded-3xl py-3.5 px-6 text-sm self-start inline-block">
+        <section className="w-full lg:mt-24 mt-16 flex flex-col lg:flex-row lg:gap-40 gap-10">
+            <div className="lg:max-w-[360px] flex flex-col items-center lg-items-start lg:gap-8 gap-4">
+                <h2 className="lg:text-5xl text-4xl lg:self-start font-semibold font-sans">Daily offer</h2>
+                <p className="text-[#636363] font-sans text-center lg:text-start">Check out our daily offers that can combine big discounts on some products. Offers may change every day, do not miss your chance.</p>
+                <Link href="/store" className="bg-[#FFD873] rounded-3xl lg:py-3.5 lg:px-6 lg:text-sm py-3 px-4 text-xs lg:self-start inline-block">
                     Open Store
                 </Link>
             </div>
-            <div className="flex w-full gap-5 font-sans">
-                <div className="w-5/12 bg-[#dfe5f3] rounded-[24px] py-5 px-8 flex flex-col h-[390px]">
+            <div className="flex w-full flex-col lg:flex-row gap-5 font-sans">
+                <div className="lg:w-5/12 bg-[#dfe5f3] rounded-[24px] py-5 px-8 flex flex-col lg:h-[390px]">
                     <Link href={"/store/8"} className="flex flex-col h-full">
                         <div className="flex justify-between items-center">
                             <h2 className="text-2xl font-semibold">Accent Chair</h2>
-                            <div className="flex flex-col rounded-full bg-white self-start font-bold text-lg px-4 py-3 justify-center ">
+                            <div className="flex flex-col rounded-full bg-white self-start font-bold lg:text-lg text-base lg:px-4 lg:py-3 px-3.5 py-2.5 justify-center ">
                                 <span>30%</span>
                                 <span className="-mt-2">OFF</span>
                             </div>
                         </div>
 
                         <Image
-                            src={"/chair.png"}
+                            src={"/product_7.png"}
                             className="object-cover h-full"
                             width={700}
                             height={700}
@@ -32,18 +32,18 @@ export default function OfferSection({ product }) {
 
                     </Link>
                 </div>
-                <div className="w-7/12 bg-[#fdedd6] rounded-[24px] py-5 px-8 flex flex-col relative h-[440px] justify-between">
+                <div className="lg:w-7/12 bg-[#fdedd6] rounded-[24px] py-5 px-8 flex flex-col relative lg:h-[440px] justify-between">
                     <Link href={"#"} className="flex flex-col h-full">
                         <div className="flex justify-between items-center">
-                            <h2 className="text-4xl font-semibold">Tables</h2>
-                            <div className="rounded-full bg-white self-start flex flex-col text-lg font-bold px-4 py-3 justify-center">
+                            <h2 className="text-2xl font-semibold">Tables</h2>
+                            <div className="rounded-full bg-white self-start flex flex-col lg:text-lg text-base font-bold lg:px-4 lg:py-3 px-3.5 py-2.5 justify-center">
                                 <span>40%</span>
                                 <span className="-mt-2">OFF</span>
                             </div>
                         </div>
                         <Image
                             src={"/table_3.png"}
-                            className="object-cover h-[300px] mt-8"
+                            className="object-cover lg:h-[300px] lg:mt-8"
                             width={400}
                             height={400}
                             alt="Table"

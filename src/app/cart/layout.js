@@ -3,10 +3,12 @@ import Navbar from "@/components/navbar"
 
 export default function CartLayout({ children }) {
   return (
-    <section className="mt-10 flex flex-col min-h-screen">
+    <section className="lg:mt-10 mt-8 flex flex-col lg:min-h-screen">
       <Navbar />
       {children}
-      <Footer />
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
     </section>
   )
 }

@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar"
 
 export default function Layout({ children }) {
   return (
-    <section className="my-10 flex flex-col min-h-screen">
+    <section className="lg:my-10 my-8 flex flex-col min-h-screen">
       <Navbar />
       {children}
     </section>

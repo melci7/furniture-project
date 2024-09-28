@@ -33,7 +33,7 @@ export function useShoppingCart() {
                 // Product exists, update its quantity
                 return prevItems.map((item, index) =>
                     index === existingItemIndex
-                        ? { ...item, quantity: item.quantity + 1 }
+                        ? { ...item, quantity: Math.min(item.quantity + 1, 99) }
                         : item
                 );
             } else {
@@ -53,5 +53,9 @@ export function useShoppingCart() {
         });
     };
 
-    return { cartItems, addToCart, decreaseFromCart };
+    const removeFromCart = (product) => {
+        setCartItems(prevItems => prevItems.filter(item => item.id !== product.id))
+    }
+
+    return { cartItems, addToCart, decreaseFromCart, removeFromCart };
 }

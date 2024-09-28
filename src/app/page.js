@@ -11,7 +11,7 @@ import { getAllProducts } from "@/lib/userService"
 export default async function Home() {
   const data = await getAllProducts()
   return (
-    <main className="mt-10 flex flex-col">
+    <main className="lg:mt-10 mt-8 flex flex-col">
       <Navbar />
       <BannerCarousel />
       <OfferSection products={data} />

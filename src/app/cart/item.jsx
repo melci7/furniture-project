@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Trash2, Minus, Plus } from "lucide-react";
 
-export default function Item({ product, addToCart, decreaseFromCart }) {
+export default function Item({ product, addToCart, decreaseFromCart, removeFromCart }) {
     const [count, setCount] = useState(product.quantity);
 
     function formatPrice(price) {
@@ -23,10 +23,10 @@ export default function Item({ product, addToCart, decreaseFromCart }) {
 
 
     return (
-        <div className="flex w-full gap-6">
+        <div className="flex w-full lg:gap-6 gap-4">
             <Link href={`/store/${product.id}`} className="rounded-[24px] bg-[#F5F5F5] p-3">
                 <Image
-                    className="h-[100px] object-contain"
+                    className="h-[100px] w-[180px] lg:w-[120px] object-contain"
                     src={product.image}
                     alt={product.image}
                     width={120}
@@ -36,7 +36,7 @@ export default function Item({ product, addToCart, decreaseFromCart }) {
             <div className="flex justify-between w-full">
                 <div className="flex flex-col">
                     <span className="font-semibold">{product.name}</span>
-                    <span className="text-[#636363]">{product.name}</span>
+                    <span className="text-[#636363] text-sm">{product.name}</span>
                     <div className='mt-auto w-24 flex gap-1 py-1 justify-center items-center bg-[#f5f5f5] rounded-[8px]'>
                         <button
                             onClick={() => decrease(product)}
@@ -52,8 +52,19 @@ export default function Item({ product, addToCart, decreaseFromCart }) {
                             <Plus size={16} />
                         </button>
                     </div>
+
                 </div>
-                <span className="" >${product.discount ? product.price - (product.price * product.discount / 100) : product.price}</span>
+                <div className="flex flex-col justify-between">
+                    <span className="font-medium" >${product.discount ? product.price - (product.price * product.discount / 100) : product.price}</span>
+                    {product.quantity !== 1 &&
+                        <button
+                            onClick={() => removeFromCart(product)}
+                            className='w-6 h-6 font-bold duration-300 ease-out flex self-end justify-center transition-all hover:scale-110 text-red-600'
+                        >
+                            <Trash2 size={18} />
+                        </button>
+                    }
+                </div>
             </div>
         </div>
     );

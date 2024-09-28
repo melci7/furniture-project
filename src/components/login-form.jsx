@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form"
 import { signIn } from "next-auth/react"
 import { Suspense, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { useSession } from "next-auth/react"
+import Spinner from "./spinner"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function LoginForm() {
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -13,7 +16,7 @@ export default function LoginForm() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const returnUrl = searchParams.get('returnUrl') || '/'
-
+    const { data: session, status } = useSession()
     const onSubmit = async (data) => {
         const result = await signIn("credentials", {
             redirect: false,
@@ -31,21 +34,40 @@ export default function LoginForm() {
         }
     }
 
+    if (status === "loading") {
+        return (
+            <div className="flex h-screen items-center justify-center">
+                <Spinner size="medium" color="primary" />
+            </div>
+        )
+    }
+
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <div className="flex h-screen w-screen -mx-[16.67%]">
-                {/* Image section - 60% width */}
+        <div className="flex h-screen w-screen -mx-[16.67%]">
 
 
-                {/* Login form section - 40% width */}
-                <div className="w-full lg:w-2/5 flex flex-col">
-                    {/* Logo section */}
-                    <div className="p-6">
-                        <Link href="/" className="font-bold text-lg block">Logo</Link>
-                    </div>
+            <div className="w-full lg:w-2/5 flex flex-col">
+                {/* Logo section */}
+                <div className="p-6">
+                    <Link href="/" className="font-bold text-lg block">Logo</Link>
+                </div>
 
-                    {/* Form content */}
-                    <div className="flex-1 flex items-center justify-center p-8">
+                {/* Form content */}
+                <div className="flex-1 flex items-center justify-center p-8">
+                    {status === "authenticated" ? (
+                        <div className="p-6">
+                            <h2 className="text-2xl font-semibold mb-4">Already Logged In</h2>
+                            <div className="space-y-4">
+                                <p className="text-[#636363]">You are already logged in as {session.user.email}.</p>
+                                <button
+                                    className="w-1/2 bg-black text-white py-3 rounded-full hover:bg-opacity-75 transition duration-300 ease-out text-center"
+                                    onClick={() => router.push(decodeURIComponent(returnUrl))}
+                                >
+                                    Go to Dashboard
+                                </button>
+                            </div>
+                        </div>
+                    ) :
                         <div className="w-full max-w-md">
                             <div className="mb-6">
                                 <h1 className="text-3xl font-semibold">Log in</h1>
@@ -53,6 +75,7 @@ export default function LoginForm() {
                                     Enter your email below to login to your account
                                 </p>
                             </div>
+
                             {serverError && <p className="text-red-500 text-sm mb-4">{serverError}</p>}
                             <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
                                 <div className="flex flex-col gap-1">
@@ -98,18 +121,19 @@ export default function LoginForm() {
                                 </Link>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="hidden lg:block w-3/5 relative">
-                    <Image
-                        src="/background2.jpg"
-                        alt="Login background"
-                        layout="fill"
-                        objectFit="cover"
-                        className="dark:brightness-[0.2] dark:grayscale"
-                    />
+                    }
                 </div>
             </div>
-        </Suspense>
+
+            <div className="hidden lg:block w-3/5 relative">
+                <Image
+                    src="/background2.jpg"
+                    alt="Login background"
+                    layout="fill"
+                    objectFit="cover"
+                    className="dark:brightness-[0.2] dark:grayscale"
+                />
+            </div>
+        </div>
     )
 }

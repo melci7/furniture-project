@@ -5,8 +5,9 @@ import { useState, useEffect, useRef } from "react";
 import CardInputFields from "./card-input-fields";
 import CashPaymentSection from "./cash-payment-section";
 import { useForm } from "react-hook-form";
+import Spinner from "@/components/spinner";
 
-export default function PaymentMethod({ isClicked, purchaseCompleted, isValid }) {
+export default function PaymentMethod({ isClicked, purchaseCompleted, isValid, isLoading }) {
     const [payment, setPayment] = useState("creditcard");
     const hasRendered = useRef(false);
     const { register, handleSubmit, formState: { errors }, watch } = useForm({
@@ -18,6 +19,11 @@ export default function PaymentMethod({ isClicked, purchaseCompleted, isValid })
             expirationYear: ''
         }
     });
+
+    function handleClick() {
+        handleSubmit(onSubmit)()
+
+    }
 
     const handleNumericInput = (e) => {
         let input = e.target.value.replace(/\D/g, "");
@@ -49,10 +55,10 @@ export default function PaymentMethod({ isClicked, purchaseCompleted, isValid })
     };
 
     return (
-        <div className="w-10/12">
-            <span className="text-3xl font-semibold">Payment Method</span>
-            <div className={`w-full mt-6 rounded-md flex flex-col items-center ${!isClicked && `opacity-50 pointer-events-none`}`}>
-                <RadioGroup defaultValue="creditcard" className="w-full flex justify-between font-medium">
+        <div className="w-full lg:w-10/12">
+            <span className="lg:text-3xl text-2xl font-semibold">Payment Method</span>
+            <div className={`w-full lg:mt-6 mt-3 min-h-48 rounded-md flex flex-col items-center ${!isClicked && `opacity-50 pointer-events-none`}`}>
+                <RadioGroup defaultValue="creditcard" className="w-full flex flex-col lg:flex-row lg:justify-between justify-center items-start text-[15px] font-medium">
                     <div className="flex items-center space-x-3">
                         <RadioGroupItem value="creditcard" id="r2" disabled={!isClicked} onClick={() => setPayment("creditcard")} />
                         <label htmlFor="r2" className="flex items-center gap-3">
@@ -91,23 +97,37 @@ export default function PaymentMethod({ isClicked, purchaseCompleted, isValid })
                     </div>
                 </RadioGroup>
                 {isClicked && payment !== "cash" && (
-                    <form className="w-full mt-8 flex flex-col gap-7 border-t border-[#dfdfdf] pt-8 mb-20" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="w-full lg:mt-8 mt-6 flex flex-col lg:gap-7 gap-4 border-t border-[#dfdfdf] lg:pt-8 pt-6 mb-20" onSubmit={handleSubmit(onSubmit)}>
                         <CardInputFields
                             register={register}
                             errors={errors}
                             handleNumericInput={handleNumericInput}
                             watch={watch}
                         />
-                        <button type="submit" className="bg-black mt-2 py-3 text-white rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center">
-                            Pay Now
+                        <button type="submit" className={`flex fixed lg:static z-30 lg:z-0 w-1/2 bottom-6 right-6 bg-black lg:mt-2 py-3 text-white rounded-3xl lg:w-full hover:bg-opacity-75 duration-300 ease-out text-center items-center justify-center lg:h-[52px] ${isLoading ? 'opacity-75 cursor-not-allowed ' : ''}`}
+                            onClick={handleClick}
+                            disabled={isLoading}
+                        >
+                            {isLoading ? (
+                                <Spinner size='small' color='primary' />
+                            ) : (
+                                "Pay Now"
+                            )}
                         </button>
                     </form>
                 )}
                 {isClicked && payment === "cash" && (
                     <div className="flex flex-col gap-5 mb-20">
                         <CashPaymentSection />
-                        <button className="bg-black mt-2 py-3 text-white rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center" onClick={purchaseCompleted}>
-                            Continue
+                        <button className={`flex fixed lg:static z-30 lg:z-0 w-1/2 bottom-6 right-6 bg-black lg:mt-2 py-3 text-white rounded-3xl lg:w-full hover:bg-opacity-75 duration-300 ease-out text-center items-center justify-center lg:h-[52px] ${isLoading ? 'opacity-75 cursor-not-allowed ' : ''}`}
+                            onClick={handleClick}
+                            disabled={isLoading}
+                        >
+                            {isLoading ? (
+                                <Spinner size='small' color='primary' />
+                            ) : (
+                                "Continue"
+                            )}
                         </button>
                     </div>
                 )}

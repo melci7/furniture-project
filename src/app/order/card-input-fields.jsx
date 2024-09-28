@@ -17,7 +17,7 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
     return (
         <>
             <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium" htmlFor="cardNumber">Card Number</label>
+                <label className="lg:text-sm text-[13px] font-medium" htmlFor="cardNumber">Card Number</label>
                 <input
                     className={`w-full rounded-[24px] py-2 px-4 border ${errors.cardNumber ? 'border-red-500' : 'border-[#dfdfdf]'}`}
                     type="tel"
@@ -36,12 +36,12 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                         register("cardNumber").onChange(e);
                     }}
                 />
-                {errors.cardNumber && <p className="text-red-500 text-sm mt-1">{errors.cardNumber.message}</p>}
+                {errors.cardNumber && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.cardNumber.message}</p>}
             </div>
 
-            <div className="flex w-full gap-3">
-                <div className="flex flex-col gap-1 w-1/4">
-                    <label className="text-sm font-medium" htmlFor="expiryMonth">Expiration Month</label>
+            <div className="flex w-full gap-4 lg:gap-3 flex-wrap lg:flex-nowrap">
+                <div className="flex flex-col gap-1 w-[calc(50%-0.5rem)] lg:w-1/4">
+                    <label className="lg:text-sm text-[13px] font-medium" htmlFor="expiryMonth">Expiration Month</label>
                     <select
                         id="expiryMonth"
                         className={`w-full rounded-[24px] py-2 px-4 border ${errors.expiryMonth ? 'border-red-500' : 'border-[#dfdfdf]'}`}
@@ -64,10 +64,10 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                             </option>
                         ))}
                     </select>
-                    {errors.expiryMonth && <p className="text-red-500 text-sm mt-1">{errors.expiryMonth.message}</p>}
+                    {errors.expiryMonth && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.expiryMonth.message}</p>}
                 </div>
-                <div className="flex flex-col gap-1 w-1/4 mr-4">
-                    <label className="text-sm font-medium" htmlFor="expiryYear">Expiration Year</label>
+                <div className="flex flex-col gap-1 w-[calc(50%-0.5rem)] lg:w-1/4 lg:mr-4">
+                    <label className="lg:text-sm text-[13px] font-medium" htmlFor="expiryYear">Expiration Year</label>
                     <select
                         id="expiryYear"
                         className={`w-full rounded-[24px] py-2 px-4 border ${errors.expiryYear ? 'border-red-500' : 'border-[#dfdfdf]'}`}
@@ -83,10 +83,10 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                             </option>
                         ))}
                     </select>
-                    {errors.expiryYear && <p className="text-red-500 text-sm mt-1">{errors.expiryYear.message}</p>}
+                    {errors.expiryYear && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.expiryYear.message}</p>}
                 </div>
-                <div className="flex flex-col gap-1 w-1/2">
-                    <label className="text-sm font-medium" htmlFor="cvv">CVV</label>
+                <div className="flex flex-col gap-1 lg:w-1/2 w-full">
+                    <label className="lg:text-sm text-[13px] font-medium" htmlFor="cvv">CVV</label>
                     <input
                         className={`w-full rounded-[24px] py-2 px-4 border ${errors.cvv ? 'border-red-500' : 'border-[#dfdfdf]'}`}
                         type="tel"
@@ -101,12 +101,12 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                             }
                         })}
                     />
-                    {errors.cvv && <p className="text-red-500 text-sm mt-1">{errors.cvv.message}</p>}
+                    {errors.cvv && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.cvv.message}</p>}
                 </div>
             </div>
 
             <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium" htmlFor="nameOnCard">Name on Card</label>
+                <label className="lg:text-sm text-[13px] font-medium" htmlFor="nameOnCard">Name on Card</label>
                 <input
                     className={`w-full rounded-[24px] py-2 px-4 border ${errors.nameOnCard ? 'border-red-500' : 'border-[#dfdfdf]'}`}
                     type="text"
@@ -120,7 +120,7 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                         }
                     })}
                 />
-                {errors.nameOnCard && <p className="text-red-500 text-sm mt-1">{errors.nameOnCard.message}</p>}
+                {errors.nameOnCard && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.nameOnCard.message}</p>}
             </div>
         </>
     );

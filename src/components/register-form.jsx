@@ -53,7 +53,7 @@ export default function SignUpForm() {
                             </p>
                         </div>
                         {successMessage && (
-                            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <div className="text-green-600 mb-4 -mt-2" role="alert">
                                 <span className="block sm:inline">{successMessage}</span>
                             </div>
                         )}

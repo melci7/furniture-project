@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Home, Plus, Edit2, Trash2 } from "lucide-react"
 import { useSession } from "next-auth/react"
+import Spinner from "@/components/spinner"
 
 export const fetchAddresses = async (userId) => {
   try {
@@ -61,6 +62,7 @@ const createAddress = async (addressInfo) => {
 
 export default function Addresses() {
   const [addresses, setAddresses] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [formState, setFormState] = useState({
     isAdding: false,
     isSubmitted: false,
@@ -87,8 +89,10 @@ export default function Addresses() {
   const updateAddresses = async () => {
     if (status === "authenticated" && session?.user) {
       try {
+        setIsLoading(true)
         const fetchedAddresses = await fetchAddresses(session.user.id)
         setAddresses(Array.isArray(fetchedAddresses) ? fetchedAddresses : [])
+        setIsLoading(false)
       } catch (error) {
         console.error("Failed to load addresses.")
       }
@@ -111,20 +115,25 @@ export default function Addresses() {
   }, [formState, session?.user?.id, status])
 
   return (
-    <div className="max-w-2xl w-full border border-[#dfdfdf] rounded-2xl p-8">
+    <div className="max-w-2xl w-full lg:border border-[#dfdfdf] rounded-2xl lg:p-8">
       <div>
-        <span className="text-3xl font-semibold">Addresses</span>
-        <p className="text-[#636363] mt-2">Manage your saved addresses</p>
-        <div className="mt-6 space-y-4">
+        <span className="lg:text-3xl text-2xl font-semibold">Addresses</span>
+        <p className="text-[#636363] lg:mt-2 mt-1 lg:text-base text-sm">
+          Manage your saved addresses
+        </p>
+        <div className="lg:mt-6 mt-1 space-y-4">
+          <div className="flex justify-center items-center">
+            {isLoading && <Spinner size="medium" color="primary" />}
+          </div>
           {addresses.map((address, index) => (
             <div key={index} className="border border-[#dfdfdf] rounded-lg p-4">
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex justify-between items-center lg:mb-2 mb-1">
                 <span className="font-semibold flex items-center">
                   <Home size={18} className="mr-2" /> Address {index + 1}
                 </span>
                 <div>
                   <button
-                    className="text-red-500"
+                    className="text-red-600"
                     onClick={() => deleteAddress(address.id, updateAddresses)}
                   >
                     <Trash2 size={18} />

@@ -2,18 +2,18 @@ import Image from "next/image"
 
 export default function Newsletter() {
     return (
-        <section className="w-full px-8 mt-24 flex flex-col items-center gap-6">
-            <p className="font-medium text-4xl max-w-[600px] text-center leading-snug font-sans">Subscribe to our newsletter and grab <span className="font-bold">30% OFF!</span></p>
-            <div className="flex items-center gap-3 w-[750px]">
+        <section className="w-full lg:px-8 px-6 lg:mt-24 mt-16 flex flex-col items-center lg:gap-6 gap-3">
+            <p className="font-medium lg:text-4xl text-3xl lg:max-w-[600px] text-center lg:leading-snug font-sans">Subscribe to our newsletter and grab <span className="font-bold">30% OFF!</span></p>
+            <div className="flex flex-col lg:flex-row items-center lg:gap-3 gap-4  w-full lg:w-[750px]">
                 <Image
                     src={"/letter.png"}
-                    className="mr-4"
+                    className="lg:mr-4 lg:w-[100px]"
                     alt="Letter Icon"
-                    width={100}
-                    height={100}
+                    width={72}
+                    height={72}
                 />
-                <input className="w-full py-3 px-8 rounded-[24px] border border-[#455EA0] focus-visible:outline" placeholder="Your email" type="email" />
-                <button className="bg-[#2D2D2D] rounded-3xl py-3.5 px-7 text-sm text-white duration-300 ease-out hover:bg-opacity-75">Subscribe</button>
+                <input className="text-sm lg:text-base w-full lg:py-3 lg:px-8 py-2 px-4 -mt-3 lg:mt-0 rounded-[24px] border border-[#455EA0] focus-visible:outline" placeholder="Your email" type="email" />
+                <button className="bg-[#2D2D2D] rounded-3xl py-3.5 lg:px-7 px-6 text-xs lg:text-sm text-white duration-300 ease-out hover:bg-opacity-75">Subscribe</button>
             </div>
         </section>
     )

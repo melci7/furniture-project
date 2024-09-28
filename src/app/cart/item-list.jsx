@@ -7,10 +7,11 @@ import { X, Check } from 'lucide-react';
 import { useShoppingCart } from "@/components/useShoppingCart";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Spinner from "@/components/spinner";
 
 export default function ItemList() {
     const [isClicked, setIsClicked] = useState(false)
-    const { cartItems, addToCart, decreaseFromCart } = useShoppingCart()
+    const { cartItems, addToCart, decreaseFromCart, removeFromCart } = useShoppingCart()
     const [loading, setLoading] = useState(true);
     const { data: session } = useSession();
     const router = useRouter();
@@ -55,26 +56,26 @@ export default function ItemList() {
 
     if (!hydrated) {
         // Return a loading state or placeholder while waiting for hydration to complete
-        return <div>Loading...</div>;
+        return <div className="min-h-96 w-full flex items-center justify-center my-auto"><Spinner /></div>;
     }
 
     return (
-        <div className="w-full flex gap-20 items-baseline">
+        <div className="w-full flex flex-col lg:flex-row lg:gap-20 gap-8 items-baseline">
             {isClicked && !session && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-20 transition-opacity duration-300 ease-out"
+                    className="fixed inset-0 bg-black/30 z-20 transition-opacity duration-300 ease-out"
                     onClick={handleClick}
                     style={{
                         opacity: isClicked ? 1 : 0,
                     }}
                 ></div>
             )}
-            <div className="flex flex-col w-4/6 gap-6">
+            <div className="flex flex-col lg:w-4/6 w-full gap-6 h-screen">
                 {cartItems.length > 0 ? (
                     <>
                         <span className="text-2xl font-semibold">Cart</span>
                         {cartItems.map(item =>
-                            <Item key={item.id} product={item} addToCart={addToCart} decreaseFromCart={decreaseFromCart} />
+                            <Item key={item.id} product={item} addToCart={addToCart} decreaseFromCart={decreaseFromCart} removeFromCart={removeFromCart} />
                         )}
                     </>
                 ) : (
@@ -90,18 +91,18 @@ export default function ItemList() {
                     </div>
                 )}
             </div>
-            <div className="w-2/6 flex flex-col">
+            <div className="lg:w-2/6 w-full flex flex-col">
                 <SummaryBox product={cartItems} handleClick={handleClick} />
                 {!session && (
                     <div
-                        className={`fixed top-0 right-0 z-30 h-screen max-w-[480px] flex flex-col gap-14 px-6 py-5 rounded-tl-[8px] rounded-bl-[8px] border bg-white transition-transform duration-300 ease-out ${isClicked ? 'translate-x-0' : 'translate-x-full'
+                        className={`fixed top-0 right-0 z-30 h-screen lg:max-w-[480px] flex flex-col gap-14 px-6 py-5 lg:rounded-tl-[8px] lg:rounded-bl-[8px] border bg-white transition-transform duration-300 ease-out ${isClicked ? 'translate-x-0' : 'translate-x-full'
                             }`}
                     >
                         <div className="flex justify-end">
                             <button className="" onClick={handleClick} ><X size={22} /></button>
                         </div>
                         <div className="px-4 flex flex-col gap-8">
-                            <h2 className="text-2xl font-bold mb-4">Choose how you would like to check out</h2>
+                            <h2 className="lg:text-2xl text-xl font-bold lg:mb-4 ">Choose how you would like to check out</h2>
                             <div className="flex flex-col gap-1 ">
                                 <span className="flex items-center gap-4 text-[#636363] text-sm">
                                     <Check size={18} />
@@ -117,11 +118,11 @@ export default function ItemList() {
                                 </span>
                             </div>
 
-                            <button onClick={handleCheckout} className="bg-black py-3 mt-3 text-white text-lg rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center">Join or log in</button>
-                            <div className="my-3 text-[#636363] text-sm text-center border-b border-[#dfdfdf]">OR</div>
-                            <Link href={"/order"} className="bg-[#455EA0] py-3 text-white text-lg rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out text-center"
+                            <button onClick={handleCheckout} className="bg-black py-3 mt-3 text-white lg:text-lg rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center">Join or log in</button>
+                            <div className="lg:my-3 my-1 text-[#636363] text-xs lg:text-sm text-center border-b border-[#dfdfdf]">OR</div>
+                            <Link href={"/order"} className="bg-[#455EA0] py-3 text-white lg:text-lg rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out text-center"
                             >Continue as guest</Link>
-                            <p className="text-[#636363] text-xs text-center">By continuing as a guest, you might miss out member discounts.</p>
+                            <p className="text-[#636363] text-xs text-center -mt-2 lg:mt-0">By continuing as a guest, you might miss out member discounts.</p>
                         </div>
                     </div>
                 )}

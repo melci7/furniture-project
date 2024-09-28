@@ -1,17 +1,24 @@
 import React from 'react';
 
-const Spinner = ({ size = 'medium', color = 'text-blue-600' }) => {
+export default function Spinner({ size = 'medium', color = 'primary' }) {
     const sizeClasses = {
-        small: 'w-4 h-4',
-        medium: 'w-8 h-8',
-        large: 'w-12 h-12'
-    };
+        small: 'w-5 h-5 border-2',
+        medium: 'w-8 h-8 border-4',
+        large: 'w-12 h-12 border-4'
+    }
+
+    const colorClasses = {
+        primary: 'border-black border-t-[#dfdfdf]',
+        secondary: 'border-white border-t-transparent',
+    }
 
     return (
-        <div className="flex justify-center items-center">
-            <div className={`animate-spin rounded-full border-t-2 border-b-2 ${color} ${sizeClasses[size]}`}></div>
+        <div
+            className={`inline-block rounded-full animate-spin ${sizeClasses[size]} ${colorClasses[color]}`}
+            role="status"
+            aria-label="Loading"
+        >
+            <span className="sr-only">Loading...</span>
         </div>
-    );
-};
-
-export default Spinner;
+    )
+}

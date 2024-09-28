@@ -1,4 +1,5 @@
 "use client"
+import Spinner from '@/components/spinner';
 import { useShoppingCart } from '@/components/useShoppingCart';
 import { useState } from 'react';
 
@@ -19,7 +20,18 @@ const sections = [
 
 export default function ItemDetails({ product }) {
     const [activeSection, setActiveSection] = useState('Details');
+    const [isLoading, setIsLoading] = useState(false);
     const { addToCart } = useShoppingCart()
+
+    async function handleClick(e) {
+        e.preventDefault()
+        setIsLoading(true)
+
+        await new Promise(resolve => setTimeout(resolve, 400))
+
+        addToCart(product)
+        setIsLoading(false)
+    }
 
     function formatPrice(price) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -52,13 +64,21 @@ export default function ItemDetails({ product }) {
                 />
 
                 <button
-                    className="bg-[#455EA0] py-3 text-white text-xl rounded-3xl w-full mb-4 mt-6 hover:bg-[#304170] duration-300 ease-out"
-                    onClick={(e) => {
-                        e.preventDefault()
-                        addToCart(product)
-                    }}
+                    className={`
+                        bg-[#455EA0] py-3 text-white text-xl rounded-3xl w-full mb-4 mt-6 
+                        hover:bg-[#304170] duration-300 ease-out transition-all 
+                        flex items-center justify-center h-[52px]
+                        ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}
+                    `}
+                    onClick={handleClick}
+                    disabled={isLoading}
+                    aria-label={isLoading ? "Adding to cart" : "Add to cart"}
                 >
-                    Add to Cart
+                    {isLoading ? (
+                        <Spinner size='small' color='secondary' />
+                    ) : (
+                        "Add to Cart"
+                    )}
                 </button>
                 <div>
                     <div className="flex border-b border-gray-200">

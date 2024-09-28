@@ -14,7 +14,7 @@ export default function Sidebar() {
         router.push("/")
     }
     return (
-        <div className="w-[30%] flex gap-3 text-sm font-medium flex-col bg-white border border-[#dfdfdf] rounded-2xl p-3.5">
+        <div className="hidden lg:flex w-[30%] gap-3 text-sm font-medium flex-col bg-white border border-[#dfdfdf] rounded-2xl p-3.5">
             <span className="text-sm text-[#636363]">Hello,</span>
             <h3 className="text-lg font-semibold mb-1 -mt-2">{session?.user?.name}</h3>
 
