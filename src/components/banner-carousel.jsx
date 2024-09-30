@@ -51,7 +51,7 @@ export default function BannerCarousel() {
                         </Link>
                         <Image
                             src={"/chair_1.png"}
-                            className="lg:absolute lg:w-[280px] right-6 top-4 order-2"
+                            className="lg:absolute lg:w-1/2 right-6 top-4 order-2"
                             alt="Rocking Wooden Chair"
                             width={180}
                             height={180}

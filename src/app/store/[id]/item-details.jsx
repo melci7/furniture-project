@@ -38,23 +38,23 @@ export default function ItemDetails({ product }) {
     }
 
     return (
-        <div className="flex gap-14 mt-20">
-            <div className="w-7/12 h-[600px] flex bg-[#f5f5f5] rounded-[24px]">
+        <div className="flex flex-col lg:flex-row lg:gap-14 gap-7 lg:mt-20 mt-8">
+            <div className="lg:w-7/12 w-full lg:h-[600px] h-[460px] flex bg-[#f5f5f5] rounded-[24px]">
                 <img
                     className="m-auto self-center object-scale-down w-full max-w-fit"
                     src={product.image}
                     alt={product.name}
                 />
             </div>
-            <div className="flex flex-col gap-4 w-5/12">
-                <h2 className="text-4xl font-semibold">{product.name}</h2>
+            <div className="flex flex-col lg:gap-4 gap-2 lg:w-5/12">
+                <h2 className="lg:text-4xl text-2xl font-semibold">{product.name}</h2>
                 <p className="text-[#636363]">{product.name}</p>
                 {product.discount && (
-                    <span className='text-md font-bold line-through -mb-4'>
+                    <span className='text-sm lg:text-base font-bold line-through -mb-4'>
                         ${formatPrice(product.price)}
                     </span>
                 )}
-                <h2 className="text-3xl font-bold">
+                <h2 className="lg:text-3xl text-xl font-bold">
                     ${formatPrice(product.price - (product.price * product.discount / 100))}
                 </h2>
                 <img
@@ -65,7 +65,7 @@ export default function ItemDetails({ product }) {
 
                 <button
                     className={`
-                        bg-[#455EA0] py-3 text-white text-xl rounded-3xl w-full mb-4 mt-6 
+                        bg-[#455EA0] py-3 text-white text-xl rounded-3xl w-full lg:mb-4 mb-3 lg:mt-6 mt-3 
                         hover:bg-[#304170] duration-300 ease-out transition-all 
                         flex items-center justify-center h-[52px]
                         ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}
@@ -106,7 +106,7 @@ export default function ItemDetails({ product }) {
                             </button>
                         ))}
                     </div>
-                    <div className="mt-4 text-[#636363] leading-7">
+                    <div className="mt-4 text-[#636363] leading-7 text-center lg:text-start">
                         {sections.find(section => section.title === activeSection)?.content}
                     </div>
                 </div>

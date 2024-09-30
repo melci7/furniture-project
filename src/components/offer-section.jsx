@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function OfferSection() {
     return (
-        <section className="w-full lg:mt-24 mt-16 flex flex-col lg:flex-row lg:gap-40 gap-10">
+        <section className="w-full lg:mt-24 mt-16 flex flex-col lg:flex-row laptop:gap-40 lg:gap-20 gap-10">
             <div className="lg:max-w-[360px] flex flex-col items-center lg-items-start lg:gap-8 gap-4">
                 <h2 className="lg:text-5xl text-4xl lg:self-start font-semibold font-sans">Daily offer</h2>
                 <p className="text-[#636363] font-sans text-center lg:text-start">Check out our daily offers that can combine big discounts on some products. Offers may change every day, do not miss your chance.</p>
@@ -24,7 +24,7 @@ export default function OfferSection() {
 
                         <Image
                             src={"/product_7.png"}
-                            className="object-cover h-full"
+                            className="object-cover lg:h-[240px] w-full"
                             width={700}
                             height={700}
                             alt="Chair"

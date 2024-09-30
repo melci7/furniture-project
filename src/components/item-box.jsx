@@ -18,7 +18,7 @@ export default function ItemBox({ product, addToCart }) {
     }
 
     return (
-        <Link href={`/store/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${product.category === "Sofa" ? "lg:w-[680px]" : "lg:w-[335px]"} w-full h-full`}>
+        <Link href={`/store/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${product.category === "Sofa" ? "lg:w-[410px]" : "lg:w-[335px]"} w-full h-full`}>
             <Heart className='absolute left-6 top-6 ' strokeWidth={1.25} size={32} />
             {product.discount &&
                 <div className='bg-[#ffd873] rounded-full py-1 px-2 absolute right-6 top-6 text-sm font-medium'>

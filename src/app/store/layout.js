@@ -3,7 +3,7 @@ import Navbar from "@/components/navbar"
 
 export default function StoreLayout({ children }) {
   return (
-    <section className="mt-10">
+    <section className="lg:mt-10 mt-8">
       <Navbar />
       {children}
       <Footer />
