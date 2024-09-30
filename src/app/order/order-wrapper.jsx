@@ -104,12 +104,12 @@ export default function OrderWrapper() {
         }
     }, [isValid, status]);
 
-    if (!hydrated || status === "loading") {
+    if (!hydrated) {
         return (
             <div className="flex justify-center items-center h-[600px]">
                 <Spinner size="medium" color="primary" />
             </div>
-        )
+        );
     }
 
     if (!cartItems.length) {
@@ -124,8 +124,109 @@ export default function OrderWrapper() {
                     <div className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></div>
                 </Link>
             </div>
-        )
+        );
     }
+
+    const renderContent = () => {
+        if (status === "loading") {
+            return <Spinner color="primary" size="medium" />;
+        }
+
+        if (status === "unauthenticated") {
+            return (
+                <CustomerInfo
+                    register={register}
+                    errors={errors}
+                    handleSubmit={handleSubmit(onSubmit)}
+                    isClicked={isClicked}
+                />
+            );
+        }
+
+        if (status === "authenticated") {
+            if (addresses.length > 0 && !newAddress) {
+                return (
+                    <div className="lg:w-[58%] flex flex-col">
+                        <div className="lg:border border-[#dfdfdf] rounded-2xl lg:p-8 mb-4">
+                            <div>
+                                <span className="lg:text-3xl text-2xl font-semibold">Addresses</span>
+                                <p className="text-[#636363] lg:mt-2 mt-1 lg:text-base text-sm">Pick from your saved addresses</p>
+                                <RadioGroup
+                                    value={selectedAddress}
+                                    onValueChange={(value) => !isClicked && setSelectedAddress(value)}
+                                    className="mt-6 space-y-2 lg:space-y-4"
+                                    disabled={isClicked}
+                                >
+                                    {addresses.map((address, index) => (
+                                        <div
+                                            key={index}
+                                            className={`relative border border-[#dfdfdf] rounded-lg p-4 ${isClicked ? 'cursor-not-allowed' : 'hover:bg-slate-50 transition-colors cursor-pointer'}`}
+                                            onClick={() => !isClicked && setSelectedAddress(address.id)}
+                                        >
+                                            <RadioGroupItem
+                                                value={address.id}
+                                                id={`address-${index}`}
+                                                className="absolute top-4 left-4 cursor-pointer"
+                                                disabled={isClicked}
+                                            />
+                                            <div className="pl-8">
+                                                <div className="flex justify-between items-center mb-2">
+                                                    <Label htmlFor={`address-${index}`} className={`font-semibold flex items-center ${isClicked ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+                                                        <Home size={18} className="mr-2" /> Address {index + 1}
+                                                    </Label>
+                                                </div>
+                                                <div className="text-sm text-[#636363]">
+                                                    {address.shipping_address}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </RadioGroup>
+                            </div>
+                            <button
+                                onClick={() => setNewAddress(true)}
+                                className={`bg-black text-sm lg:mt-6 mt-5 lg:py-3 py-2.5 text-white rounded-3xl w-4/5 lg:w-2/3 mx-auto ${isClicked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-opacity-75'} duration-300 ease-out text-center flex items-center justify-center`}
+                                disabled={isClicked}
+                            >
+                                <Plus size={18} className="mr-2" /> Add New Address
+                            </button>
+                        </div>
+                        <span className="lg:hidden border-t border-t-[#dfdfdf] my-2.5 mt-1.5"></span>
+                        <button
+                            onClick={() => setIsClicked(true)}
+                            className={`lg:mt-4 mt-2 lg:py-3 py-2.5 text-[15px] bg-black text-white rounded-3xl w-full duration-300 ease-out text-center ${!selectedAddress ? 'opacity-50 cursor-not-allowed' : 'hover:bg-opacity-75'}`}
+                            disabled={!selectedAddress}
+                        >
+                            Continue
+                        </button>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="lg:w-4/6 w-full">
+                        {addresses.length > 0 && (
+                            <button
+                                onClick={() => setNewAddress(false)}
+                                className="flex items-center pb-0.5 font-semibold text-black relative group lg:mb-4 mb-2 hover:text-gray-600 transition-colors duration-300"
+                                disabled={isClicked}
+                            >
+                                <ArrowLeft size={18} className="mr-1 group-hover:-translate-x-0.5 transition-transform duration-300" />
+                                <span className="relative text-sm lg:text-base">
+                                    Back to addresses
+                                </span>
+                            </button>
+                        )}
+                        <CustomerInfo
+                            register={register}
+                            errors={errors}
+                            handleSubmit={handleSubmit(onSubmit)}
+                            isClicked={isClicked}
+                        />
+                    </div>
+                );
+            }
+        }
+    };
 
     return (
         <div className="flex flex-col lg:gap-14">
@@ -166,97 +267,15 @@ export default function OrderWrapper() {
                     </div>
                 </div>
             )}
-
-            <div className={`w-full flex flex-col lg:flex-row items-baseline ${!newAddress && "lg:gap-28 gap-10"}`}>
-                {addresses.length > 0 && !newAddress ? (
-                    <div className="lg:w-[58%] flex flex-col">
-                        <div className="lg:border border-[#dfdfdf] rounded-2xl lg:p-8 mb-4">
-                            <div>
-                                <span className="lg:text-3xl text-2xl font-semibold">Addresses</span>
-                                <p className="text-[#636363] lg:mt-2 mt-1 lg:text-base text-sm">Pick from your saved addresses</p>
-                                {status === "loading" ? <Spinner color="primary" size="medium" /> :
-                                    <RadioGroup
-                                        value={selectedAddress}
-                                        onValueChange={(value) => !isClicked && setSelectedAddress(value)}
-                                        className="mt-6 space-y-2 lg:space-y-4"
-                                        disabled={isClicked}
-                                    >
-                                        {addresses.map((address, index) => (
-                                            <div
-                                                key={index}
-                                                className={`relative border border-[#dfdfdf] rounded-lg p-4 ${isClicked ? 'cursor-not-allowed' : 'hover:bg-slate-50 transition-colors cursor-pointer'}`}
-                                                onClick={() => !isClicked && setSelectedAddress(address.id)}
-                                            >
-                                                <RadioGroupItem
-                                                    value={address.id}
-                                                    id={`address-${index}`}
-                                                    className="absolute top-4 left-4 cursor-pointer"
-                                                    disabled={isClicked}
-                                                />
-                                                <div className="pl-8">
-                                                    <div className="flex justify-between items-center mb-2">
-                                                        <Label htmlFor={`address-${index}`} className={`font-semibold flex items-center ${isClicked ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
-                                                            <Home size={18} className="mr-2" /> Address {index + 1}
-                                                        </Label>
-                                                    </div>
-                                                    <div className="text-sm text-[#636363]">
-                                                        {address.shipping_address}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </RadioGroup>
-                                }
-                            </div>
-                            <button
-                                onClick={() => setNewAddress(true)}
-                                className={` bg-black text-sm lg:mt-6 mt-4 lg:py-3 py-2.5 text-white rounded-3xl w-4/5 lg:w-2/3 mx-auto ${isClicked ? 'opacity-50 cursor-not-allowed'
-                                    : 'hover:bg-opacity-75'} duration-300 ease-out text-center flex items-center justify-center`}
-                                disabled={isClicked}
-                            >
-                                <Plus size={18} className="mr-2" /> Add New Address
-                            </button>
-                        </div>
-                        <span className="lg:hidden border-t border-t-[#dfdfdf] my-2.5 mt-1.5"></span>
-                        <button
-                            onClick={() => setIsClicked(true)}
-                            className={`lg:mt-4 mt-2 lg:py-3 py-2.5 text-[15px] bg-black text-white rounded-3xl w-full duration-300 ease-out text-center ${!selectedAddress
-                                ? 'opacity-50 cursor-not-allowed'
-                                : 'hover:bg-opacity-75'
-                                }`}
-                            disabled={!selectedAddress}
-                        >
-                            Continue
-                        </button>
-                    </div>
-                )
-                    : (status !== "loading" &&
-                        <div className="w-4/6">
-                            {addresses.length > 0 &&
-                                <button
-                                    onClick={() => setNewAddress(false)}
-                                    className="flex items-center pb-0.5 font-semibold text-black relative group mb-4 hover:text-gray-600 transition-colors duration-300"
-                                    disabled={isClicked}
-                                >
-                                    <ArrowLeft size={18} className="mr-1 group-hover:-translate-x-0.5 transition-transform duration-300" />
-                                    <span className="relative z-10">
-                                        Back to addresses
-                                    </span>
-
-                                </button>
-                            }
-                            <CustomerInfo register={register} errors={errors} handleSubmit={handleSubmit(onSubmit)} isClicked={isClicked} />
-                        </div>
-                    )
-                }
+            <div className={`w-full flex flex-col lg:flex-row items-baseline ${!newAddress && "lg:gap-28 gap-10"} ${status === "unauthenticated" && "lg:gap-28 gap-0"} ${addresses.length === 0 && status === "authenticated" && "lg:gap-28 gap-0"}`}>
+                {renderContent()}
                 <div className="lg:w-2/6 w-full lg:sticky top-4 self-start mx-auto">
                     <OrderSummaryBox product={cartItems} purchaseCompleted={purchaseCompleted} isLoading={isLoading} />
                 </div>
-
             </div>
             <div className="w-full lg:w-4/6">
                 <PaymentMethod isClicked={isClicked} purchaseCompleted={purchaseCompleted} isValid={isValid} isLoading={isLoading} />
             </div>
         </div>
-    )
+    );
 }

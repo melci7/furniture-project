@@ -37,14 +37,14 @@ export default function OrderSummaryBox({ product, purchaseCompleted, isLoading 
             <h2 className="text-2xl font-semibold mb-4 hidden lg:block">Order Summary</h2>
             {showDetails && (
                 <div
-                    className="fixed inset-0 bg-black/30 z-20 transition-opacity duration-300 ease-out"
+                    className="fixed inset-0 bg-black/30 z-10 transition-opacity duration-300 ease-out"
                     style={{
                         opacity: showDetails ? 1 : 0,
                     }}
                     onClick={handleOverlayClick}
                 ></div>
             )}
-            <div className="fixed bg-white lg:bg-transparent lg:static bottom-0 z-30 p-6 w-full border-t border-t-[#dfdfdf] lg:border-none lg:w-full lg:p-6 lg:rounded-[24px] lg:shadow-md flex lg:flex-col gap-4 items-center lg:items-stretch">
+            <div className="fixed bg-white lg:bg-transparent lg:static bottom-0 z-10 p-6 w-full border-t border-t-[#dfdfdf] lg:border-none lg:w-full lg:p-6 lg:rounded-[24px] lg:shadow-md flex lg:flex-col gap-4 items-center lg:items-stretch">
                 <div className="justify-between items-center lg:flex hidden">
                     <span className="flex items-center"><ShoppingBag size={18} className="mr-2" /> Items </span>
                     <span>${formatPrice(subtotal)}</span>

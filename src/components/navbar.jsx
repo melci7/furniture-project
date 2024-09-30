@@ -46,7 +46,7 @@ export default function Navbar() {
     const toggleDropdown = () => setShowDropdown(!showDropdown)
 
     return (
-        <div className={`mx-[-1.25rem] transition-all duration-300 ease-out px-5 ${isSticky ? "sticky top-0 z-10 bg-white py-4  lg:bg-transparent lg:py-0 lg:relative lg:z-0" : ""}  `}>
+        <div className={`mx-[-1.25rem] transition-all duration-300 ease-out px-5 ${isSticky ? "sticky top-0 z-20 bg-white py-4  lg:bg-transparent lg:py-0 lg:relative lg:z-0" : ""}  `}>
             <header className={`w-full flex justify-between items-center `}>
                 {showUser && (
                     <div

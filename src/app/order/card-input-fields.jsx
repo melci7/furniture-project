@@ -39,12 +39,12 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                 {errors.cardNumber && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.cardNumber.message}</p>}
             </div>
 
-            <div className="flex w-full gap-4 lg:gap-3 flex-wrap lg:flex-nowrap">
-                <div className="flex flex-col gap-1 w-[calc(50%-0.5rem)] lg:w-1/4">
+            <div className="flex w-full gap-5 lg:gap-3 flex-wrap lg:flex-nowrap">
+                <div className="flex flex-col gap-1 w-[calc(50%-10px)] lg:w-1/4">
                     <label className="lg:text-sm text-[13px] font-medium" htmlFor="expiryMonth">Expiration Month</label>
                     <select
                         id="expiryMonth"
-                        className={`w-full rounded-[24px] py-2 px-4 border ${errors.expiryMonth ? 'border-red-500' : 'border-[#dfdfdf]'}`}
+                        className={`w-full rounded-[24px] text-sm lg:text-base font-medium py-2.5 lg:py-2 px-4 border ${errors.expiryMonth ? 'border-red-500' : 'border-[#dfdfdf]'}`}
                         {...register("expiryMonth", {
                             required: "Expiration month is required",
                             validate: (value) => {
@@ -66,11 +66,11 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                     </select>
                     {errors.expiryMonth && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.expiryMonth.message}</p>}
                 </div>
-                <div className="flex flex-col gap-1 w-[calc(50%-0.5rem)] lg:w-1/4 lg:mr-4">
+                <div className="flex flex-col gap-1 w-[calc(50%-10px)] lg:w-1/4 lg:mr-4">
                     <label className="lg:text-sm text-[13px] font-medium" htmlFor="expiryYear">Expiration Year</label>
                     <select
                         id="expiryYear"
-                        className={`w-full rounded-[24px] py-2 px-4 border ${errors.expiryYear ? 'border-red-500' : 'border-[#dfdfdf]'}`}
+                        className={`w-full rounded-[24px] text-sm lg:text-base font-medium py-2.5 lg:py-2 px-4 border ${errors.expiryYear ? 'border-red-500' : 'border-[#dfdfdf]'}`}
                         {...register("expiryYear", {
                             required: "Expiration year is required",
                             validate: (value) => parseInt(value, 10) >= currentYear || "Invalid expiration year"
