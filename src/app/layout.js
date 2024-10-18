@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${myFont.variable} ${inter.className} lg:w-9/12 lg:m-auto lg:min-h-screen mx-5`}
+        className={`${myFont.variable} ${inter.className} lg:max-w-6xl lg:w-11/12 md:w-10/12 desktop:max-w-screen-desktop md:m-auto lg:min-h-screen mx-5`}
       >
         <Providers>
           {children}

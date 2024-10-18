@@ -53,7 +53,13 @@ export default function OrderSummaryBox({ product, purchaseCompleted, isLoading 
                     <span className="flex items-center"><Truck size={18} className="mr-2" /> Delivery</span>
                     <span>${subtotal > 0 ? formatPrice(delivery) : "0"}</span>
                 </div>
+                {remainingForFreeShipping > 0 && (
+                    <div className="text-sm text-green-600 hidden lg:block">
+                        Add ${formatPrice(remainingForFreeShipping)} more to your order for free shipping!
+                    </div>
+                )}
                 <div className="flex flex-col lg:flex-row justify-between lg:border-t border-[#dfdfdf] lg:pt-4 font-semibold text-lg">
+
                     <div
                         className={`
                             lg:hidden rounded-t-[12px] flex flex-col justify-center gap-1 

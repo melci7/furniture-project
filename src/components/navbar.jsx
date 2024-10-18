@@ -46,7 +46,7 @@ export default function Navbar() {
     const toggleDropdown = () => setShowDropdown(!showDropdown)
 
     return (
-        <div className={`mx-[-1.25rem] transition-all duration-300 ease-out px-5 ${isSticky ? "sticky top-0 z-20 bg-white py-4  lg:bg-transparent lg:py-0 lg:relative lg:z-0" : ""}  `}>
+        <div className={`mx-[-1.25rem] transition-all duration-300 ease-out px-5 ${isSticky ? "sticky top-0 z-20 bg-white py-4  md:bg-transparent md:py-0 md:relative md:z-0" : ""}  `}>
             <header className={`w-full flex justify-between items-center `}>
                 {showUser && (
                     <div
@@ -65,7 +65,7 @@ export default function Navbar() {
                 )}
                 <Link href={"/"} className="font-bold text-lg">Logo</Link>
                 <nav
-                    className={`lg:hidden overflow-hidden rounded-[36px] p-8 fixed inset-x-4 bottom-0 h-72 w-11/12 mx-auto bg-white z-40 transform ${showUser ? '-translate-y-4' : 'translate-y-full'} transition-transform duration-200 ease-out`}
+                    className={`md:hidden overflow-hidden rounded-[36px] p-8 fixed inset-x-4 bottom-0 h-72 w-11/12 mx-auto bg-white z-40 transform ${showUser ? '-translate-y-4' : 'translate-y-full'} transition-transform duration-200 ease-out`}
                     aria-hidden={!showUser}
                 >
                     <div className="w-8 h-8 bg-[#EEF2FF] rounded-full absolute flex items-center justify-center right-8 top-8 -mt-1">
@@ -95,8 +95,8 @@ export default function Navbar() {
                         </button>
                     </div>
                 </nav>
-                <nav className="lg:block hidden">
-                    <ul className="flex gap-5 bg-indigo-50 px-3 py-2 rounded-3xl text-sm font-medium text-[#636363]">
+                <nav className="md:block hidden">
+                    <ul className="flex md:gap-2 lg:gap-5 bg-indigo-50 px-3 py-2 rounded-3xl text-sm font-medium text-[#636363]">
                         <Link href="/" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/' ? 'bg-white text-black' : ''}`}>Home</Link>
                         <Link href="/about" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/about' ? 'bg-white text-black' : ''}`}>About</Link>
                         <Link href="/store" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/store' ? 'bg-white text-black' : ''}`}>Store</Link>
@@ -104,19 +104,19 @@ export default function Navbar() {
                     </ul>
                 </nav>
                 {status === "loading" ? <Loading /> : (
-                    <ul className="flex lg:gap-2">
+                    <ul className="flex md:gap-2">
                         <div className="relative">
                             {session ? (
                                 <div>
                                     <button
                                         onClick={toggleDropdown}
-                                        className="hidden lg:flex rounded-full border border-gray-400 p-2 gap-2 items-center text-sm"
+                                        className={`hover:bg-[#FFD873] p-2.5 relative hidden transition-all active:scale-95 duration-200 ease-out md:flex rounded-full gap-2 items-center text-sm ${showDropdown && "bg-[#FFD873]"}`}
                                     >
                                         <UserRound strokeWidth={1.75} size={22} />
                                     </button>
                                     <button
                                         onClick={() => setShowUser(prevValue => !prevValue)}
-                                        className="lg:hidden rounded-full lg:border border-gray-400 p-2 flex gap-2 items-center text-sm"
+                                        className="md:hidden rounded-full  p-2.5 flex gap-2 items-center text-sm"
                                     >
                                         <UserRound strokeWidth={1.75} size={22} />
                                     </button>
@@ -124,43 +124,43 @@ export default function Navbar() {
 
 
                             ) : (
-                                <Link href="/login" className="rounded-full lg:border border-gray-400 p-2 lg:px-3 flex gap-1 lg:gap-2 items-center text-sm">
+                                <Link href="/login" className="rounded-full transition-all active:scale-95 duration-200 ease-out hover:bg-[#FFD873] p-2.5 relative md:px-3 flex gap-1 md:gap-2 items-center text-sm">
                                     <UserRound strokeWidth={1.75} size={22} />
                                     <span className="font-medium">Log in</span>
                                 </Link>
                             )}
-                            {showDropdown && session && (
-                                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 z-10 border border-gray-200">
+                            {session && (
+                                <div className={`${showDropdown && "opacity-100 pointer-events-auto"} opacity-0 pointer-events-none transition-opacity duration-300 ease-out absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 z-10 border border-gray-200 font-medium`}>
                                     <h3 className="px-4 py-2 text-sm font-medium text-black border-b border-gray-200">{session.user.name}</h3>
-                                    <Link href="/account/orders" className="flex items-center px-4 py-2 text-sm text-black hover:bg-[#EEF2FF] hover:text-[#5C75B8]">
+                                    <Link href="/account/orders" className="transition-all duration-200 ease-out rounded-md flex mt-1 items-center px-3 mx-1 py-2 text-sm text-black hover:bg-[#EEF2FF] hover:text-[#5C75B8]">
                                         <Package size={18} className="mr-2" />
                                         Orders
                                     </Link>
-                                    <Link href="/account/addresses" className="flex items-center px-4 py-2 text-sm text-black hover:bg-[#EEF2FF] hover:text-[#5C75B8]">
+                                    <Link href="/account/addresses" className="transition-all duration-200 ease-out rounded-md mx-1 flex items-center px-3 py-2 text-sm text-black hover:bg-[#EEF2FF] hover:text-[#5C75B8]">
                                         <Home size={18} className="mr-2" />
                                         Addresses
                                     </Link>
                                     <button
                                         onClick={() => signOut()}
-                                        className="flex items-center w-full px-4 py-2 text-sm text-black hover:bg-red-50 hover:text-red-600"
+                                        className="transition-all duration-200 ease-out rounded-md flex items-center w-[calc(100%-8px)] px-3 py-2 mb-1 mx-1 text-sm text-black hover:bg-red-50 hover:text-red-600 group"
                                     >
-                                        <LogOut size={18} className="mr-2" />
+                                        <LogOut size={18} className="mr-2 group-hover:translate-x-0.5 transition-translate duration-200 ease-out" />
                                         Logout
                                     </button>
                                 </div>
                             )}
                         </div>
-                        <Link href="#" className="rounded-full lg:border border-gray-400 p-2">
+                        <Link href="#" className="rounded-full active:scale-95 transition-all duration-200 ease-out hover:bg-[#FFD873] p-2.5 relative">
                             <Heart strokeWidth={1.75} size={22} />
                         </Link>
-                        <Link href="/cart" className="rounded-full lg:border border-gray-400 p-2 relative">
-                            {quantity !== 0 && <div className="absolute lg:-top-3 lg:-right-1.5 -top-0.5 right-0 flex items-center justify-center rounded-full lg:w-[22px] lg:h-[22px] w-5 h-5 bg-[#5C75B8] text-white lg:text-sm text-xs">
+                        <Link href="/cart" className="rounded-full active:scale-95 transition-all duration-200 ease-out hover:bg-[#FFD873] p-2.5 relative group">
+                            {quantity !== 0 && <div className="absolute transition-all duration-200 ease-out md:top-0 md:right-0 -top-0.5 right-0 flex items-center  justify-center rounded-full md:w-[20px] md:h-[20px] w-5 h-5 bg-[#5C75B8] text-white text-xs">
                                 {quantity}
                             </div>}
                             <ShoppingCart strokeWidth={1.75} size={22} />
                         </Link>
                         <button
-                            className="lg:hidden p-2 pr-0"
+                            className="md:hidden p-2 pr-0"
 
                         >
                             <Menu strokeWidth={1.75} size={22} />

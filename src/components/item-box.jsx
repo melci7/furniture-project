@@ -18,7 +18,7 @@ export default function ItemBox({ product, addToCart }) {
     }
 
     return (
-        <Link href={`/store/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${product.category === "Sofa" ? "lg:w-[410px]" : "lg:w-[335px]"} w-full h-full`}>
+        <Link href={`/store/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 w-full h-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)] ${product.category === "Sofa" ? "desktop:w-[calc(43%-1rem)]" : "desktop:w-[calc(28%-1rem)]"} `}>
             <Heart className='absolute left-6 top-6 ' strokeWidth={1.25} size={32} />
             {product.discount &&
                 <div className='bg-[#ffd873] rounded-full py-1 px-2 absolute right-6 top-6 text-sm font-medium'>
@@ -50,9 +50,7 @@ export default function ItemBox({ product, addToCart }) {
                 hover:bg-[#3A4F85] hover:scale-110 
                 active:bg-[#304170] active:scale-95
                 group '>
-                <ShoppingCart className='transition-transform duration-300 
-                    group-hover:rotate-12 
-                    group-active:rotate-0'
+                <ShoppingCart className='transition-transform duration-300 group-hover:rotate-12 group-active:rotate-0'
                     strokeWidth={1.5} size={24} color='white' />
             </button>
         </Link >

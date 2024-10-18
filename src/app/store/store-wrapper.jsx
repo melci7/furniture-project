@@ -46,7 +46,7 @@ export default function StoreWrapper({ data }) {
     return (
         <div className="w-full mt-8 mb-20">
             {isDesktop ?
-                <section className="w-full m-auto flex mt-10 justify-center items-center lg:gap-7 gap-4 flex-wrap">
+                <section className="flex flex-wrap items-center justify-center w-full gap-4 m-auto mt-10 lg:gap-7">
                     {categories.map(cat => (
                         <StoreItemBox
                             key={cat.name}
@@ -63,7 +63,7 @@ export default function StoreWrapper({ data }) {
                         align: "start",
                         loop: false,
                     }}
-                    className="w-full m-auto flex lg:mt-10 justify-center items-center lg:gap-7 gap-4 lg:flex-wrap"
+                    className="flex items-center justify-center w-full gap-4 m-auto lg:mt-10 lg:gap-7 lg:flex-wrap"
                 >
                     <CarouselContent>
                         {categories.map((cat) => (
@@ -82,7 +82,7 @@ export default function StoreWrapper({ data }) {
                     </CarouselContent>
                 </Carousel>
             }
-            <div className="flex flex-wrap lg:gap-7 gap-4 justify-center items-center mt-4 lg:mt-8">
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-4 lg:gap-7 lg:mt-8">
                 {filteredData.map((item) => (
                     <ItemBox key={item.id} product={item} addToCart={addToCart} />
                 ))}

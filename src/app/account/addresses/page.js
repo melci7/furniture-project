@@ -89,7 +89,6 @@ export default function Addresses() {
   const updateAddresses = async () => {
     if (status === "authenticated" && session?.user) {
       try {
-        setIsLoading(true)
         const fetchedAddresses = await fetchAddresses(session.user.id)
         setAddresses(Array.isArray(fetchedAddresses) ? fetchedAddresses : [])
         setIsLoading(false)
@@ -121,10 +120,12 @@ export default function Addresses() {
         <p className="text-[#636363] lg:mt-2 mt-1 lg:text-base text-sm">
           Manage your saved addresses
         </p>
-        <div className="lg:mt-6 mt-1 space-y-4">
-          <div className="flex justify-center items-center">
-            {isLoading && <Spinner size="medium" color="primary" />}
+        {isLoading && (
+          <div className="flex justify-center items-center pt-6 py-4">
+            <Spinner size="medium" color="primary" />
           </div>
+        )}
+        <div className="lg:mt-6 mt-5">
           {addresses.map((address, index) => (
             <div key={index} className="border border-[#dfdfdf] rounded-lg p-4">
               <div className="flex justify-between items-center lg:mb-2 mb-1">

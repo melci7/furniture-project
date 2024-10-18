@@ -115,7 +115,7 @@ export default function OrderWrapper() {
     if (!cartItems.length) {
         return (
             <div className="flex flex-col">
-                <span className="text-3xl font-semibold mb-4">Your cart is empty</span>
+                <span className="mb-4 text-3xl font-semibold">Your cart is empty</span>
                 <Link
                     href="/store"
                     className="self-start inline-block text-xl pb-0.5 font-semibold text-black relative group"
@@ -149,7 +149,7 @@ export default function OrderWrapper() {
                     <div className="lg:w-[58%] flex flex-col">
                         <div className="lg:border border-[#dfdfdf] rounded-2xl lg:p-8 mb-4">
                             <div>
-                                <span className="lg:text-3xl text-2xl font-semibold">Addresses</span>
+                                <span className="text-2xl font-semibold lg:text-3xl">Addresses</span>
                                 <p className="text-[#636363] lg:mt-2 mt-1 lg:text-base text-sm">Pick from your saved addresses</p>
                                 <RadioGroup
                                     value={selectedAddress}
@@ -166,11 +166,11 @@ export default function OrderWrapper() {
                                             <RadioGroupItem
                                                 value={address.id}
                                                 id={`address-${index}`}
-                                                className="absolute top-4 left-4 cursor-pointer"
+                                                className="absolute cursor-pointer top-4 left-4"
                                                 disabled={isClicked}
                                             />
                                             <div className="pl-8">
-                                                <div className="flex justify-between items-center mb-2">
+                                                <div className="flex items-center justify-between mb-2">
                                                     <Label htmlFor={`address-${index}`} className={`font-semibold flex items-center ${isClicked ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                                                         <Home size={18} className="mr-2" /> Address {index + 1}
                                                     </Label>
@@ -203,7 +203,7 @@ export default function OrderWrapper() {
                 );
             } else {
                 return (
-                    <div className="lg:w-4/6 w-full">
+                    <div className="w-full lg:w-4/6">
                         {addresses.length > 0 && (
                             <button
                                 onClick={() => setNewAddress(false)}
@@ -232,7 +232,7 @@ export default function OrderWrapper() {
         <div className="flex flex-col lg:gap-14">
             {isValid && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-35 z-20 transition-opacity duration-300 ease-out"
+                    className="fixed inset-0 z-20 transition-opacity duration-300 ease-out bg-black bg-opacity-35"
                     style={{
                         opacity: isClicked ? 1 : 0,
                     }}
@@ -240,21 +240,21 @@ export default function OrderWrapper() {
             )}
 
             {isValid && (
-                <div className="fixed top-1/2 left-1/2 z-50 transform -translate-x-1/2 -translate-y-1/2 bg-white px-6 lg:px-10 lg:py-12 py-9 rounded-lg shadow-lg transition-transform duration-300 ease-out lg:w-1/4 w-11/12 flex flex-col lg:gap-4 gap-3 items-start">
+                <div className="fixed z-50 flex flex-col items-start w-full h-full lg:h-auto gap-3 px-6 py-24 transition-transform duration-300 ease-out transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg top-1/2 left-1/2 lg:px-10 lg:py-12 lg:w-1/4 lg:gap-4">
                     <div className="fixed right-7 top-7">
                         <Link href="/" className="block">
                             <X size={22} />
                         </Link>
                     </div>
                     <CircleCheck size={68} strokeWidth={1.75} className="self-center w-14 lg:24" />
-                    <h2 className="lg:text-2xl text-xl font-semibold self-center">Purchase Completed!</h2>
+                    <h2 className="self-center text-xl font-semibold lg:text-2xl">Purchase Completed!</h2>
                     <p className="">
                         Thank you for your order. Your order is being processed and will arrive approximately within <span className="font-bold">1-3 weeks</span>.
                     </p>
-                    <div className="flex flex-col lg:flex-row items-center w-full lg:gap-4 gap-1">
+                    <div className="flex flex-col items-center w-full gap-1 lg:flex-row lg:gap-4">
                         <Link
                             href="/store"
-                            className="flex-1 whitespace-nowrap bg-black py-3 px-5 text-white rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center mt-2"
+                            className="flex-1 w-full px-5 py-3 mt-2 text-center text-white duration-300 ease-out bg-black whitespace-nowrap rounded-3xl hover:bg-opacity-75"
                         >
                             Continue Shopping
                         </Link>
@@ -269,7 +269,7 @@ export default function OrderWrapper() {
             )}
             <div className={`w-full flex flex-col lg:flex-row items-baseline ${!newAddress && "lg:gap-28 gap-10"} ${status === "unauthenticated" && "lg:gap-28 gap-0"} ${addresses.length === 0 && status === "authenticated" && "lg:gap-28 gap-0"}`}>
                 {renderContent()}
-                <div className="lg:w-2/6 w-full lg:sticky top-4 self-start mx-auto">
+                <div className="self-start w-full mx-auto lg:w-2/6 lg:sticky top-4">
                     <OrderSummaryBox product={cartItems} purchaseCompleted={purchaseCompleted} isLoading={isLoading} />
                 </div>
             </div>

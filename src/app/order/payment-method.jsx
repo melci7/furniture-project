@@ -56,9 +56,9 @@ export default function PaymentMethod({ isClicked, purchaseCompleted, isValid, i
 
     return (
         <div className="w-full lg:w-10/12">
-            <span className="lg:text-3xl text-2xl font-semibold">Payment Method</span>
+            <span className="text-2xl font-semibold lg:text-3xl">Payment Method</span>
             <div className={`w-full lg:mt-6 mt-3 min-h-56 rounded-md flex flex-col items-center ${!isClicked && `opacity-50 pointer-events-none`}`}>
-                <RadioGroup defaultValue="creditcard" className="w-full flex flex-col lg:flex-row lg:justify-between justify-center gap-4 lg:gap-0 items-start text-sm font-medium">
+                <RadioGroup defaultValue="creditcard" className="flex flex-col items-start justify-center w-full gap-4 text-sm font-medium lg:flex-row lg:justify-between lg:gap-0">
                     <div className="flex items-center space-x-3">
                         <RadioGroupItem value="creditcard" id="r2" disabled={!isClicked} onClick={() => setPayment("creditcard")} />
                         <label htmlFor="r2" className="flex items-center gap-3">
@@ -104,7 +104,7 @@ export default function PaymentMethod({ isClicked, purchaseCompleted, isValid, i
                             handleNumericInput={handleNumericInput}
                             watch={watch}
                         />
-                        <button type="submit" className={`flex fixed lg:static z-10 lg:z-0 w-1/2 bottom-6 right-6 bg-black lg:mt-2 py-3 text-white rounded-3xl lg:w-full hover:bg-opacity-75 duration-300 ease-out text-center items-center justify-center lg:h-[52px] ${isLoading ? 'opacity-75 cursor-not-allowed ' : ''}`}
+                        <button type="submit" className={`flex fixed lg:static z-10 lg:z-0 w-1/2 bottom-6 right-6 bg-black lg:mt-2 py-3 text-white rounded-3xl lg:w-full hover:bg-opacity-75 duration-300 ease-out text-center items-center justify-center lg:h-[48px] ${isLoading ? 'opacity-75 cursor-not-allowed ' : ''}`}
                             onClick={handleClick}
                             disabled={isLoading}
                         >
@@ -119,7 +119,7 @@ export default function PaymentMethod({ isClicked, purchaseCompleted, isValid, i
                 {isClicked && payment === "cash" && (
                     <div className="flex flex-col gap-5 mb-20">
                         <CashPaymentSection />
-                        <button className={`flex fixed lg:static z-10 lg:z-0 w-1/2 bottom-6 right-6 bg-black lg:mt-2 py-3 text-white rounded-3xl lg:w-full hover:bg-opacity-75 duration-300 ease-out text-center items-center justify-center lg:h-[52px] ${isLoading ? 'opacity-75 cursor-not-allowed ' : ''}`}
+                        <button className={`flex fixed lg:static z-10 lg:z-0 w-1/2 bottom-6 right-6 bg-black lg:mt-2 py-3 text-white rounded-3xl lg:w-full hover:bg-opacity-75 duration-300 ease-out text-center items-center justify-center lg:h-[48px] ${isLoading ? 'opacity-75 cursor-not-allowed ' : ''}`}
                             onClick={handleClick}
                             disabled={isLoading}
                         >

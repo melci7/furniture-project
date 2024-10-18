@@ -6,7 +6,9 @@ export default function StoreLayout({ children }) {
     <section className="lg:mt-10 mt-8">
       <Navbar />
       {children}
-      <Footer />
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
     </section>
   )
 }

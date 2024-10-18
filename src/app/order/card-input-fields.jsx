@@ -39,7 +39,7 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                 {errors.cardNumber && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.cardNumber.message}</p>}
             </div>
 
-            <div className="flex w-full gap-5 lg:gap-3 flex-wrap lg:flex-nowrap">
+            <div className="flex flex-wrap w-full gap-5 lg:gap-3 lg:flex-nowrap">
                 <div className="flex flex-col gap-1 w-[calc(50%-10px)] lg:w-1/4">
                     <label className="lg:text-sm text-[13px] font-medium" htmlFor="expiryMonth">Expiration Month</label>
                     <select
@@ -85,7 +85,7 @@ export default function CardInputFields({ register, errors, handleNumericInput, 
                     </select>
                     {errors.expiryYear && <p className="text-red-500 lg:text-sm text-[13px] mt-1">{errors.expiryYear.message}</p>}
                 </div>
-                <div className="flex flex-col gap-1 lg:w-1/2 w-full">
+                <div className="flex flex-col w-full gap-1 lg:w-1/2">
                     <label className="lg:text-sm text-[13px] font-medium" htmlFor="cvv">CVV</label>
                     <input
                         className={`w-full rounded-[24px] py-2 px-4 border ${errors.cvv ? 'border-red-500' : 'border-[#dfdfdf]'}`}

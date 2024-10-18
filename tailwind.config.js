@@ -14,9 +14,19 @@ module.exports = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
-        laptop: "1600px",
       },
     },
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      // Custom breakpoints
+      laptop: "1600px",
+      desktop: "1425px",
+    },
+
     extend: {
       fontFamily: {
         sans: ["var(--font-switzer)"],

@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 export default function GetReadySection() {
     return (
-        <section className="w-full flex flex-col lg:flex-row lg:gap-28 gap-10 lg:mt-36 mt-16 items-center">
+        <section className="w-full flex flex-col lg:flex-row lg:gap-16 xl:gap-28 gap-10 lg:mt-36 mt-16 items-center">
             <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start w-full gap-6">
                 <Image
                     src={"/image_3.jpg"}
