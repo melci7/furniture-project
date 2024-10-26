@@ -13,7 +13,7 @@ export default async function Orders() {
   const orders = await Promise.all(orderIds.map((id) => getOrderDetails(id)))
 
   return (
-    <div className="max-w-2xl w-full lg:border border-[#dfdfdf] rounded-2xl lg:p-8">
+    <div className="max-w-2xl w-full lg:m-0 sm:m-auto lg:border border-[#dfdfdf] rounded-2xl lg:p-8">
       <div className="flex flex-col">
         <div className="flex-1">
           <div className="w-full">

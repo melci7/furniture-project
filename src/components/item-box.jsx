@@ -2,7 +2,7 @@ import { Heart, ShoppingCart, CircleCheckBig } from 'lucide-react'
 import Link from "next/link"
 import { toast } from 'sonner'
 
-export default function ItemBox({ product, addToCart }) {
+export default function ItemBox({ product, addToCart, recommended }) {
 
     function formatPrice(price) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -16,9 +16,9 @@ export default function ItemBox({ product, addToCart }) {
             closeButton: "true"
         });
     }
-
+    console.log(product)
     return (
-        <Link href={`/store/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 w-full h-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)] ${product.category === "Sofa" ? "desktop:w-[calc(43%-1rem)]" : "desktop:w-[calc(28%-1rem)]"} `}>
+        <Link href={`/store/products/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${recommended ? "w-full" : "w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]"}`}>
             <Heart className='absolute left-6 top-6 ' strokeWidth={1.25} size={32} />
             {product.discount &&
                 <div className='bg-[#ffd873] rounded-full py-1 px-2 absolute right-6 top-6 text-sm font-medium'>
@@ -26,7 +26,7 @@ export default function ItemBox({ product, addToCart }) {
                 </div>
             }
             <img
-                src={product.image}
+                src={product.image[1]}
                 className={` lg:h-[300px] h-56 self-center p-2 object-contain`}
                 alt={product.name}
             />
@@ -46,12 +46,10 @@ export default function ItemBox({ product, addToCart }) {
             <button
                 onClick={handleAddToCart}
                 className='bg-[#455EA0] absolute right-6 bottom-6 rounded-full p-3 
-                transition-all duration-300 
-                hover:bg-[#3A4F85] hover:scale-110 
-                active:bg-[#304170] active:scale-95
-                group '>
-                <ShoppingCart className='transition-transform duration-300 group-hover:rotate-12 group-active:rotate-0'
-                    strokeWidth={1.5} size={24} color='white' />
+                transition-all duration-200 ease-out
+                hover:bg-[#3A4F85] hover:scale-105
+                active:bg-[#304170] active:scale-95'>
+                <ShoppingCart strokeWidth={1.5} size={24} color='white' />
             </button>
         </Link >
     )

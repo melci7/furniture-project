@@ -8,13 +8,13 @@ export default async function ProductPage({ params }) {
 
   const product = await getProductById(id)
 
-  const productList = await getAllProducts()
+  const { data } = await getAllProducts()
 
   return (
     <section className="">
       <ItemDetails product={product} />
       <ServiceSection />
-      <Recommended product={productList} />
+      <Recommended product={data} />
     </section>
   )
 }

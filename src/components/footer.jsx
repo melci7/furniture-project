@@ -11,7 +11,7 @@ export default function Footer() {
                     <span className='lg:text-4xl text-3xl font-semibold'>Logo</span>
                     <span className='max-w-[300px] lg:text-base text-sm'>Rotonda Giuliani 3 Bianco veneto, 62383 Bergamo (VS)</span>
                     <span className='lg:text-base text-sm'>logo@gmail.com</span>
-                    <button className="bg-[#2D2D2D] rounded-3xl py-3.5 px-6 lg:px-7 lg:text-sm text-xs text-white lg:self-start mt-3 hover:bg-opacity-75 duration-300 ease-out">Contact Us</button>
+                    <button className="bg-[#2D2D2D] rounded-3xl py-3 xl:py-3.5 px-6 lg:text-sm text-xs text-white lg:self-start mt-3 hover:bg-opacity-75 duration-300 ease-out">Contact Us</button>
                     <div className='flex gap-1 items-center mt-6'>
                         <div className='border-2 rounded-[4px] px-1.5'>
                             <Image
@@ -55,8 +55,8 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-wrap justify-evenly mt-6 gap-6 lg:w-3/5 lg:justify-between'>
-                    <div className='flex-col gap-3 hidden lg:flex'>
+                <div className='flex flex-wrap justify-evenly sm:justify-around mt-6 gap-6 lg:w-3/5 md:justify-between'>
+                    <div className='flex-col gap-3 hidden md:flex'>
                         <span className='font-semibold lg:text-lg text-base text-black'>Useful Link</span>
                         <ul className='flex flex-col gap-1.5 lg:text-base text-sm'>
                             <li><Link href="/">Home</Link></li>

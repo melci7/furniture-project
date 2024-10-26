@@ -12,8 +12,8 @@ export default function Newsletter() {
                     width={72}
                     height={72}
                 />
-                <input className="text-sm lg:text-base w-full lg:py-3 lg:px-8 py-2 px-4 -mt-3 md:mt-0 rounded-[24px] border border-[#455EA0] focus-visible:outline" placeholder="Your email" type="email" />
-                <button className="bg-[#2D2D2D] rounded-3xl py-3 lg:px-7 px-6 text-xs lg:text-sm text-white duration-300 ease-out hover:bg-opacity-75">Subscribe</button>
+                <input className="text-sm lg:text-base w-full xl:py-3 xl:px-6 py-2 px-4 -mt-3 md:mt-0 rounded-[24px] border border-[#455EA0] focus-visible:outline" placeholder="Your email" type="email" />
+                <button className="bg-[#2D2D2D] rounded-3xl py-3 xl:py-3.5 px-6 text-xs lg:text-sm text-white duration-300 ease-out hover:bg-opacity-75">Subscribe</button>
             </div>
         </section>
     )

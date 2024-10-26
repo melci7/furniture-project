@@ -114,7 +114,7 @@ export default function Addresses() {
   }, [formState, session?.user?.id, status])
 
   return (
-    <div className="max-w-2xl w-full lg:border border-[#dfdfdf] rounded-2xl lg:p-8">
+    <div className="max-w-2xl w-full lg:m-0 sm:m-auto lg:border border-[#dfdfdf] rounded-2xl lg:p-8">
       <div>
         <span className="lg:text-3xl text-2xl font-semibold">Addresses</span>
         <p className="text-[#636363] lg:mt-2 mt-1 lg:text-base text-sm">
@@ -125,7 +125,7 @@ export default function Addresses() {
             <Spinner size="medium" color="primary" />
           </div>
         )}
-        <div className="lg:mt-6 mt-5">
+        <div className="lg:mt-6 mt-5 space-y-4">
           {addresses.map((address, index) => (
             <div key={index} className="border border-[#dfdfdf] rounded-lg p-4">
               <div className="flex justify-between items-center lg:mb-2 mb-1">

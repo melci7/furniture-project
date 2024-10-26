@@ -134,12 +134,14 @@ export default function OrderWrapper() {
 
         if (status === "unauthenticated") {
             return (
-                <CustomerInfo
-                    register={register}
-                    errors={errors}
-                    handleSubmit={handleSubmit(onSubmit)}
-                    isClicked={isClicked}
-                />
+                <div className="w-full lg:w-4/6">
+                    <CustomerInfo
+                        register={register}
+                        errors={errors}
+                        handleSubmit={handleSubmit(onSubmit)}
+                        isClicked={isClicked}
+                    />
+                </div>
             );
         }
 
@@ -240,30 +242,32 @@ export default function OrderWrapper() {
             )}
 
             {isValid && (
-                <div className="fixed z-50 flex flex-col items-start w-full h-full lg:h-auto gap-3 px-6 py-24 transition-transform duration-300 ease-out transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg top-1/2 left-1/2 lg:px-10 lg:py-12 lg:w-1/4 lg:gap-4">
+                <div className="fixed z-50 flex flex-col items-start w-full h-full lg:h-auto gap-3 px-6 py-24 transition-transform duration-300 ease-out transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg top-1/2 left-1/2 lg:px-10 lg:py-16 lg:w-[500px] lg:gap-4">
                     <div className="fixed right-7 top-7">
                         <Link href="/" className="block">
                             <X size={22} />
                         </Link>
                     </div>
-                    <CircleCheck size={68} strokeWidth={1.75} className="self-center w-14 lg:24" />
-                    <h2 className="self-center text-xl font-semibold lg:text-2xl">Purchase Completed!</h2>
-                    <p className="">
-                        Thank you for your order. Your order is being processed and will arrive approximately within <span className="font-bold">1-3 weeks</span>.
-                    </p>
-                    <div className="flex flex-col items-center w-full gap-1 lg:flex-row lg:gap-4">
-                        <Link
-                            href="/store"
-                            className="flex-1 w-full px-5 py-3 mt-2 text-center text-white duration-300 ease-out bg-black whitespace-nowrap rounded-3xl hover:bg-opacity-75"
-                        >
-                            Continue Shopping
-                        </Link>
-                        {status === "authenticated" && <Link
-                            href="/account/orders"
-                            className="flex-1 whitespace-nowrap bg-[#455EA0] py-3 px-5 text-white rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out text-center mt-2"
-                        >
-                            Go to Orders
-                        </Link>}
+                    <div className="flex flex-col gap-3 w-full max-w-[450px] mx-auto">
+                        <CircleCheck size={68} strokeWidth={1.75} className="self-center w-14 lg:24" />
+                        <h2 className="self-center text-xl font-semibold lg:text-2xl">Purchase Completed!</h2>
+                        <p className="">
+                            Thank you for your order. Your order is being processed and will arrive approximately within <span className="font-bold">1-3 weeks</span>.
+                        </p>
+                        <div className="flex flex-col items-center w-full gap-1 lg:flex-row lg:gap-4">
+                            <Link
+                                href="/store"
+                                className="flex-1 w-full px-5 py-3 mt-2 text-center text-white duration-300 ease-out bg-black whitespace-nowrap rounded-3xl hover:bg-opacity-75"
+                            >
+                                Continue Shopping
+                            </Link>
+                            {status === "authenticated" && <Link
+                                href="/account/orders"
+                                className="flex-1 whitespace-nowrap bg-[#455EA0] py-3 px-5 text-white rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out text-center mt-2"
+                            >
+                                Go to Orders
+                            </Link>}
+                        </div>
                     </div>
                 </div>
             )}

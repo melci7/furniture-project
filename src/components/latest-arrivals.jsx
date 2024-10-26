@@ -15,7 +15,7 @@ export default function LatestArrivals({ products }) {
                         <ItemBox key={item.id} product={item} addToCart={addToCart} />
                     ))}
                 </div>
-                <Link href="/store" className="bg-[#FFD873] rounded-3xl lg:py-3.5 lg:px-6 lg:text-sm py-3 px-4 text-xs self-center inline-block">
+                <Link href="/store" className="bg-[#FFD873] rounded-3xl xl:py-3.5 xl:px-6 lg:text-sm py-3 px-4 text-xs self-center inline-block duration-200 ease-out hover:bg-[#ffc329]">
                     Open Store
                 </Link>
             </div>

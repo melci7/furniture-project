@@ -60,7 +60,7 @@ export default function ItemList() {
     }
 
     return (
-        <div className="w-full flex flex-col lg:flex-row lg:gap-20 gap-8 items-baseline">
+        <div className="w-full flex flex-col lg:flex-row lg:gap-20 desktop:gap-32 gap-8 items-baseline">
             {isClicked && !session && (
                 <div
                     className="fixed inset-0 bg-black/30 z-20 transition-opacity duration-300 ease-out"
@@ -70,7 +70,7 @@ export default function ItemList() {
                     }}
                 ></div>
             )}
-            <div className="flex flex-col lg:w-4/6 w-full gap-6 h-screen">
+            <div className="flex flex-col lg:w-3/5 desktop:w-4/6 w-full gap-6 h-screen">
                 {cartItems.length > 0 ? (
                     <>
                         <span className="text-2xl font-semibold">Cart</span>
@@ -91,7 +91,7 @@ export default function ItemList() {
                     </div>
                 )}
             </div>
-            <div className="lg:w-2/6 w-full flex flex-col">
+            <div className="lg:w-2/5 desktop:w-2/6 w-full flex flex-col">
                 <SummaryBox product={cartItems} handleClick={handleClick} />
                 {!session && (
                     <div

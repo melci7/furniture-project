@@ -1,13 +1,42 @@
 import supabase from "./supabase"
 
-export async function getAllProducts() {
+export async function getAllProducts(page = 1) {
+  const limit = 12
   try {
-    const { data, error } = await supabase.from("products").select("*")
+    const { data, error, count } = await supabase
+      .from("products")
+      .select("*", { count: "exact" }) // 'exact' will return the total count of products
+      .range((page - 1) * limit, page * limit - 1)
 
     if (error) throw error
-    return data
+
+    const totalProducts = count
+    const totalPages = Math.ceil(totalProducts / limit)
+
+    return { data, totalPages }
   } catch (error) {
     console.error("Error in getAllProducts:", error.message)
+    throw error
+  }
+}
+
+export async function getProductByCategory(category, page = 1) {
+  const limit = 12
+  try {
+    const { data, error, count } = await supabase
+      .from("products")
+      .select("*", { count: "exact" })
+      .eq("category", category)
+      .range((page - 1) * limit, page * limit - 1)
+
+    if (error) throw error
+
+    const totalProducts = count
+    const totalPages = Math.ceil(totalProducts / limit)
+
+    return { data, totalPages }
+  } catch (error) {
+    console.error("Error in getProductByCategory:", error.message)
     throw error
   }
 }

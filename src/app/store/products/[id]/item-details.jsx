@@ -39,14 +39,17 @@ export default function ItemDetails({ product }) {
 
     return (
         <div className="flex flex-col mt-8 lg:flex-row lg:gap-14 gap-7 lg:mt-20">
-            <div className="lg:w-7/12 w-full lg:h-[600px] h-[460px] flex bg-[#f5f5f5] rounded-[24px]">
-                <img
-                    className="self-center object-scale-down w-full m-auto max-w-fit"
-                    src={product.image}
-                    alt={product.name}
-                />
+            <div className="lg:w-6/12 w-full lg:h-[600px] h-[460px] flex rounded-[24px]">
+                <div className='w-[600px] h-full m-auto bg-zinc-300 rounded-[24px]'>
+                    <img
+                        className="object-contain w-full h-full m-auto rounded-[24px]"
+                        src={product.image[0]}
+                        alt={product.name}
+                    />
+
+                </div>
             </div>
-            <div className="flex flex-col gap-2 lg:gap-4 lg:w-5/12">
+            <div className="flex flex-col gap-2 lg:gap-4 lg:w-6/12">
                 <h2 className="text-2xl font-semibold lg:text-4xl">{product.name}</h2>
                 <p className="text-[#636363]">{product.name}</p>
                 {product.discount && (

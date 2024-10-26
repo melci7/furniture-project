@@ -65,7 +65,7 @@ export default function BannerCarousel() {
                         <p className="text-sm text-white md:text-[15px] lg:text-base xl:text-start sm:text-center">
                             Discover a curated collection of handcrafted pieces designed to transform your living spaces into expressions of your unique taste and lifestyle.
                         </p>
-                        <Link href="/store" className="bg-[#FFD873] rounded-3xl lg:py-3.5 lg:px-6 py-3 px-4 text-xs lg:text-sm self-start inline-block sm:self-center xl:self-start">
+                        <Link href="/store" className="bg-[#FFD873] rounded-3xl xl:py-3.5 xl:px-6 py-3 px-4 text-xs lg:text-sm self-start inline-block sm:self-center xl:self-start duration-200 ease-out hover:bg-[#ffc329]">
                             Explore More
                         </Link>
                     </div>
@@ -81,12 +81,12 @@ export default function BannerCarousel() {
                                     <Link href={item.link}>
                                         <Image
                                             src={item.image}
-                                            className="lg:w-full w-9/12 m-auto"
+                                            className="lg:w-full sm:w-9/12 m-auto"
                                             alt="Sofa"
                                             width={1200}
                                             height={400}
                                         />
-                                        <div className="gap-2 lg:h-10 h-8 rounded-full flex items-center justify-between px-2 lg:px-3 lg:pl-1 lg:bg-white/20 bg-[#5c75b8] text-white absolute lg:top-9 lg:right-20 top-0 right-8 md:right-20 lg:-translate-x-1/2 group ">
+                                        <div className="gap-2 lg:h-10 h-8 rounded-full flex items-center justify-between px-2 lg:px-3 lg:pl-1 lg:bg-white/20 bg-[#5c75b8] text-white absolute lg:top-5 lg:right-0 desktop:top-9 desktop:right-10 top-0 sm:right-8 right-4 md:right-20 lg:-translate-x-1/2 group ">
                                             <div className="items-center justify-between bg-white/50 rounded-full w-8 h-8 hidden lg:flex lg:animate-pulse hover:animate-none">
                                                 <button className="w-6 h-6 rounded-full m-auto bg-white text-black group-hover:w-8 group-hover:h-8 transition-all duration-300 ease-in-out ">
                                                     <Plus size={14} className="m-auto" strokeWidth={2.5} />
@@ -104,11 +104,11 @@ export default function BannerCarousel() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <div className="flex justify-center mt-20 lg:mt-20 sm:mt-24 md:mt-28 absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2">
+                        <div className="flex justify-center absolute inset-x-0 lg:bottom-16">
                             {scrollSnaps.map((_, index) => (
                                 <button
                                     key={index}
-                                    className={`lg:w-6 w-4 h-0.5 lg:h-1 rounded-full mx-1 lg:mx-1.5 transition-all duration-200 ease-out ${index === selectedIndex ? 'bg-[#455EA0] lg:w-8 w-6' : 'bg-gray-400'
+                                    className={`lg:w-6 w-4 h-0.5 lg:h-1 rounded-full mx-1 lg:mx-1.5 transition-all duration-200 ease-out ${index === selectedIndex ? 'bg-[#455EA0] lg:w-10 w-6' : 'bg-gray-400'
                                         }`}
                                     onClick={() => carouselApi && carouselApi.scrollTo(index)}
                                 />
@@ -125,7 +125,7 @@ export default function BannerCarousel() {
                 <div className="lg:w-2/5 w-full lg:justify-center xl:justify-start bg-[#FFD873] rounded-[24px] xl:p-8 lg:px-4 lg:py-6 py-8 px-6 flex flex-col lg:flex-row lg:relative lg:h-[300px] xl:h-[280px]">
                     <div className="flex flex-col items-center justify-between gap-4 xl:items-start">
                         <h2 className="xl:text-4xl md:text-3xl text-2xl text-center xl:text-start xl:max-w-[250px] font-semibold text-[#876c29] font-sans">Wooden Chair 50% OFF</h2>
-                        <Link href="/store" className="bg-white rounded-3xl lg:py-3.5 lg:px-6 py-3 px-4 text-xs lg:text-sm xl:self-start inline-block order-3">
+                        <Link href="/store" className="bg-white rounded-3xl xl:py-3.5 xl:px-6 py-3 px-4 text-xs lg:text-sm xl:self-start inline-block order-3 duration-200 ease-out hover:bg-zinc-100">
                             Explore More
                         </Link>
                         <Image

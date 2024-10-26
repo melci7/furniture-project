@@ -14,6 +14,7 @@ export default function Recommended({ product }) {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState([])
     const [carouselApi, setCarouselApi] = useState(null)
+    const [recommended, setRecommended] = useState(true)
 
     useEffect(() => {
         if (!carouselApi) return
@@ -33,7 +34,7 @@ export default function Recommended({ product }) {
 
     return (
         <div className="my-8 mb-6 lg:my-20 lg:mb-20">
-            <h2 className="text-2xl font-semibold lg:text-4xl">Recommended For You</h2>
+            <h2 className="text-2xl font-semibold lg:text-4xl md:text-3xl">Recommended For You</h2>
             <Carousel
                 opts={{
                     align: "start",
@@ -46,21 +47,21 @@ export default function Recommended({ product }) {
                     {product.map((item) => (
                         <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                             <div className="flex pt-1 pb-2 lg:pt-4 lg:pb-4">
-                                <ItemBox product={item} />
+                                <ItemBox product={item} recommended={recommended} />
                             </div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <div className="hidden lg:block">
+                <div className="hidden md:block">
                     <CarouselPrevious />
                     <CarouselNext />
                 </div>
             </Carousel>
-            <div className="lg:hidden relative w-full h-0.5 mt-3 bg-[#dfdfdf]">
+            <div className="md:hidden relative w-full h-0.5 mt-3 bg-[#dfdfdf]">
                 <div
                     className="absolute h-0.5 bg-[#455EA0] transition-all duration-300 ease-out"
                     style={{
-                        width: `${((selectedIndex + 1) / scrollSnaps.length) * 100}%`,
+                        width: `${((selectedIndex + 1) / 8) * 100}%`,
                     }}
                 />
             </div>

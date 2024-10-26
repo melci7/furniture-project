@@ -25,7 +25,7 @@ export default function SummaryBox({ product, handleClick }) {
     }
 
     return (
-        <div className="w-full mx-[-1.25rem] lg:mx-0">
+        <div className="w-full mx-[-1.25rem] lg:mx-0 md:mx-[-5.25rem]">
             <h2 className="text-2xl font-semibold mb-4 hidden lg:block">Order Summary</h2>
             {showDetails && (
                 <div
@@ -76,7 +76,7 @@ export default function SummaryBox({ product, handleClick }) {
                 </div>
                 <button
                     className={`
-                        bg-black py-3 lg:mt-3 text-white lg:text-lg rounded-3xl lg:w-full ml-auto w-3/5 
+                        bg-black py-2.5 lg:mt-3 text-white lg:text-lg rounded-3xl lg:w-full ml-auto w-3/5 
                         transition-all duration-300 ease-out
                         ${subtotal === 0
                             ? 'opacity-50 cursor-not-allowed'

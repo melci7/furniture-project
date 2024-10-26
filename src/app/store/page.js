@@ -1,8 +1,17 @@
+import Pagination from "./pagination"
+import StoreItemBox from "./store-item-box"
 import StoreWrapper from "./store-wrapper"
 import { getAllProducts } from "@/lib/userService"
 
-export default async function Page() {
-  const data = await getAllProducts()
-
-  return <StoreWrapper data={data} />
+export default async function Page({ searchParams }) {
+  const { page } = await searchParams
+  const { data, totalPages } = await getAllProducts(page)
+  console.log(page)
+  return (
+    <>
+      <StoreItemBox />
+      <StoreWrapper data={data} />
+      <Pagination totalPages={totalPages} />
+    </>
+  )
 }

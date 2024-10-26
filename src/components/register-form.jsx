@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
@@ -35,31 +34,24 @@ export default function SignUpForm() {
     }
 
     return (
-        <div className="flex h-screen w-screen -mx-[16.67%]">
-            {/* Image section - 60% width */}
-
-
-            {/* Sign up form section - 40% width */}
-            <div className="w-full lg:w-2/5 flex flex-col">
-                <div className="p-6">
-                    <Link href="/" className="font-bold text-lg block">Logo</Link>
-                </div>
-                <div className="flex-1 flex items-center justify-center p-8">
-                    <div className="w-full max-w-md">
+        <div className="flex min-h-[600px] md:min-h-[670px] mb-10">
+            <div className="w-full lg:w-full flex flex-col">
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="w-full max-w-md bg-white md:p-10 p-6 shadow-md rounded-xl border border-[#dfdfdf]">
                         <div className="mb-6">
-                            <h1 className="text-3xl font-semibold">Sign up</h1>
-                            <p className="text-[#636363] mt-2">
+                            <h1 className="lg:text-3xl text-2xl font-semibold">Sign up</h1>
+                            <p className="text-[#636363] mt-2 text-sm lg:text-base">
                                 Create an account to get started
                             </p>
                         </div>
                         {successMessage && (
-                            <div className="text-green-600 mb-4 -mt-2" role="alert">
+                            <div className="text-green-600 mb-4 -mt-2 text-sm lg:text-base" role="alert">
                                 <span className="block sm:inline">{successMessage}</span>
                             </div>
                         )}
-                        {serverError && <p className="text-red-500 text-sm mb-4">{serverError}</p>}
+                        {serverError && <p className="text-red-500 text-xs lg:text-sm mb-4">{serverError}</p>}
                         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-                            <div className="flex flex-col gap-1">
+                            <div className="flex flex-col gap-1.5">
                                 <label className="text-sm font-medium" htmlFor="name">Full Name</label>
                                 <input
                                     className="w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]"
@@ -68,9 +60,9 @@ export default function SignUpForm() {
                                     placeholder="John Doe"
                                     {...register("name", { required: "Full name is required" })}
                                 />
-                                {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+                                {errors.name && <p className="text-red-500 lg:text-sm text-xs">{errors.name.message}</p>}
                             </div>
-                            <div className="flex flex-col gap-1">
+                            <div className="flex flex-col gap-1.5">
                                 <label className="text-sm font-medium" htmlFor="email">Email</label>
                                 <input
                                     className="w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]"
@@ -85,9 +77,9 @@ export default function SignUpForm() {
                                         }
                                     })}
                                 />
-                                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                                {errors.email && <p className="text-red-500 text-xs lg:text-sm">{errors.email.message}</p>}
                             </div>
-                            <div className="flex flex-col gap-1">
+                            <div className="flex flex-col gap-1.5">
                                 <label className="text-sm font-medium" htmlFor="password">Password</label>
                                 <input
                                     className="w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]"
@@ -101,11 +93,11 @@ export default function SignUpForm() {
                                         }
                                     })}
                                 />
-                                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+                                {errors.password && <p className="text-red-500 text-xs lg:text-sm">{errors.password.message}</p>}
                             </div>
                             <button
                                 type="submit"
-                                className="bg-black mt-4 py-3 text-white rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center"
+                                className="bg-black mt-4 py-2.5 lg:py-3 text-white rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center"
                             >
                                 Sign Up
                             </button>
@@ -118,15 +110,6 @@ export default function SignUpForm() {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="hidden lg:block w-3/5 relative">
-                <Image
-                    src="/background2.jpg"
-                    alt="Sign up background"
-                    layout="fill"
-                    objectFit="cover"
-                    className="dark:brightness-[0.2] dark:grayscale"
-                />
             </div>
         </div>
     )

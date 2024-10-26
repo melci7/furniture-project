@@ -7,7 +7,7 @@ export default function OfferSection() {
             <div className="lg:max-w-[360px] flex flex-col items-center lg-items-start lg:gap-8 gap-4">
                 <h2 className="font-sans text-4xl font-semibold lg:text-5xl lg:self-start">Daily offer</h2>
                 <p className="text-[#636363] font-sans text-center lg:text-start">Check out our daily offers that can combine big discounts on some products. Offers may change every day, do not miss your chance.</p>
-                <Link href="/store" className="bg-[#FFD873] rounded-3xl lg:py-3.5 lg:px-6 lg:text-sm py-3 px-4 text-xs lg:self-start inline-block">
+                <Link href="/store" className="bg-[#FFD873] rounded-3xl xl:py-3.5 xl:px-6 lg:text-sm py-3 px-4 text-xs lg:self-start inline-block duration-200 ease-out hover:bg-[#ffc329]">
                     Open Store
                 </Link>
             </div>

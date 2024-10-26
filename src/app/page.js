@@ -9,7 +9,7 @@ import Footer from "@/components/footer"
 import { getAllProducts } from "@/lib/userService"
 
 export default async function Home() {
-  const data = await getAllProducts()
+  const { data } = await getAllProducts()
   return (
     <main className="lg:mt-10 mt-8 flex flex-col">
       <Navbar />

@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server"
-import { createUser, getUserByEmail } from "@/lib/userService"
+import { createUser } from "@/lib/userService"
 
 export async function POST(request) {
   try {
     const { name, email, password } = await request.json()
-
-    console.log("Received registration request for:", email)
 
     // Check if all required fields are present
     if (!name || !email || !password) {
@@ -17,10 +15,8 @@ export async function POST(request) {
     }
 
     // Create new user (getUserByEmail check is now handled within createUser)
-    console.log("Attempting to create new user:", email)
     const user = await createUser({ name, email, password })
 
-    console.log("User created successfully:", user)
     return NextResponse.json(
       { message: "User created successfully", user },
       { status: 201 }

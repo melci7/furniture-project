@@ -33,7 +33,7 @@ export default function OrderSummaryBox({ product, purchaseCompleted, isLoading 
     const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
     console.log(subtotal)
     return (
-        <div className="w-full mx-[-1.25rem] lg:mx-0">
+        <div className="w-full mx-[-1.25rem] lg:mx-0 md:mx-[-4.75rem]">
             <h2 className="text-2xl font-semibold mb-4 hidden lg:block">Order Summary</h2>
             {showDetails && (
                 <div

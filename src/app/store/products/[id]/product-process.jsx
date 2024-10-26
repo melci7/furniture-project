@@ -85,12 +85,11 @@ export default function ProductProcess() {
                     >
                         <CarouselContent className="gap-12 pb-4 pt-2 mx-auto items-center">
                             {services.map((service, index) => (
-                                <CarouselItem key={index} className="py-2 px-4 pt-6 rounded-[24px] border-t border-l border-[#455EA0] shadow-md hover:shadow-lg transition-shadow duration-300 ease-out group text-[15px]">
+                                <CarouselItem key={index} className="py-2 px-4 pt-6 rounded-[24px] border border-[#455EA0] transition-shadow duration-300 ease-out group text-[15px]">
                                     <div className="flex items-center gap-1.5 mb-1 ">
                                         <service.icon strokeWidth={1.5} size={26} className="text-[#455EA0]" />
                                         <h3 className="font-semibold text-lg relative ">
                                             {service.title}
-                                            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#455EA0] transition-all duration-300 group-hover:w-full"></div>
                                         </h3>
                                     </div>
                                     <p className="text-[#636363] mb-2 leading-7">{service.description}</p>
