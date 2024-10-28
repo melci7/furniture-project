@@ -6,14 +6,15 @@ import Newsletter from "@/components/newsletter"
 import BottomOfferSection from "@/components/bottom-offer-section"
 import LatestArrivals from "@/components/latest-arrivals"
 import Footer from "@/components/footer"
-import { getAllProducts } from "@/lib/userService"
+import { getAllProducts, getProductByCategory } from "@/lib/userService"
 
 export default async function Home() {
   const { data } = await getAllProducts()
+  const { data: product } = await getProductByCategory("Sofa")
   return (
     <main className="lg:mt-10 mt-8 flex flex-col">
       <Navbar />
-      <BannerCarousel />
+      <BannerCarousel product={product} />
       <OfferSection products={data} />
       <GetReadySection />
       <LatestArrivals products={data} />

@@ -1,7 +1,7 @@
 import supabase from "./supabase"
 
 export async function getAllProducts(page = 1) {
-  const limit = 12
+  const limit = 15
   try {
     const { data, error, count } = await supabase
       .from("products")
@@ -21,7 +21,7 @@ export async function getAllProducts(page = 1) {
 }
 
 export async function getProductByCategory(category, page = 1) {
-  const limit = 12
+  const limit = 15
   try {
     const { data, error, count } = await supabase
       .from("products")

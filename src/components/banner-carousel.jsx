@@ -11,7 +11,7 @@ import {
 import { useState, useEffect } from "react"
 import { Plus, Tag } from "lucide-react"
 
-export default function BannerCarousel() {
+export default function BannerCarousel({ product }) {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState([])
     const [carouselApi, setCarouselApi] = useState(null)
@@ -33,29 +33,10 @@ export default function BannerCarousel() {
         }
     }, [carouselApi])
 
-    const products = [
-        {
-            image: "/couch_7.png",
-            link: "/store/7",
-            price: "1500"
-        },
-        {
-            image: "/couch_7.png",
-            link: "/store/6",
-            price: "799"
-        },
-        {
-            image: "/couch_7.png",
-            link: "/store/5",
-            price: "1200"
-        },
-        {
-            image: "/couch_7.png",
-            link: "/store/4",
-            price: "599"
-        }
-    ]
-
+    const sofas = product.filter((item) => {
+        return item.category === "Sofa"
+    }).slice(2, 6)
+    console.log(product)
     return (
         <section className="relative w-full mt-6 lg:mt-10">
             <div className="bg-[#5c75b8] rounded-[24px] lg:py-16 md:py-12 py-8 px-6">
@@ -73,19 +54,18 @@ export default function BannerCarousel() {
 
             </div>
             <div className="flex flex-col gap-4 mt-4 lg:flex-row ">
-                <div className="lg:w-3/5 w-full flex flex-col relative">
+                <div className="lg:w-3/5 w-full flex flex-col relative h-[360px] lg:h-auto">
                     <Carousel className="h-full w-full bg-[#DFE5F3] rounded-[24px] py-8 lg:py-0" setApi={setCarouselApi}>
-                        <CarouselContent className="duration-300 ease-out" >
-                            {products.map((item, index) => (
-                                <CarouselItem key={index} className="relative" >
-                                    <Link href={item.link}>
-                                        <Image
-                                            src={item.image}
-                                            className="lg:w-full sm:w-9/12 m-auto"
+                        <CarouselContent className="duration-300 ease-out h-full" >
+                            {sofas.map((item, index) => (
+                                <CarouselItem key={index} className="relative h-full" >
+                                    <Link href={`store/products/${item.id}`} >
+                                        <img
+                                            src={item.image[0]}
+                                            className="lg:w-[650px] lg:h-[340px] object-cover sm:w-9/12 m-auto scale-x-[-1]"
                                             alt="Sofa"
-                                            width={1200}
-                                            height={400}
                                         />
+
                                         <div className="gap-2 lg:h-10 h-8 rounded-full flex items-center justify-between px-2 lg:px-3 lg:pl-1 lg:bg-white/20 bg-[#5c75b8] text-white absolute lg:top-5 lg:right-0 desktop:top-9 desktop:right-10 top-0 sm:right-8 right-4 md:right-20 lg:-translate-x-1/2 group ">
                                             <div className="items-center justify-between bg-white/50 rounded-full w-8 h-8 hidden lg:flex lg:animate-pulse hover:animate-none">
                                                 <button className="w-6 h-6 rounded-full m-auto bg-white text-black group-hover:w-8 group-hover:h-8 transition-all duration-300 ease-in-out ">
@@ -104,7 +84,7 @@ export default function BannerCarousel() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <div className="flex justify-center absolute inset-x-0 lg:bottom-16">
+                        <div className="flex justify-center absolute bottom-8 inset-x-0 lg:bottom-16">
                             {scrollSnaps.map((_, index) => (
                                 <button
                                     key={index}

@@ -77,20 +77,18 @@ export default async function Orders() {
                             className="flex items-center space-x-4"
                           >
                             <Link
-                              href={`/store/${item.product_id}`}
+                              href={`/store/products/${item.product_id}`}
                               className="w-16 h-16 relative flex-shrink-0"
                             >
-                              <Image
-                                src={item.image}
+                              <img
+                                src={item.image[0]}
                                 alt={item.product_name}
-                                layout="fill"
-                                objectFit="contain"
-                                className="rounded-md"
+                                className="rounded-md p-1"
                               />
                             </Link>
                             <div>
                               <Link
-                                href={`/store/${item.product_id}`}
+                                href={`/store/products/${item.product_id}`}
                                 className="font-medium text-sm lg:text-base hover:underline"
                               >
                                 {item.product_name}

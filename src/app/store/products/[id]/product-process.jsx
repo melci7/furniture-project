@@ -10,20 +10,12 @@ import {
 import { useEffect, useState } from 'react';
 
 export default function ProductProcess() {
-    const [isDesktop, setIsDesktop] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState([])
     const [carouselApi, setCarouselApi] = useState(null)
 
     useEffect(() => {
-        const checkIfDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-        checkIfDesktop();
-        window.addEventListener('resize', checkIfDesktop);
-        return () => window.removeEventListener('resize', checkIfDesktop);
-    }, []);
-
-    useEffect(() => {
-        if (!carouselApi || isDesktop) return
+        if (!carouselApi) return
 
         setScrollSnaps(carouselApi.scrollSnapList())
         const onSelect = () => {
@@ -36,7 +28,7 @@ export default function ProductProcess() {
         return () => {
             carouselApi.off('select', onSelect)
         }
-    }, [carouselApi, isDesktop])
+    }, [carouselApi])
 
     const services = [
         {
@@ -58,57 +50,54 @@ export default function ProductProcess() {
 
     return (
         <div className="flex flex-col md:flex-row gap-8 lg:mt-20 mt-8">
-            {isDesktop ? (
-                <div className='flex gap-8 mt-12'>
-                    {services.map((service, index) => (
-                        <div key={index} className="flex-1 p-6 rounded-[24px] shadow-md hover:shadow-lg transition-shadow duration-300 ease-out group">
-                            <div className="flex items-center gap-2 mb-3">
-                                <service.icon strokeWidth={1.5} size={36} className="text-[#455EA0]" />
-                                <h3 className="font-semibold text-xl relative pb-0.5">
-                                    {service.title}
-                                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#455EA0] transition-all duration-300 group-hover:w-full"></div>
-                                </h3>
-                            </div>
-                            <p className="text-[#636363] mb-3 leading-7">{service.description}</p>
+            <div className='hidden gap-8 mt-12 lg:flex'>
+                {services.map((service, index) => (
+                    <div key={index} className="flex-1 p-6 rounded-[24px] shadow-md hover:shadow-lg transition-shadow duration-300 ease-out group">
+                        <div className="flex items-center gap-2 mb-3">
+                            <service.icon strokeWidth={1.5} size={36} className="text-[#455EA0]" />
+                            <h3 className="font-semibold text-xl relative pb-0.5">
+                                {service.title}
+                                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#455EA0] transition-all duration-300 group-hover:w-full"></div>
+                            </h3>
                         </div>
+                        <p className="text-[#636363] mb-3 leading-7">{service.description}</p>
+                    </div>
+                ))}
+            </div>
+            <div className="w-full lg:hidden">
+                <Carousel
+                    opts={{
+                        align: "start",
+                        loop: false,
+                    }}
+                    className="w-full"
+                    setApi={setCarouselApi}
+                >
+                    <CarouselContent className="gap-12 pb-4 pt-2 mx-auto items-center">
+                        {services.map((service, index) => (
+                            <CarouselItem key={index} className="py-2 px-4 pt-6 rounded-[24px] border border-[#455EA0] transition-shadow duration-300 ease-out group text-[15px]">
+                                <div className="flex items-center gap-1.5 mb-1 ">
+                                    <service.icon strokeWidth={1.5} size={26} className="text-[#455EA0]" />
+                                    <h3 className="font-semibold text-lg relative ">
+                                        {service.title}
+                                    </h3>
+                                </div>
+                                <p className="text-[#636363] mb-2 leading-7">{service.description}</p>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
+                <div className="flex justify-center mt-2">
+                    {scrollSnaps.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`w-1.5 h-1.5 rounded-full mx-1 transition-colors duration-300 ease-in-out ${index === selectedIndex ? 'bg-[#455EA0]' : 'bg-gray-300'
+                                }`}
+                            onClick={() => carouselApi && carouselApi.scrollTo(index)}
+                        />
                     ))}
                 </div>
-            ) : (
-                <div className="w-full">
-                    <Carousel
-                        opts={{
-                            align: "start",
-                            loop: false,
-                        }}
-                        className="w-full"
-                        setApi={setCarouselApi}
-                    >
-                        <CarouselContent className="gap-12 pb-4 pt-2 mx-auto items-center">
-                            {services.map((service, index) => (
-                                <CarouselItem key={index} className="py-2 px-4 pt-6 rounded-[24px] border border-[#455EA0] transition-shadow duration-300 ease-out group text-[15px]">
-                                    <div className="flex items-center gap-1.5 mb-1 ">
-                                        <service.icon strokeWidth={1.5} size={26} className="text-[#455EA0]" />
-                                        <h3 className="font-semibold text-lg relative ">
-                                            {service.title}
-                                        </h3>
-                                    </div>
-                                    <p className="text-[#636363] mb-2 leading-7">{service.description}</p>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                    </Carousel>
-                    <div className="flex justify-center mt-2">
-                        {scrollSnaps.map((_, index) => (
-                            <button
-                                key={index}
-                                className={`w-1.5 h-1.5 rounded-full mx-1 transition-colors duration-300 ease-in-out ${index === selectedIndex ? 'bg-[#455EA0]' : 'bg-gray-300'
-                                    }`}
-                                onClick={() => carouselApi && carouselApi.scrollTo(index)}
-                            />
-                        ))}
-                    </div>
-                </div>
-            )}
+            </div>
         </div>
     );
 }

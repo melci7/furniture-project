@@ -24,11 +24,11 @@ export default function Item({ product, addToCart, decreaseFromCart, removeFromC
 
     return (
         <div className="flex w-full lg:gap-6 gap-4">
-            <Link href={`/store/${product.id}`} className="rounded-[24px] bg-[#F5F5F5] p-3">
-                <Image
+            <Link href={`/store/products/${product.id}`} className="rounded-[24px] bg-[#F5F5F5] p-3">
+                <img
                     className="h-[100px] w-[180px] lg:w-[120px] object-contain"
-                    src={product.image}
-                    alt={product.image}
+                    src={product.image[0]}
+                    alt={product.image[0]}
                     width={120}
                     height={120}
                 />
@@ -36,7 +36,7 @@ export default function Item({ product, addToCart, decreaseFromCart, removeFromC
             <div className="flex justify-between w-full">
                 <div className="flex flex-col">
                     <span className="font-semibold">{product.name}</span>
-                    <span className="text-[#636363] text-sm">{product.name}</span>
+                    <span className="text-[#636363] text-sm">{product.description}</span>
                     <div className='mt-auto w-24 flex gap-1 py-1 justify-center items-center bg-[#f5f5f5] rounded-[8px]'>
                         <button
                             onClick={() => decrease(product)}
@@ -55,7 +55,7 @@ export default function Item({ product, addToCart, decreaseFromCart, removeFromC
 
                 </div>
                 <div className="flex flex-col justify-between">
-                    <span className="font-medium" >${product.discount ? product.price - (product.price * product.discount / 100) : product.price}</span>
+                    <span className="font-medium" >${product.discount ? Math.ceil(product.price - (product.price * product.discount / 100)).toFixed(2) : product.price.toFixed(2)}</span>
                     {product.quantity !== 1 &&
                         <button
                             onClick={() => removeFromCart(product)}

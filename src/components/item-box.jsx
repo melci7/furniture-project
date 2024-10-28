@@ -16,7 +16,7 @@ export default function ItemBox({ product, addToCart, recommended }) {
             closeButton: "true"
         });
     }
-    console.log(product)
+
     return (
         <Link href={`/store/products/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${recommended ? "w-full" : "w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]"}`}>
             <Heart className='absolute left-6 top-6 ' strokeWidth={1.25} size={32} />
@@ -26,22 +26,24 @@ export default function ItemBox({ product, addToCart, recommended }) {
                 </div>
             }
             <img
-                src={product.image[1]}
-                className={` lg:h-[300px] h-56 self-center p-2 object-contain`}
+                src={product.image[0]}
+                className={` lg:h-[300px] h-56 self-center ${recommended ? "p-6" : "p-2"} object-contain`}
                 alt={product.name}
             />
             <div className='flex flex-col'>
-                <span className='font-medium'>{product.name}</span>
-                <div className='flex gap-1.5'>
-                    <span className={`text-sm ${product.discount && 'line-through text-[#636363]'}`}>
-                        ${formatPrice(product.price)}
+                <span className='font-medium text-sm'>{product.name}</span>
+                <span className='text-sm'>{product.description.split(",")[0]}</span>
+                <div className='flex gap-1.5 items-center mt-1'>
+                    <span className={`text-lg font-medium ${product.discount && 'text-sm line-through text-[#636363]'}`}>
+                        ${formatPrice(Math.ceil(product.price).toFixed(2))}
                     </span>
                     {product.discount &&
-                        <span className='text-sm'>
-                            ${formatPrice(product.price - (product.price * product.discount / 100))}
+                        <span className='text-lg font-medium'>
+                            ${formatPrice(Math.ceil(product.price - (product.price * product.discount / 100)).toFixed(2))}
                         </span>
                     }
                 </div>
+
             </div>
             <button
                 onClick={handleAddToCart}
