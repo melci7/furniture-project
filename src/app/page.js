@@ -11,11 +11,13 @@ import { getAllProducts, getProductByCategory } from "@/lib/userService"
 export default async function Home() {
   const { data } = await getAllProducts()
   const { data: product } = await getProductByCategory("Sofa")
+  const { data: armchair } = await getProductByCategory("Armchair")
+
   return (
     <main className="lg:mt-10 mt-8 flex flex-col">
       <Navbar />
       <BannerCarousel product={product} />
-      <OfferSection products={data} />
+      <OfferSection products={armchair} />
       <GetReadySection />
       <LatestArrivals products={data} />
       <Newsletter />

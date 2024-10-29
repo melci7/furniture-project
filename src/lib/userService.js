@@ -20,21 +20,16 @@ export async function getAllProducts(page = 1) {
   }
 }
 
-export async function getProductByCategory(category, page = 1) {
-  const limit = 15
+export async function getProductByCategory(category) {
   try {
-    const { data, error, count } = await supabase
+    const { data, error } = await supabase
       .from("products")
       .select("*", { count: "exact" })
       .eq("category", category)
-      .range((page - 1) * limit, page * limit - 1)
 
     if (error) throw error
 
-    const totalProducts = count
-    const totalPages = Math.ceil(totalProducts / limit)
-
-    return { data, totalPages }
+    return { data }
   } catch (error) {
     console.error("Error in getProductByCategory:", error.message)
     throw error

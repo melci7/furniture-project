@@ -9,12 +9,14 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import { useState, useEffect } from 'react'
+import { useShoppingCart } from "@/components/useShoppingCart"
 
 export default function Recommended({ product }) {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState([])
     const [carouselApi, setCarouselApi] = useState(null)
     const [recommended, setRecommended] = useState(true)
+    const { addToCart } = useShoppingCart()
 
     useEffect(() => {
         if (!carouselApi) return
@@ -47,7 +49,7 @@ export default function Recommended({ product }) {
                     {product.map((item) => (
                         <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                             <div className="flex pt-1 pb-2 lg:pt-4 lg:pb-4">
-                                <ItemBox product={item} recommended={recommended} />
+                                <ItemBox product={item} recommended={recommended} addToCart={addToCart} />
                             </div>
                         </CarouselItem>
                     ))}
@@ -57,11 +59,11 @@ export default function Recommended({ product }) {
                     <CarouselNext />
                 </div>
             </Carousel>
-            <div className="md:hidden relative w-full h-0.5 mt-3 bg-[#dfdfdf]">
+            <div className="md:hidden relative w-full h-0.5 mt-3 bg-[#dfdfdf] rounded-full">
                 <div
-                    className="absolute h-0.5 bg-[#455EA0] transition-all duration-300 ease-out"
+                    className="absolute h-0.5 bg-[#455EA0] rounded-full transition-all duration-300 ease-out"
                     style={{
-                        width: `${((selectedIndex + 1) / 8) * 100}%`,
+                        width: `${((selectedIndex + 1) / 15) * 100}%`,
                     }}
                 />
             </div>

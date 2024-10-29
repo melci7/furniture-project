@@ -212,7 +212,7 @@ export default function OrderWrapper() {
                                 className="flex items-center pb-0.5 font-semibold text-black relative group lg:mb-4 mb-2 hover:text-gray-600 transition-colors duration-300"
                                 disabled={isClicked}
                             >
-                                <ArrowLeft size={18} className="mr-1 group-hover:-translate-x-0.5 transition-transform duration-300" />
+                                <ArrowLeft size={18} className="mr-1 group-hover:-translate-x-1 transition-transform duration-300 ease-out" />
                                 <span className="relative text-sm lg:text-base">
                                     Back to addresses
                                 </span>

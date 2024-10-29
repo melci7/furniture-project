@@ -40,9 +40,9 @@ export default function Item({ product, addToCart, decreaseFromCart, removeFromC
                     <div className='mt-auto w-24 flex gap-1 py-1 justify-center items-center bg-[#f5f5f5] rounded-[8px]'>
                         <button
                             onClick={() => decrease(product)}
-                            className={`w-6 h-6 font-bold duration-300 ease-out flex items-center justify-center transition-all ${count === 1 ? 'hover:scale-110' : ''}`}
+                            className="w-6 h-6 font-bold flex items-center justify-center group"
                         >
-                            {count === 1 ? <Trash2 size={18} /> : <Minus size={16} />}
+                            {count === 1 ? <Trash2 size={18} className={`transition-all duration-200 ease-out group-hover:scale-110`} /> : <Minus size={16} />}
                         </button>
                         <span className='font-semibold text-center text-sm w-6'>{count}</span>
                         <button
@@ -59,9 +59,9 @@ export default function Item({ product, addToCart, decreaseFromCart, removeFromC
                     {product.quantity !== 1 &&
                         <button
                             onClick={() => removeFromCart(product)}
-                            className='w-6 h-6 font-bold duration-300 ease-out flex self-end justify-center transition-all hover:scale-110 text-red-600'
+                            className='w-6 h-6 font-bold flex self-end justify-center  text-red-600 group'
                         >
-                            <Trash2 size={18} />
+                            <Trash2 size={18} className="group-hover:scale-110 ease-out  transition-all duration-200" />
                         </button>
                     }
                 </div>

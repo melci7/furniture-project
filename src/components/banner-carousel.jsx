@@ -33,10 +33,10 @@ export default function BannerCarousel({ product }) {
         }
     }, [carouselApi])
 
-    const sofas = product.filter((item) => {
-        return item.category === "Sofa"
-    }).slice(2, 6)
-    console.log(product)
+    const sofas = product
+        .filter((item) => item.price > 1350)
+        .reverse();
+
     return (
         <section className="relative w-full mt-6 lg:mt-10">
             <div className="bg-[#5c75b8] rounded-[24px] lg:py-16 md:py-12 py-8 px-6">
@@ -62,7 +62,7 @@ export default function BannerCarousel({ product }) {
                                     <Link href={`store/products/${item.id}`} >
                                         <img
                                             src={item.image[0]}
-                                            className="lg:w-[650px] lg:h-[340px] object-cover sm:w-9/12 m-auto scale-x-[-1]"
+                                            className="lg:w-11/12 lg:h-[260px] xl:w-[700px] xl:h-[340px] object-cover sm:w-9/12 w-11/12 h-[300px] m-auto scale-x-[-1]"
                                             alt="Sofa"
                                         />
 
@@ -88,7 +88,7 @@ export default function BannerCarousel({ product }) {
                             {scrollSnaps.map((_, index) => (
                                 <button
                                     key={index}
-                                    className={`lg:w-6 w-4 h-0.5 lg:h-1 rounded-full mx-1 lg:mx-1.5 transition-all duration-200 ease-out ${index === selectedIndex ? 'bg-[#455EA0] lg:w-10 w-6' : 'bg-gray-400'
+                                    className={`lg:w-6 w-4 h-0.5 lg:h-1 rounded-full mx-1 lg:mx-1.5 transition-all duration-200 ease-out ${index === selectedIndex ? 'bg-[#455EA0] lg:w-8 w-6' : 'bg-gray-400'
                                         }`}
                                     onClick={() => carouselApi && carouselApi.scrollTo(index)}
                                 />
@@ -102,18 +102,16 @@ export default function BannerCarousel({ product }) {
                 </div>
 
 
-                <div className="lg:w-2/5 w-full lg:justify-center xl:justify-start bg-[#FFD873] rounded-[24px] xl:p-8 lg:px-4 lg:py-6 py-8 px-6 flex flex-col lg:flex-row lg:relative lg:h-[300px] xl:h-[280px]">
-                    <div className="flex flex-col items-center justify-between gap-4 xl:items-start">
-                        <h2 className="xl:text-4xl md:text-3xl text-2xl text-center xl:text-start xl:max-w-[250px] font-semibold text-[#876c29] font-sans">Wooden Chair 50% OFF</h2>
-                        <Link href="/store" className="bg-white rounded-3xl xl:py-3.5 xl:px-6 py-3 px-4 text-xs lg:text-sm xl:self-start inline-block order-3 duration-200 ease-out hover:bg-zinc-100">
+                <div className="lg:w-2/5 w-full lg:justify-center xl:justify-start bg-[#FFD873] rounded-[24px] xl:p-8 lg:px-4 lg:py-2 py-6 px-6 flex flex-col lg:flex-row lg:relative lg:h-[300px] xl:h-[280px]">
+                    <div className="flex flex-col items-center justify-between gap-0 xl:gap-4 xl:items-start">
+                        <h2 className="desktop:text-4xl md:text-3xl text-2xl text-center xl:text-start xl:max-w-[250px] font-semibold text-[#545154] font-sans">Gray Armchair 35% OFF</h2>
+                        <Link href="/store/products/5" className="bg-white rounded-3xl xl:py-3.5 xl:px-6 py-3 px-4 text-xs lg:text-sm xl:self-start inline-block order-3 duration-200 ease-out hover:bg-zinc-100">
                             Explore More
                         </Link>
-                        <Image
-                            src={"/chair_1.png"}
-                            className="order-2 xl:absolute lg:w-1/2 desktop:w-2/5 right-10 top-10"
+                        <img
+                            src={"/armchair.png"}
+                            className="order-2 xl:absolute xl:top-10 desktop:top-0 lg:w-1/2 desktop:w-1/2 right-6 top-0 w-[220px]"
                             alt="Rocking Wooden Chair"
-                            width={180}
-                            height={180}
                         />
                     </div>
                 </div>

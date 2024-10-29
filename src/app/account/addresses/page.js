@@ -77,7 +77,7 @@ export default function Addresses() {
   } = useForm()
 
   const onSubmit = (data) => {
-    const shippingAddress = `${data.address}, ${data.postalCode}, ${data.city}, ${data.country}`
+    const shippingAddress = `${data.firstName} ${data.lastName}, ${data.address}, ${data.phoneNumber}, ${data.postalCode}, ${data.city}, ${data.country}`
     setFormState({
       isAdding: false,
       isSubmitted: true,
@@ -152,6 +152,50 @@ export default function Addresses() {
             className="w-full mt-6 flex flex-col gap-5"
             onSubmit={handleSubmit(onSubmit)}
           >
+            <div className="flex flex-col lg:flex-row w-full lg:gap-7 gap-5">
+              <div className="flex flex-col gap-1 lg:w-1/2 w-full">
+                <label
+                  className="lg:text-sm text-[13px] font-medium"
+                  htmlFor="firstName"
+                >
+                  First name
+                </label>
+                <input
+                  className={`w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]`}
+                  type="text"
+                  id="firstName"
+                  {...register("firstName", {
+                    required: "First name is required",
+                  })}
+                />
+                {errors.firstName && (
+                  <p className="text-red-500 lg:text-sm text-[13px]">
+                    {errors.firstName.message}
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col gap-1 lg:w-1/2 w-full">
+                <label
+                  className="lg:text-sm text-[13px] font-medium"
+                  htmlFor="lastName"
+                >
+                  Last name
+                </label>
+                <input
+                  className={`w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]`}
+                  type="text"
+                  id="lastName"
+                  {...register("lastName", {
+                    required: "Last name is required",
+                  })}
+                />
+                {errors.lastName && (
+                  <p className="text-red-500 lg:text-sm text-[13px]">
+                    {errors.lastName.message}
+                  </p>
+                )}
+              </div>
+            </div>
             <div className="flex w-full gap-7">
               <div className="flex flex-col gap-1 w-full">
                 <label className="text-sm font-medium" htmlFor="address">
@@ -190,17 +234,24 @@ export default function Addresses() {
                 )}
               </div>
               <div className="flex flex-col gap-1 w-1/2">
-                <label className="text-sm font-medium" htmlFor="city">
-                  City
+                <label
+                  className="lg:text-sm text-[13px] font-medium"
+                  htmlFor="phoneNumber"
+                >
+                  Phone number
                 </label>
                 <input
-                  className="w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]"
-                  type="text"
-                  id="city"
-                  {...register("city", { required: "City is required" })}
+                  className={`w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]`}
+                  type="tel"
+                  id="phoneNumber"
+                  {...register("phoneNumber", {
+                    required: "Phone number is required",
+                  })}
                 />
-                {errors.city && (
-                  <p className="text-red-500 text-sm">{errors.city.message}</p>
+                {errors.phoneNumber && (
+                  <p className="text-red-500 lg:text-sm text-[13px]">
+                    {errors.phoneNumber.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -226,6 +277,20 @@ export default function Addresses() {
                   <p className="text-red-500 text-sm">
                     {errors.country.message}
                   </p>
+                )}
+              </div>
+              <div className="flex flex-col gap-1 w-1/2">
+                <label className="text-sm font-medium" htmlFor="city">
+                  City
+                </label>
+                <input
+                  className="w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]"
+                  type="text"
+                  id="city"
+                  {...register("city", { required: "City is required" })}
+                />
+                {errors.city && (
+                  <p className="text-red-500 text-sm">{errors.city.message}</p>
                 )}
               </div>
             </div>

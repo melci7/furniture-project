@@ -1,4 +1,4 @@
-import { Heart, ShoppingCart, CircleCheckBig } from 'lucide-react'
+import { ShoppingCart } from 'lucide-react'
 import Link from "next/link"
 import { toast } from 'sonner'
 
@@ -19,7 +19,7 @@ export default function ItemBox({ product, addToCart, recommended }) {
 
     return (
         <Link href={`/store/products/${product.id}`} className={`relative rounded-[24px] bg-[#F5F5F5] hover:bg-[#FDEDD6] ease-out duration-300 flex flex-col justify-between p-6 ${recommended ? "w-full" : "w-full md:w-[calc(50%-1rem)] lg:w-[calc(33%-1rem)]"}`}>
-            <Heart className='absolute left-6 top-6 ' strokeWidth={1.25} size={32} />
+
             {product.discount &&
                 <div className='bg-[#ffd873] rounded-full py-1 px-2 absolute right-6 top-6 text-sm font-medium'>
                     -{product.discount}%
@@ -27,7 +27,7 @@ export default function ItemBox({ product, addToCart, recommended }) {
             }
             <img
                 src={product.image[0]}
-                className={` lg:h-[300px] h-56 self-center ${recommended ? "p-6" : "p-2"} object-contain`}
+                className={` lg:h-[300px] h-56 self-center ${recommended ? "lg:p-6" : "p-2"} object-contain`}
                 alt={product.name}
             />
             <div className='flex flex-col'>

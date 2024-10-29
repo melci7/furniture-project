@@ -2,9 +2,11 @@ import Image from "next/image"
 import Link from 'next/link'
 
 export default function OfferSection({ products }) {
+
     const itemsWithDiscount = products.filter((item) => {
-        return item.discount >= 10
-    }).slice(0, 2)
+        return (item.discount >= 25 && item.discount <= 30)
+    })
+
     return (
         <section className="flex flex-col w-full gap-10 mt-16 lg:mt-24 lg:flex-row xl:gap-20 lg:gap-10 laptop:gap-40">
             <div className="lg:max-w-[360px] flex flex-col items-center lg-items-start lg:gap-8 gap-4">
@@ -18,8 +20,12 @@ export default function OfferSection({ products }) {
                 <div className="xl:w-[45%] lg:w-1/2 bg-[#dfe5f3] rounded-[24px] py-5 px-8 flex flex-col xl:h-[390px]">
                     <Link href={`/store/products/${itemsWithDiscount[0].id}`} className="flex flex-col justify-start h-full">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-2xl font-bold">{itemsWithDiscount[0].name}</h2>
-                            <div className="flex flex-col rounded-full bg-white self-start font-bold xl:text-lg text-base xl:px-4 xl:py-3 px-3.5 py-2.5 justify-center ">
+                            <div>
+
+                                <h2 className="text-2xl font-bold">{itemsWithDiscount[0].name}</h2>
+                                <p>{itemsWithDiscount[0].description.split(",")[0]}</p>
+                            </div>
+                            <div className="flex flex-col rounded-full bg-white self-start font-bold xl:text-lg text-base xl:w-16 xl:h-16 w-14 h-14 items-center justify-center ">
                                 <span>{itemsWithDiscount[0].discount}%</span>
                                 <span className="-mt-2">OFF</span>
                             </div>
@@ -27,7 +33,7 @@ export default function OfferSection({ products }) {
 
                         <img
                             src={itemsWithDiscount[0].image[0]}
-                            className="self-center w-[230px] object-cover xl:w-[280px]"
+                            className="self-center w-[230px] object-cover xl:w-[260px]"
                             alt={itemsWithDiscount[0].name}
                         />
 
@@ -36,15 +42,19 @@ export default function OfferSection({ products }) {
                 <div className="xl:w-[55%] lg:w-1/2 bg-[#fdedd6] rounded-[24px] py-5 px-8 flex flex-col relative xl:h-[440px] justify-between">
                     <Link href={`/store/products/${itemsWithDiscount[1].id}`} className="flex flex-col justify-start h-full">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-2xl font-bold">{itemsWithDiscount[1].name}</h2>
-                            <div className="rounded-full bg-white self-start flex flex-col xl:text-lg text-base font-bold xl:px-4 xl:py-3 px-3.5 py-2.5 justify-center">
+                            <div className="flex flex-col">
+                                <h2 className="text-2xl font-bold">{itemsWithDiscount[1].name}</h2>
+
+                                <p>{itemsWithDiscount[1].description.split(",")[0]}</p>
+                            </div>
+                            <div className="rounded-full bg-white self-start flex flex-col xl:text-lg text-base font-bold xl:w-16 xl:h-16 w-14 h-14 items-center justify-center">
                                 <span>{itemsWithDiscount[1].discount}%</span>
                                 <span className="-mt-2">OFF</span>
                             </div>
                         </div>
                         <img
                             src={itemsWithDiscount[1].image[0]}
-                            className="self-center w-[230px] object-cover xl:w-[320px]"
+                            className="self-center w-[230px] object-cover xl:w-[340px]"
                             alt={itemsWithDiscount[1].name}
                         />
                     </Link>

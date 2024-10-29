@@ -99,7 +99,7 @@ export default function ItemDetails({ product }) {
                 className="lg:hidden w-full flex items-center rounded-[24px]"
                 setApi={setCarouselApi}
             >
-                <CarouselContent className="w-full h-full m-auto bg-zinc-300 rounded-[24px]">
+                <CarouselContent className="w-full h-full m-auto rounded-[24px]">
                     <CarouselItem className="w-full h-full p-0">
                         <img
                             className="object-contain w-full h-full m-auto rounded-[24px]"
@@ -110,7 +110,7 @@ export default function ItemDetails({ product }) {
                     <CarouselItem className="w-full h-full p-0">
                         <img
                             className="object-contain w-full h-full m-auto rounded-[24px]"
-                            src={product.image[0]}
+                            src={product.image[1]}
                             alt={product.name}
                         />
                     </CarouselItem>
@@ -141,13 +141,13 @@ export default function ItemDetails({ product }) {
                     </span>
                 )}
 
-                <h2 className="text-xl font-bold lg:text-3xl mt-0.5">
+                <h2 className="text-2xl font-bold lg:text-3xl mt-0.5">
                     ${formatPrice(Math.ceil(product.price - (product.price * product.discount / 100)).toFixed(2))}
                 </h2>
 
 
 
-                <div className='text-sm flex items-center gap-4'>
+                <div className='text-sm flex items-center gap-2.5 lg:gap-4'>
                     <span className='h-5 w-5 bg-[#455EA0] text-white text-center font-semibold'>10</span>
                     <span className='text-[#636363]'>10 year limited warranty</span>
                 </div>

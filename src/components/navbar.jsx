@@ -2,7 +2,7 @@
 import * as React from "react"
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ShoppingCart, Heart, UserRound, LogOut, Package, Home, Menu, X } from 'lucide-react'
+import { ShoppingCart, UserRound, LogOut, Package, Home, Menu, X } from 'lucide-react'
 import { useCart } from "@/app/cart/useCart"
 import { useSession, signOut } from "next-auth/react"
 import Loading from "./loading"
@@ -15,6 +15,7 @@ export default function Navbar() {
     const [showDropdown, setShowDropdown] = useState(false)
     const [isSticky, setIsSticky] = useState(false)
     const [showUser, setShowUser] = useState(false)
+    const [showMobileMenu, setShowMobileMenu] = useState(false)
 
     useEffect(() => {
         function sticky() {
@@ -32,7 +33,7 @@ export default function Navbar() {
     }, [])
 
     useEffect(() => {
-        if (showUser) {
+        if (showUser || showMobileMenu) {
             document.body.classList.add('overflow-hidden');
         } else {
             document.body.classList.remove('overflow-hidden');
@@ -41,19 +42,22 @@ export default function Navbar() {
         return () => {
             document.body.classList.remove('overflow-hidden');
         };
-    }, [showUser]);
+    }, [showUser, showMobileMenu]);
 
     const toggleDropdown = () => setShowDropdown(!showDropdown)
 
     return (
         <div className={`mx-[-1.25rem] transition-all duration-300 ease-out px-5 ${isSticky ? "sticky top-0 z-20 bg-white py-4  md:bg-transparent md:py-0 md:relative md:z-0" : ""}  `}>
             <header className={`w-full flex justify-between items-center `}>
-                {showUser && (
+                {(showUser || showMobileMenu) && (
                     <div
                         className="fixed inset-0 bg-black/30 z-20 transition-opacity duration-300 ease-out"
-                        onClick={() => setShowUser(false)}
+                        onClick={() => {
+                            setShowUser(false)
+                            setShowMobileMenu(false)
+                        }}
                         style={{
-                            opacity: showUser ? 1 : 0,
+                            opacity: showUser || showMobileMenu ? 1 : 0,
                         }}
                     ></div>
                 )}
@@ -64,13 +68,39 @@ export default function Navbar() {
                     ></div>
                 )}
                 <Link href={"/"} className="font-bold text-lg">Logo</Link>
+
+                {/* Mobile Menu */}
+                <nav
+                    className={`md:hidden overflow-hidden rounded-[36px] p-8 pt-7 fixed inset-x-4 top-0 h-68 w-11/12 mx-auto bg-white z-40 transform ${showMobileMenu ? 'translate-y-4' : '-translate-y-full'} transition-transform duration-200 ease-out`}
+                    aria-hidden={!showMobileMenu}
+                >
+                    <div className="w-6 h-6 bg-[#EEF2FF] rounded-full absolute flex items-center justify-center right-8 top-7">
+                        <X strokeWidth={3} size={16} color="#5C75B8" className="cursor-pointer" onClick={() => setShowMobileMenu(false)} />
+                    </div>
+                    <div className="flex items-center border-b border-[#dfdfdf]">
+                        <h2 className="font-semibold text-[15px] mb-4 pl-0">Navigation</h2>
+                    </div>
+                    <div className="flex flex-col text-[15px] text-center font-medium gap-2 px-3 py-2 mt-4 bg-[#EEF2FF] rounded-3xl"
+                        onClick={() => setShowMobileMenu(false)}>
+                        <Link href="/" className={` py-2 px-3 rounded-2xl ${pathname === '/' ? 'bg-white text-[#5C75B8]' : ''}`}>
+                            Home
+                        </Link>
+                        <Link href="/store" className={` py-2 px-3 rounded-2xl ${pathname === '/store' ? 'bg-white text-[#5C75B8]' : ''}`}>
+                            Store
+                        </Link>
+                        <Link href="/sale" className={`py-2 px-3 rounded-2xl ${pathname === '/sale' ? 'bg-white text-[#5C75B8]' : ''}`}>
+                            Sale
+                        </Link>
+                    </div>
+                </nav>
+
+                {/* User Menu */}
                 <nav
                     className={`md:hidden overflow-hidden rounded-[36px] p-8 fixed inset-x-4 bottom-0 h-72 w-11/12 mx-auto bg-white z-40 transform ${showUser ? '-translate-y-4' : 'translate-y-full'} transition-transform duration-200 ease-out`}
                     aria-hidden={!showUser}
                 >
                     <div className="w-8 h-8 bg-[#EEF2FF] rounded-full absolute flex items-center justify-center right-8 top-8 -mt-1">
-
-                        <X strokeWidth={3} size={18} color="#5C75B8" onClick={() => setShowUser(false)} />
+                        <X strokeWidth={3} size={18} color="#5C75B8" className="cursor-pointer" onClick={() => setShowUser(false)} />
                     </div>
                     {session && <div className="flex items-center border-b border-[#dfdfdf]">
                         <h2 className="font-semibold text-[19px] mb-4 pl-2">{session.user.name}</h2>
@@ -95,10 +125,10 @@ export default function Navbar() {
                         </button>
                     </div>
                 </nav>
+
                 <nav className="md:block hidden">
                     <ul className="flex md:gap-2 lg:gap-5 bg-indigo-50 px-3 py-2 rounded-3xl text-sm font-medium text-[#636363]">
                         <Link href="/" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/' ? 'bg-white text-black' : ''}`}>Home</Link>
-                        <Link href="/about" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/about' ? 'bg-white text-black' : ''}`}>About</Link>
                         <Link href="/store" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/store' ? 'bg-white text-black' : ''}`}>Store</Link>
                         <Link href="/sale" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/sale' ? 'bg-white text-black' : ''}`}>Sale</Link>
                     </ul>
@@ -121,8 +151,6 @@ export default function Navbar() {
                                         <UserRound strokeWidth={1.75} size={22} />
                                     </button>
                                 </div>
-
-
                             ) : (
                                 <Link href="/login" className="rounded-full transition-all active:scale-95 duration-200 ease-out hover:bg-[#FFD873] p-2.5 relative md:px-3 flex gap-1 md:gap-2 items-center text-sm">
                                     <UserRound strokeWidth={1.75} size={22} />
@@ -150,9 +178,6 @@ export default function Navbar() {
                                 </div>
                             )}
                         </div>
-                        <Link href="#" className="rounded-full active:scale-95 transition-all duration-200 ease-out hover:bg-[#FFD873] p-2.5 relative">
-                            <Heart strokeWidth={1.75} size={22} />
-                        </Link>
                         <Link href="/cart" className="rounded-full active:scale-95 transition-all duration-200 ease-out hover:bg-[#FFD873] p-2.5 relative group">
                             {quantity !== 0 && <div className="absolute transition-all duration-200 ease-out md:top-0 md:right-0 -top-0.5 right-0 flex items-center  justify-center rounded-full md:w-[20px] md:h-[20px] w-5 h-5 bg-[#5C75B8] text-white text-xs">
                                 {quantity}
@@ -161,7 +186,7 @@ export default function Navbar() {
                         </Link>
                         <button
                             className="md:hidden p-2 pr-0"
-
+                            onClick={() => setShowMobileMenu(true)}
                         >
                             <Menu strokeWidth={1.75} size={22} />
                         </button>
