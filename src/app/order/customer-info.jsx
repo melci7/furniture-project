@@ -51,16 +51,30 @@ export default function CustomerInfo({ register, errors, handleSubmit, isClicked
                         {errors.postalCode && <p className="text-red-500 lg:text-sm text-[13px]">{errors.postalCode.message}</p>}
                     </div>
                     <div className="flex flex-col gap-1 w-1/2">
-                        <label className="lg:text-sm text-[13px] font-medium" htmlFor="phoneNumber">Phone number</label>
+                        <label className="lg:text-sm text-[13px] font-medium" htmlFor="phoneNumber">
+                            Phone number
+                        </label>
                         <input
                             className={`w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf] ${isClicked ? 'bg-gray-100' : ''}`}
                             type="tel"
                             id="phoneNumber"
-                            {...register("phoneNumber", { required: "Phone number is required" })}
+                            placeholder="+123 4567 8901"
+                            {...register("phoneNumber", {
+                                required: "Phone number is required",
+                                pattern: {
+                                    value: /^\+?[1-9]\d{1,14}$/,
+                                    message: "Please enter a valid international phone number",
+                                },
+                            })}
                             disabled={isClicked}
                         />
-                        {errors.phoneNumber && <p className="text-red-500 lg:text-sm text-[13px]">{errors.phoneNumber.message}</p>}
+                        {errors.phoneNumber && (
+                            <p className="text-red-500 lg:text-sm text-[13px]">
+                                {errors.phoneNumber.message}
+                            </p>
+                        )}
                     </div>
+
                 </div>
                 <div className="flex gap-7 items-center">
                     <div className="flex flex-col gap-1 w-1/2">

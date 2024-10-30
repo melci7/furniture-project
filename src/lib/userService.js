@@ -20,6 +20,23 @@ export async function getAllProducts(page = 1) {
   }
 }
 
+export async function getDiscountedProducts() {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .gt("discount", 0)
+      .order("discount", { ascending: false })
+
+    if (error) throw error
+
+    return { data }
+  } catch (error) {
+    console.error("Error in getDiscountedProducts", error.message)
+    throw error
+  }
+}
+
 export async function getProductByCategory(category) {
   try {
     const { data, error } = await supabase

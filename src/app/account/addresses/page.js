@@ -244,8 +244,14 @@ export default function Addresses() {
                   className={`w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]`}
                   type="tel"
                   id="phoneNumber"
+                  placeholder="+123 4567 8901"
                   {...register("phoneNumber", {
                     required: "Phone number is required",
+                    pattern: {
+                      value: /^\+?[1-9]\d{1,14}$/,
+                      message:
+                        "Please enter a valid international phone number",
+                    },
                   })}
                 />
                 {errors.phoneNumber && (
@@ -262,16 +268,34 @@ export default function Addresses() {
                 </label>
                 <select
                   className="w-full rounded-[24px] py-2 px-4 border border-[#dfdfdf]"
+                  defaultValue=""
                   id="country"
                   {...register("country", { required: "Country is required" })}
                 >
                   <option value="" disabled>
                     Choose a country
                   </option>
-                  <option value="USA">United States</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Brazil">Brazil</option>
                   <option value="Canada">Canada</option>
+                  <option value="China">China</option>
+                  <option value="France">France</option>
+                  <option value="Germany">Germany</option>
+                  <option value="India">India</option>
+                  <option value="Italy">Italy</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Mexico">Mexico</option>
+                  <option value="Netherlands">Netherlands</option>
+                  <option value="Norway">Norway</option>
+                  <option value="Russia">Russia</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="South-korea">South Korea</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Sweden">Sweden</option>
+                  <option value="Switzerland">Switzerland</option>
+                  <option value="Turkey">Turkey</option>
                   <option value="UK">United Kingdom</option>
-                  {/* Add more countries as needed */}
+                  <option value="USA">United States</option>
                 </select>
                 {errors.country && (
                   <p className="text-red-500 text-sm">

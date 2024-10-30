@@ -78,18 +78,18 @@ export default function Navbar() {
                         <X strokeWidth={3} size={16} color="#5C75B8" className="cursor-pointer" onClick={() => setShowMobileMenu(false)} />
                     </div>
                     <div className="flex items-center border-b border-[#dfdfdf]">
-                        <h2 className="font-semibold text-[15px] mb-4 pl-0">Navigation</h2>
+                        <h2 className="font-medium text-sm mb-4 pl-0">Navigation</h2>
                     </div>
                     <div className="flex flex-col text-[15px] text-center font-medium gap-2 px-3 py-2 mt-4 bg-[#EEF2FF] rounded-3xl"
                         onClick={() => setShowMobileMenu(false)}>
-                        <Link href="/" className={` py-2 px-3 rounded-2xl ${pathname === '/' ? 'bg-white text-[#5C75B8]' : ''}`}>
-                            Home
+                        <Link href="/" className={` py-2 px-3 bg-white rounded-2xl ${pathname === '/' ? 'bg-white text-[#5C75B8]' : ''}`}>
+                            <span className={`rounded-2xl py-1.5 px-8 ${pathname === '/' ? 'bg-[#EEF2FF]' : ''}`}>Home</span>
                         </Link>
-                        <Link href="/store" className={` py-2 px-3 rounded-2xl ${pathname === '/store' ? 'bg-white text-[#5C75B8]' : ''}`}>
-                            Store
+                        <Link href="/store" className={` py-2 px-3 bg-white rounded-2xl ${pathname === '/store' ? 'bg-white text-[#5C75B8]' : ''}`}>
+                            <span className={`rounded-2xl py-1.5 px-8 ${pathname === '/store' ? 'bg-[#EEF2FF]' : ''}`}>Store</span>
                         </Link>
-                        <Link href="/sale" className={`py-2 px-3 rounded-2xl ${pathname === '/sale' ? 'bg-white text-[#5C75B8]' : ''}`}>
-                            Sale
+                        <Link href="/sale" className={`py-2 px-3 bg-white rounded-2xl ${pathname === '/sale' ? 'bg-white text-[#5C75B8]' : ''}`}>
+                            <span className={`rounded-2xl py-1.5 px-8 ${pathname === '/sale' ? 'bg-[#EEF2FF]' : ''}`}>Sale</span>
                         </Link>
                     </div>
                 </nav>
