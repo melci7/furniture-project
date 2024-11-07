@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import { Home, Plus, Edit2, Trash2 } from "lucide-react"
+import { Home, Plus, Trash2 } from "lucide-react"
 import { useSession } from "next-auth/react"
 import Spinner from "@/components/spinner"
 
@@ -40,21 +40,18 @@ const deleteAddress = async (addressId, updateAddresses) => {
 
 const createAddress = async (addressInfo) => {
   try {
-    console.log("Creating address with:", addressInfo) // Debugging log
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}api/user/addresses`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ addressInfo }), // Ensure correct structure
+        body: JSON.stringify({ addressInfo }),
       }
     )
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-
-    console.log("Address successfully created")
   } catch (error) {
     console.error("There was a problem submitting the address:", error)
   }
@@ -106,7 +103,7 @@ export default function Addresses() {
         createAddress({ ...formState.addressInfo, userId: session.user.id })
           .then(() => {
             setFormState({ ...formState, isSubmitted: false })
-            updateAddresses() // Refresh the address list
+            updateAddresses()
           })
           .catch(() => console.error("Failed to submit address."))
       }

@@ -6,7 +6,7 @@ import Footer from "@/components/footer"
 
 export default function RegisterPage() {
   return (
-    <div className="lg:mt-10 mt-8">
+    <div className="lg:mt-8 mt-6">
       <Navbar />
       <Suspense
         fallback={

@@ -1,5 +1,3 @@
-import Image from "next/image"
-import Link from 'next/link'
 import CategoryItem from "./category-item"
 
 export default function CategoryItemBox() {

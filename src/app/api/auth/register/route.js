@@ -5,7 +5,6 @@ export async function POST(request) {
   try {
     const { name, email, password } = await request.json()
 
-    // Check if all required fields are present
     if (!name || !email || !password) {
       console.log("Missing required fields")
       return NextResponse.json(
@@ -14,7 +13,6 @@ export async function POST(request) {
       )
     }
 
-    // Create new user (getUserByEmail check is now handled within createUser)
     const user = await createUser({ name, email, password })
 
     return NextResponse.json(

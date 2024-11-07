@@ -22,12 +22,9 @@ export default function LoginForm() {
             password: data.password,
         })
 
-        console.log("SignIn result:", result)
-
         if (result.error) {
             setServerError(result.error)
         } else {
-            // Successful login, redirect to return URL
             router.push(decodeURIComponent(returnUrl))
         }
     }

@@ -5,7 +5,6 @@ export async function POST(req) {
   try {
     const { addressInfo } = await req.json()
 
-    // Ensure addressInfo contains necessary fields
     if (!addressInfo || !addressInfo.userId) {
       return NextResponse.json(
         { error: "Invalid address information" },
@@ -13,7 +12,7 @@ export async function POST(req) {
       )
     }
 
-    await createAddress(addressInfo) // No need to return address here
+    await createAddress(addressInfo)
     return NextResponse.json({ message: "Address created successfully" })
   } catch (error) {
     console.error("Error in POST /api/user/addresses:", error.message)
@@ -27,7 +26,6 @@ export async function POST(req) {
 
 export async function GET(req) {
   try {
-    // Extract userId from query parameters
     const { searchParams } = new URL(req.url)
     const userId = searchParams.get("userId")
 

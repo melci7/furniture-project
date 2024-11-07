@@ -50,7 +50,6 @@ export default function PaymentMethod({ isClicked, purchaseCompleted, isValid, i
     }, [isClicked, payment, isValid]);
 
     const onSubmit = (data) => {
-        console.log("Form submitted with data:", data);
         purchaseCompleted();
     };
 

@@ -2,10 +2,7 @@
 import { useState, useEffect } from "react";
 
 export function useShoppingCart() {
-    // Initialize with empty array for SSR consistency
     const [cartItems, setCartItems] = useState([]);
-
-    // Load cart items from localStorage on mount
     useEffect(() => {
         if (typeof window !== 'undefined') {
             try {
@@ -17,7 +14,6 @@ export function useShoppingCart() {
         }
     }, []);
 
-    // Function to save cart items to localStorage
     const saveToLocalStorage = (items) => {
         if (typeof window !== 'undefined') {
             try {

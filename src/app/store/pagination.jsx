@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
 
@@ -21,7 +21,7 @@ export default function Pagination({ totalPages }) {
 
     return (
         <div className={`gap-2 items-center justify-center mt-6 lg:text-base text-sm ${totalPages <= 1 ? "hidden" : "flex"}`}>
-            {/* Previous button */}
+
             <button
                 onClick={() => {
                     if (currentPage > 1) {
@@ -37,7 +37,7 @@ export default function Pagination({ totalPages }) {
                 <ChevronLeft />
             </button>
 
-            {/* Page numbers */}
+
             {[...Array(totalPages)].map((_, index) => {
                 const pageNumber = index + 1
                 return (
@@ -63,7 +63,6 @@ export default function Pagination({ totalPages }) {
                 )
             })}
 
-            {/* Next button */}
             <button
                 onClick={() => {
                     if (currentPage < totalPages) {

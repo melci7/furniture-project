@@ -3,11 +3,10 @@ import Navbar from "@/components/navbar"
 import LoginForm from "../../components/login-form"
 import Spinner from "@/components/spinner"
 import Footer from "@/components/footer"
-import Link from "next/link"
 
 export default function LoginPage() {
   return (
-    <div className="lg:mt-10 mt-8">
+    <div className="lg:mt-8 mt-6">
       <Navbar />
       <Suspense
         fallback={

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import { House, UserRound, Package, LogOut } from 'lucide-react';
+import { House, Package, LogOut } from 'lucide-react';
 import { useRouter } from "next/navigation";
 
 export default function Sidebar() {

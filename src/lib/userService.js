@@ -5,7 +5,7 @@ export async function getAllProducts(page = 1) {
   try {
     const { data, error, count } = await supabase
       .from("products")
-      .select("*", { count: "exact" }) // 'exact' will return the total count of products
+      .select("*", { count: "exact" })
       .range((page - 1) * limit, page * limit - 1)
 
     if (error) throw error
@@ -79,14 +79,12 @@ export async function getUserByEmail(email) {
 
     if (error) throw error
 
-    return data // This will be null if no user is found
+    return data
   } catch (error) {
     console.error("Error in getUserByEmail:", error.message)
     throw error
   }
 }
-
-// ... (other functions remain the same)
 
 export async function createUser(userData) {
   const { name, email, password } = userData

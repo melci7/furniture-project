@@ -7,7 +7,6 @@ export async function POST(req) {
 
     let orderData = { cartItems, customerInfo }
 
-    // If selectedAddressId is present, include it in the orderData
     if (selectedAddressId) {
       orderData.selectedAddressId = selectedAddressId
     }

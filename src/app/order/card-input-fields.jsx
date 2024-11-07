@@ -1,7 +1,7 @@
 import React from 'react';
 
 const currentDate = new Date();
-const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-indexed
+const currentMonth = currentDate.getMonth() + 1;
 const currentYear = currentDate.getFullYear();
 
 const months = [

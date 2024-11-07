@@ -47,7 +47,6 @@ export default function OrderWrapper() {
             name: `${data.firstName} ${data.lastName}`,
             shippingAddress
         };
-        console.log("Form submitted with data: ", customerData);
         setIsClicked(true);
         setCustomerData(customerData);
     }
@@ -91,13 +90,6 @@ export default function OrderWrapper() {
                 },
                 body: JSON.stringify(orderData)
             })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Order created successfully:", data)
-                })
-                .catch(error => {
-                    console.error("Error creating order:", error)
-                })
         }
         if (status === "authenticated" && isValid) {
             orderCompleted()
