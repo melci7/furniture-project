@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { ShoppingCart, UserRound, LogOut, Package, Home, Menu, X } from 'lucide-react'
 import { useCart } from "@/app/cart/useCart"
 import { useSession, signOut } from "next-auth/react"
-import Loading from "./loading"
+import NavbarSkeleton from "./navbar-skeleton"
 import { useState, useEffect } from "react"
 
 export default function Navbar() {
@@ -67,7 +67,13 @@ export default function Navbar() {
                         onClick={toggleDropdown}
                     ></div>
                 )}
-                <Link href={"/"} className="font-bold text-lg">Logo</Link>
+                <Link href={"/"} className="font-bold text-lg">
+                    <img
+                        src={"/logo.svg"}
+                        className="w-32 lg:w-44 object-cover"
+                        alt="Logo"
+                    />
+                </Link>
 
                 {/* Mobile Menu */}
                 <nav
@@ -133,7 +139,7 @@ export default function Navbar() {
                         <Link href="/sale" className={`py-1.5 px-5 rounded-3xl ease-out duration-300 hover:bg-white hover:text-black ${pathname === '/sale' ? 'bg-white text-black' : ''}`}>Sale</Link>
                     </ul>
                 </nav>
-                {status === "loading" ? <Loading /> : (
+                {status === "loading" ? <NavbarSkeleton /> : (
                     <ul className="flex md:gap-2">
                         <div className="relative">
                             {session ? (

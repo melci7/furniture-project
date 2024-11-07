@@ -10,6 +10,7 @@ export default function Spinner({ size = 'medium', color = 'primary' }) {
     const colorClasses = {
         primary: 'border-black border-t-[#dfdfdf]',
         secondary: 'border-white border-t-transparent',
+        outline: 'border-gray-300 border-t-[#f5f5f5]'
     }
 
     return (

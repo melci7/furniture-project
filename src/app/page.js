@@ -14,7 +14,7 @@ export default async function Home() {
   const { data: armchair } = await getProductByCategory("Armchair")
 
   return (
-    <main className="lg:mt-10 mt-8 flex flex-col">
+    <main className="lg:mt-8 mt-6 flex flex-col">
       <Navbar />
       <BannerCarousel product={product} />
       <OfferSection products={armchair} />

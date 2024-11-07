@@ -38,7 +38,7 @@ export default function BannerCarousel({ product }) {
         .reverse();
 
     return (
-        <section className="relative w-full mt-6 lg:mt-10">
+        <section className="relative w-full mt-4 lg:mt-6">
             <div className="bg-[#5c75b8] rounded-[24px] lg:py-16 md:py-12 py-8 px-6">
                 <div className="flex flex-col lg:gap-6 md:gap-3 gap-4 sm:gap-2 items-center lg:max-w-[1090px] m-auto">
                     <h1 className="font-sans text-4xl md:text-5xl md:max-w-5xl sm:max-w-xl font-semibold md:text-center text-white desktop:text-7xl lg:text-6xl lg:mt-3">Modern Minimalist Furniture</h1>

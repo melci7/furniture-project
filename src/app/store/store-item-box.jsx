@@ -25,12 +25,12 @@ export default function StoreItemBox() {
 
     return (
         <div>
-            <section className="hidden lg:flex flex-wrap items-center justify-center w-full gap-4 m-auto mt-10 lg:gap-7">
+            <section className="hidden lg:flex flex-wrap items-center justify-center w-full gap-4 m-auto mt-6 lg:gap-7">
                 {categories.map(cat => (
                     <Link
                         key={cat.name}
                         href={`/store/${cat.name}`}
-                        className={`bg-[#f5f5f5] rounded-[24px] lg:px-10 flex flex-col items-center lg:py-4 px-14 py-3.5 cursor-pointer hover:bg-[#ffd873] ease-out duration-300 ${currentCategory === cat.name ? 'bg-[#ffd873]' : ''
+                        className={` rounded-[24px] lg:px-10 flex flex-col items-center lg:py-4 px-14 py-3.5 cursor-pointer hover:bg-[#ffd873] ease-out duration-300 ${currentCategory === cat.name ? 'bg-[#ffd873]' : ''
                             }`}
                     >
                         <Image
@@ -56,7 +56,7 @@ export default function StoreItemBox() {
                         <CarouselItem key={cat.name} className="basis-[37%] sm:basis-[30%] md:basis-[24%]">
                             <Link
                                 href={`/store/${cat.name}`}
-                                className={`bg-[#f5f5f5] rounded-[24px] lg:px-10 flex flex-col items-center lg:py-4 px-7 py-2 cursor-pointer hover:bg-[#ffd873] ease-out duration-300 ${currentCategory === cat.name ? 'bg-[#ffd873]' : ''
+                                className={` rounded-[24px] lg:px-10 flex flex-col items-center lg:py-4 px-7 py-2 cursor-pointer hover:bg-[#ffd873] ease-out duration-300 ${currentCategory === cat.name ? 'bg-[#ffd873]' : ''
                                     }`}
                             >
                                 <Image

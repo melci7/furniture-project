@@ -7,32 +7,12 @@ import { X, Check } from 'lucide-react';
 import { useShoppingCart } from "@/components/useShoppingCart";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Spinner from "@/components/spinner";
 
 export default function ItemList() {
-    const [isClicked, setIsClicked] = useState(false)
-    const { cartItems, addToCart, decreaseFromCart, removeFromCart } = useShoppingCart()
-    const [loading, setLoading] = useState(true);
+    const [isClicked, setIsClicked] = useState(false);
+    const { cartItems, addToCart, decreaseFromCart, removeFromCart } = useShoppingCart();
     const { data: session } = useSession();
     const router = useRouter();
-
-    const handleCheckout = () => {
-
-        const returnUrl = encodeURIComponent('/order');
-        router.push(`/login?returnUrl=${returnUrl}`);
-    };
-
-    function handleClick() {
-        if (session) {
-            // If user is logged in, proceed to the next step
-            router.push("/order");
-        } else {
-            // If user is not logged in, show the login/signup options
-            setIsClicked(prevValue => !prevValue)
-        }
-    }
-
-    console.log(cartItems)
 
     useEffect(() => {
         if (isClicked) {
@@ -41,23 +21,23 @@ export default function ItemList() {
             document.body.classList.remove('overflow-hidden');
         }
 
-        // Cleanup function to ensure we remove the class when component unmounts
         return () => {
             document.body.classList.remove('overflow-hidden');
         };
     }, [isClicked]);
 
-    const [hydrated, setHydrated] = useState(false);
+    const handleCheckout = () => {
+        const returnUrl = encodeURIComponent('/order');
+        router.push(`/login?returnUrl=${returnUrl}`);
+    };
 
-    useEffect(() => {
-        // Set hydrated to true after the component mounts, ensuring that the server HTML matches the client HTML.
-        setHydrated(true);
-    }, []);
-
-    if (!hydrated) {
-        // Return a loading state or placeholder while waiting for hydration to complete
-        return <div className="min-h-96 w-full flex items-center justify-center my-auto"><Spinner /></div>;
-    }
+    const handleClick = () => {
+        if (session) {
+            router.push("/order");
+        } else {
+            setIsClicked(prev => !prev);
+        }
+    };
 
     return (
         <div className="w-full flex flex-col lg:flex-row lg:gap-20 desktop:gap-32 gap-8 items-baseline">
@@ -75,7 +55,13 @@ export default function ItemList() {
                     <>
                         <span className="text-2xl font-semibold">Cart</span>
                         {cartItems.map(item =>
-                            <Item key={item.id} product={item} addToCart={addToCart} decreaseFromCart={decreaseFromCart} removeFromCart={removeFromCart} />
+                            <Item
+                                key={item.id}
+                                product={item}
+                                addToCart={addToCart}
+                                decreaseFromCart={decreaseFromCart}
+                                removeFromCart={removeFromCart}
+                            />
                         )}
                     </>
                 ) : (
@@ -99,11 +85,11 @@ export default function ItemList() {
                             }`}
                     >
                         <div className="flex justify-end">
-                            <button className="" onClick={handleClick} ><X size={22} /></button>
+                            <button onClick={handleClick}><X size={22} /></button>
                         </div>
                         <div className="px-4 flex flex-col gap-8">
-                            <h2 className="lg:text-2xl text-xl font-bold lg:mb-4 ">Choose how you would like to check out</h2>
-                            <div className="flex flex-col gap-1 ">
+                            <h2 className="lg:text-2xl text-xl font-bold lg:mb-4">Choose how you would like to check out</h2>
+                            <div className="flex flex-col gap-1">
                                 <span className="flex items-center gap-4 text-[#636363] text-sm">
                                     <Check size={18} />
                                     <span>Get instant benefits</span>
@@ -118,15 +104,28 @@ export default function ItemList() {
                                 </span>
                             </div>
 
-                            <button onClick={handleCheckout} className="bg-black py-3 mt-3 text-white lg:text-lg rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center">Join or log in</button>
-                            <div className="lg:my-3 my-1 text-[#636363] text-xs lg:text-sm text-center border-b border-[#dfdfdf]">OR</div>
-                            <Link href={"/order"} className="bg-[#455EA0] py-3 text-white lg:text-lg rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out text-center"
-                            >Continue as guest</Link>
-                            <p className="text-[#636363] text-xs text-center -mt-2 lg:mt-0">By continuing as a guest, you might miss out member discounts.</p>
+                            <button
+                                onClick={handleCheckout}
+                                className="bg-black py-3 mt-3 text-white lg:text-lg rounded-3xl w-full hover:bg-opacity-75 duration-300 ease-out text-center"
+                            >
+                                Join or log in
+                            </button>
+                            <div className="lg:my-3 my-1 text-[#636363] text-xs lg:text-sm text-center border-b border-[#dfdfdf]">
+                                OR
+                            </div>
+                            <Link
+                                href="/order"
+                                className="bg-[#455EA0] py-3 text-white lg:text-lg rounded-3xl w-full hover:bg-[#304170] duration-300 ease-out text-center"
+                            >
+                                Continue as guest
+                            </Link>
+                            <p className="text-[#636363] text-xs text-center -mt-2 lg:mt-0">
+                                By continuing as a guest, you might miss out member discounts.
+                            </p>
                         </div>
                     </div>
                 )}
             </div>
         </div>
-    )
+    );
 }

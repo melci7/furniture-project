@@ -53,7 +53,7 @@ export default function LoginForm() {
                                     className="w-1/2 bg-black text-white py-3 rounded-full hover:bg-opacity-75 transition duration-300 ease-out text-center"
                                     onClick={() => router.push(decodeURIComponent(returnUrl))}
                                 >
-                                    Go to Dashboard
+                                    Go to Home
                                 </button>
                             </div>
                         </div>

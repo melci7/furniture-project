@@ -3,41 +3,46 @@ const sections = ["Details", "Warranty", "Sustainability"];
 
 export default function ItemDetailsSkeleton() {
     return (
-        <div className="flex gap-14 mt-20 animate-pulse">
-            {/* Left Section: Image Skeleton */}
-            <div className="w-7/12 h-[600px] flex bg-gray-200 rounded-[24px]">
-                <div className="m-auto self-center object-scale-down w-full max-w-fit bg-gray-300 rounded-lg h-full" />
-            </div>
+        <div className="flex flex-col mt-6 lg:flex-row lg:gap-7 gap-5 lg:mt-20 animate-pulse">
+            {/* Image carousel placeholder */}
+            <div className="w-full lg:w-1/2 h-[400px] bg-gray-200 rounded-lg"></div>
 
-            {/* Right Section: Content Skeleton */}
-            <div className="flex flex-col gap-4 w-5/12">
-                {/* Title Skeleton */}
-                <div className="h-8 bg-gray-300 rounded-md w-3/4"></div>
-                <div className="h-4 bg-gray-300 rounded-md w-1/2"></div>
+            <div className="flex flex-col gap-4 lg:w-1/2">
+                {/* Product title placeholder */}
+                <div className="h-8 bg-gray-200 rounded w-3/4"></div>
 
-                {/* Price Skeleton */}
-                <div className="h-6 bg-gray-300 rounded-md w-1/4"></div>
+                {/* Product description placeholder */}
+                <div className="space-y-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                </div>
 
-                {/* Image Thumbnail Skeleton */}
-                <div className="w-14 h-12 bg-gray-300 rounded-md"></div>
+                {/* Price placeholder */}
+                <div className="h-8 bg-gray-200 rounded w-1/4"></div>
 
-                {/* Button Skeleton */}
-                <div className="bg-gray-300 py-3 rounded-3xl w-full mt-6"></div>
-
-                {/* Tabs Skeleton */}
-                <div className="flex border-b border-gray-200 mt-4">
-                    {sections.map((section) => (
-                        <div key={section} className="flex justify-center w-full py-2 px-4">
-                            <div className="h-4 bg-gray-300 rounded-md w-1/2"></div>
-                        </div>
+                {/* Feature highlights placeholder */}
+                <div className="flex flex-wrap gap-3 mt-4">
+                    {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="flex-1 min-w-[160px] h-16 bg-gray-200 rounded-2xl"></div>
                     ))}
                 </div>
 
-                {/* Tab Content Skeleton */}
-                <div className="mt-4 space-y-4">
-                    <div className="h-4 bg-gray-300 rounded-md"></div>
-                    <div className="h-4 bg-gray-300 rounded-md w-5/6"></div>
-                    <div className="h-4 bg-gray-300 rounded-md w-4/6"></div>
+                {/* Add to Cart button placeholder */}
+                <div className="h-12 bg-gray-200 rounded-full mt-6"></div>
+
+                {/* Tabs placeholder */}
+                <div className="mt-6">
+                    <div className="flex border-b border-gray-200">
+                        {['Details', 'Warranty', 'Sustainability'].map((tab) => (
+                            <div key={tab} className="flex-1 h-10 bg-gray-200 rounded-t-lg mx-1"></div>
+                        ))}
+                    </div>
+                    {/* Tab content placeholder */}
+                    <div className="mt-4 space-y-2">
+                        <div className="h-4 bg-gray-200 rounded"></div>
+                        <div className="h-4 bg-gray-200 rounded"></div>
+                        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                    </div>
                 </div>
             </div>
         </div>

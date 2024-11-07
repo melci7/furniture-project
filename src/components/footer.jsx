@@ -7,51 +7,60 @@ export default function Footer() {
         <footer className="w-full mt-auto">
 
             <div className='flex flex-col lg:flex-row lg:items-baseline lg:justify-between text-[#636363]'>
-                <div className='flex flex-col lg:gap-3 gap-2 text-black items-center lg:items-start text-center lg:text-start'>
-                    <span className='lg:text-4xl text-3xl font-semibold'>Logo</span>
-                    <span className='max-w-[300px] lg:text-base text-sm'>Rotonda Giuliani 3 Bianco veneto, 62383 Bergamo (VS)</span>
-                    <span className='lg:text-base text-sm'>melci721@gmail.com</span>
-                    <a href="mailto:melci721@gmail.com" className="bg-[#2D2D2D] rounded-3xl py-3 xl:py-3.5 px-6 lg:text-sm text-xs text-white lg:self-start mt-3 hover:bg-opacity-75 duration-300 ease-out">Contact Us</a>
-                    <div className='flex gap-1 items-center mt-6'>
-                        <div className='border-2 rounded-[4px] px-1.5'>
-                            <Image
-                                src={'/visa.svg'}
-                                width={32}
-                                height={32}
-                                alt="Visa"
-                            />
-                        </div>
-                        <div className='border-2 rounded-[4px] px-1.5'>
-                            <Image
-                                src={'/mastercard.svg'}
-                                width={32}
-                                height={32}
-                                alt="MasterCard"
-                            />
-                        </div>
-                        <div className='border-2 rounded-[4px] px-1.5'>
-                            <Image
-                                src={'/paypal.svg'}
-                                width={32}
-                                height={32}
-                                alt="PayPal"
-                            />
-                        </div>
-                        <div className='border-2 rounded-[4px] px-1.5'>
-                            <Image
-                                src={'/google.svg'}
-                                width={32}
-                                height={32}
-                                alt="Google Pay"
-                            />
-                        </div>
-                        <div className='border-2 rounded-[4px] px-1.5'>
-                            <Image
-                                src={'/apple.svg'}
-                                width={32}
-                                height={32}
-                                alt="Apple Pay"
-                            />
+                <div className='flex flex-col gap-1'>
+                    <Link href={"/"}>
+                        <img
+                            src={"/logo.svg"}
+                            className="w-32 md:w-44"
+                            alt="Logo"
+                        />
+                    </Link>
+                    <div className='flex flex-col lg:gap-3 gap-2 text-black items-center lg:items-start text-center lg:text-start'>
+
+                        <span className='max-w-[300px] lg:text-base text-sm'>Rotonda Giuliani 3 Bianco veneto, 62383 Bergamo (VS)</span>
+                        <span className='lg:text-base text-sm'>melci721@gmail.com</span>
+                        <a href="mailto:melci721@gmail.com" className="bg-[#2D2D2D] rounded-3xl py-3 xl:py-3.5 px-6 lg:text-sm text-xs text-white lg:self-start mt-3 hover:bg-opacity-75 duration-300 ease-out">Contact Us</a>
+                        <div className='flex gap-1 items-center mt-6'>
+                            <div className='border-2 rounded-[4px] px-1.5'>
+                                <Image
+                                    src={'/visa.svg'}
+                                    width={32}
+                                    height={32}
+                                    alt="Visa"
+                                />
+                            </div>
+                            <div className='border-2 rounded-[4px] px-1.5'>
+                                <Image
+                                    src={'/mastercard.svg'}
+                                    width={32}
+                                    height={32}
+                                    alt="MasterCard"
+                                />
+                            </div>
+                            <div className='border-2 rounded-[4px] px-1.5'>
+                                <Image
+                                    src={'/paypal.svg'}
+                                    width={32}
+                                    height={32}
+                                    alt="PayPal"
+                                />
+                            </div>
+                            <div className='border-2 rounded-[4px] px-1.5'>
+                                <Image
+                                    src={'/google.svg'}
+                                    width={32}
+                                    height={32}
+                                    alt="Google Pay"
+                                />
+                            </div>
+                            <div className='border-2 rounded-[4px] px-1.5'>
+                                <Image
+                                    src={'/apple.svg'}
+                                    width={32}
+                                    height={32}
+                                    alt="Apple Pay"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ import { getAllProducts } from "@/lib/userService"
 export default async function Page({ searchParams }) {
   const { page } = await searchParams
   const { data, totalPages } = await getAllProducts(page)
-  console.log(page)
+
   return (
     <>
       <StoreItemBox />

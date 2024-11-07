@@ -2,60 +2,73 @@
 import { useState, useEffect } from "react";
 
 export function useShoppingCart() {
-    const [cartItems, setCartItems] = useState(() => {
-        if (typeof window !== 'undefined') { // Ensure we're in the browser
+    // Initialize with empty array for SSR consistency
+    const [cartItems, setCartItems] = useState([]);
+
+    // Load cart items from localStorage on mount
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
             try {
-                return JSON.parse(localStorage.getItem('cartItems')) || [];
+                const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+                setCartItems(savedCart);
             } catch (error) {
                 console.error('Error reading from localStorage:', error);
-                return [];
             }
-        } else {
-            return []; // Return empty array during SSR
         }
-    });
+    }, []);
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') { // Ensure this runs only on the client
+    // Function to save cart items to localStorage
+    const saveToLocalStorage = (items) => {
+        if (typeof window !== 'undefined') {
             try {
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                localStorage.setItem('cartItems', JSON.stringify(items));
                 window.dispatchEvent(new Event('cart-updated'));
             } catch (error) {
                 console.error('Error writing to localStorage:', error);
             }
         }
-    }, [cartItems]);
+    };
 
     const addToCart = (product) => {
         setCartItems(prevItems => {
             const existingItemIndex = prevItems.findIndex(item => item.id === product.id);
+            let newItems;
+
             if (existingItemIndex !== -1) {
-                // Product exists, update its quantity
-                return prevItems.map((item, index) =>
+                newItems = prevItems.map((item, index) =>
                     index === existingItemIndex
                         ? { ...item, quantity: Math.min(item.quantity + 1, 99) }
                         : item
                 );
             } else {
-                // Product doesn't exist, add it to the cart
-                return [...prevItems, { ...product, quantity: 1 }];
+                newItems = [...prevItems, { ...product, quantity: 1 }];
             }
+
+            saveToLocalStorage(newItems);
+            return newItems;
         });
     };
 
     const decreaseFromCart = (product) => {
         setCartItems(prevItems => {
-            return prevItems.map(item =>
+            const newItems = prevItems.map(item =>
                 item.id === product.id
                     ? { ...item, quantity: item.quantity - 1 }
                     : item
             ).filter(item => item.quantity > 0);
+
+            saveToLocalStorage(newItems);
+            return newItems;
         });
     };
 
     const removeFromCart = (product) => {
-        setCartItems(prevItems => prevItems.filter(item => item.id !== product.id))
-    }
+        setCartItems(prevItems => {
+            const newItems = prevItems.filter(item => item.id !== product.id);
+            saveToLocalStorage(newItems);
+            return newItems;
+        });
+    };
 
     return { cartItems, addToCart, decreaseFromCart, removeFromCart };
 }
