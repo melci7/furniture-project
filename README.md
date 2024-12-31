@@ -52,14 +52,10 @@ To run the project locally, follow these steps:
 
 ## Screenshots
 
-Include screenshots of your application to showcase its features. For example:
-
 ![Homepage Screenshot](https://i.imgur.com/y3Nfmly.png)
 ![Product Details Screenshot](https://i.imgur.com/fmEVW6v.png)
-![Shopping Cart Screenshot](https://imgur.com/M6jWQIT)
-![Order Summary Screenshot](https://imgur.com/iE7b9QC)
 
 If you have any questions or need further assistance, feel free to contact me:
 
 - Email: [melci721@gmail.com](mailto:melci721@gmail.com)
-- LinkedIn: [Adar Kayalık](https://www.linkedin.com/in/adar-kayalık/)
+- LinkedIn: [Muhammed Emrullah Elçi](https://www.linkedin.com/in/muhammed-elci/)
