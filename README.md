@@ -54,8 +54,8 @@ To run the project locally, follow these steps:
 
 Include screenshots of your application to showcase its features. For example:
 
-![Homepage Screenshot](https://imgur.com/y3Nfmly)
-![Product Details Screenshot](https://imgur.com/fmEVW6v)
+![Homepage Screenshot](https://i.imgur.com/y3Nfmly.png)
+![Product Details Screenshot](https://i.imgur.com/fmEVW6v.png)
 ![Shopping Cart Screenshot](https://imgur.com/M6jWQIT)
 ![Order Summary Screenshot](https://imgur.com/iE7b9QC)
 
